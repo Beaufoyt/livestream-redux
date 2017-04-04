@@ -9,6 +9,8 @@ export const changeFilter = filter => ({ type: types.CHANGE_FILTER, filter });
 export const deleteTodo = id => ({ type: types.DELETE_TODO, id });
 export const addNumber = () => ({ type: types.ADD_NUMBER, number: currentnumber++, id: ++numCounter });
 export const deleteNumber = id => ({ type: types.DELETE_NUMBER, id });
+export const showRegisterOverlay = () => ({ type: types.SHOW_REGISTER_OVERLAY });
+export const hideRegisterOverlay = () => ({ type: types.HIDE_REGISTER_OVERLAY });
 export const deleteAllTodos = () => {
   idCounter = 0;
   return { type: types.DELETE_ALL_TODOS };

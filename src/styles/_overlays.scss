@@ -1,0 +1,30 @@
+.register-overlay {
+  background-color: rgba(1,1,1,0.9);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1000;
+}
+
+.register-overlay-close {
+  opacity: 1;
+  right: 5px;
+  position: absolute;
+  top: 5px;
+  z-index: 1001;
+}
+
+.overlay-content {
+  position: absolute;
+  background: white;
+  text-align: center;
+  padding: 20px;
+  z-index: 1001;
+  width: 200px;
+  border-radius: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
