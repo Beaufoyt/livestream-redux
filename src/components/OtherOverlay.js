@@ -3,7 +3,7 @@ import { hideOverlay } from 'actions/todos';
 import PureComponent from './PureComponent';
 import OverlayContent from './OverlayContent';
 
-export default class RegisterOverlay extends PureComponent {
+export default class OtherOverlay extends PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -18,10 +18,10 @@ export default class RegisterOverlay extends PureComponent {
 
     return (
       <div className="register-overlay">
-        <button className={ this.getButtonClassNames() } onClick={() => dispatch(hideOverlay('registerOverlay'))}>
+        <button className={ this.getButtonClassNames() } onClick={() => dispatch(hideOverlay('otherOverlay'))}>
           Close Overlay
         </button>
-        <OverlayContent>This is some content in the overlay</OverlayContent>
+        <OverlayContent>This is some other content in the overlay</OverlayContent>
       </div>
     );
   }

@@ -1,13 +1,27 @@
 import * as types from 'constants/ActionTypes';
+import { fromJS } from 'immutable';
 import { combineReducers } from 'redux';
 
-function overlays(state = 'false', action) {
-  switch (action.type) {
-    case types.SHOW_REGISTER_OVERLAY:
-      return 'true';
+const input = {
+  overlays: {
+    registerOverlay: {
+      isVisible: false,
+    },
+    otherOverlay: {
+      isVisible: false,
+    },
+  },
+};
 
-    case types.HIDE_REGISTER_OVERLAY:
-      return 'false';
+const list = fromJS(input);
+
+function overlays(state = list, action) {
+  switch (action.type) {
+    case types.SHOW_OVERLAY:
+      return list.setIn(['overlays', action.id, 'isVisible'], true);
+
+    case types.HIDE_OVERLAY:
+      return list.setIn(['overlays', action.id, 'isVisible'], false);
 
     default:
       return state;
