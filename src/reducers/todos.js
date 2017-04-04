@@ -12,7 +12,7 @@ function todoList(state = List(), action) {
       }));
 
     case types.COMPLETE_TODO:
-      // map through todos to find matching ID
+    // map through todos to find matching ID
       return state.map(todo => {
         if (todo.get('id') === action.id) {
           return todo.update('isCompleted', v => !v);
@@ -43,8 +43,25 @@ function activeFilter(state = 'all', action) {
   }
 }
 
+function numberList(state = List(), action) {
+  switch (action.type) {
+    case types.ADD_NUMBER:
+      return state.push(Map({
+        id: action.id,
+        text: action.number,
+      }));
+
+    case types.DELETE_NUMBER:
+      return state.filter(number => number.get('id') !== action.id);
+
+    default:
+      return state;
+  }
+}
+
 
 export default combineReducers({
+  numberList,
   activeFilter,
   todoList,
 });
