@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
-import todos from './todos';
+import numbers from './numbers';
+import overlays from './overlays';
+import sidebar from './sidebar';
 
 export default combineReducers({
-  todos,
+  overlays,
+  numbers,
+  sidebar,
 });

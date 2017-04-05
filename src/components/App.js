@@ -1,34 +1,72 @@
 import React, { PropTypes } from 'react';
 import PureComponent from './PureComponent';
 import { connect } from 'react-redux';
-import TodoList from './TodoList';
-import AddTodo from './AddTodo';
-import Footer from './Footer';
+import { showOverlay } from 'actions/numbers';
+import ItemList from './ItemList';
+import RegisterOverlay from './RegisterOverlay';
+import OtherOverlay from './OtherOverlay';
+import Header from './Header';
+import Sidebar from './Sidebar';
 
 class App extends PureComponent {
 
   static propTypes = {
-    activeFilter: PropTypes.string.isRequired,
-    todoList: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
+    numbers: PropTypes.object.isRequired,
+    overlays: PropTypes.object.isRequired,
+    sidebar: PropTypes.object.isRequired,
+  }
+
+  getOverlayStack(dispatch) {
+    return [this.isRegisterOverlayVisible() && <RegisterOverlay key="registerOverlay" dispatch={ dispatch }/>,
+          this.isOtherOverlayVisible() && <OtherOverlay key="otherOverlay" dispatch={ dispatch } />,
+    ];
+  }
+
+  isRegisterOverlayVisible() {
+    return this.props.overlays.getIn(['overlays', 'registerOverlay', 'isVisible']);
+  }
+
+  isOtherOverlayVisible() {
+    return this.props.overlays.getIn(['overlays', 'otherOverlay', 'isVisible']);
+  }
+
+  getSidebarSize() {
+    return this.props.sidebar.getIn(['sidebar', 'size']);
+  }
+
+  getMainPadClass() {
+    return `header-content sidebar-pad-${this.props.sidebar.getIn(['sidebar', 'size'])}`;
   }
 
   render() {
-    const { dispatch, activeFilter, todoList } = this.props;
+    const { dispatch, numbers } = this.props;
     return (
       <div className="app">
-        <div className="todos">
-          <h1>ToDo App</h1>
-          <AddTodo dispatch={dispatch} />
-          <TodoList dispatch={dispatch} activeFilter={activeFilter} todoList={todoList} />
-          <Footer dispatch={dispatch} activeFilter={activeFilter} />
+        <Sidebar size={ this.getSidebarSize() } dispatch={dispatch} />
+        <div className={ this.getMainPadClass() }>
+          <Header dispatch={dispatch} />
+          <div className="overlay-button-group">
+            <button className="btn btn-success pull-right" onClick={() => dispatch(showOverlay('registerOverlay'))}>
+              Show Overlay
+            </button>
+            <button className="btn btn-success pull-right" onClick={() => dispatch(showOverlay('otherOverlay'))}>
+              Show Other Overlay
+            </button>
+          </div>
+          { this.getOverlayStack(dispatch) }
+          <div className="numbers-section">
+            <div className="numbers-app">
+              <h1>Number List App</h1>
+              <ItemList dispatch={dispatch} numberList={numbers} />
+            </div>
+          </div>
         </div>
-        <small className="signature">by <b>Ivan Rogić</b> from <b>Toptal</b></small>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ ...state.todos });
+const mapStateToProps = state => ({ ...state.numbers, ...state.overlays, ...state.sidebar });
 
 export default connect(mapStateToProps)(App);

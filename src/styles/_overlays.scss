@@ -1,0 +1,28 @@
+.register-overlay {
+  background-color: $overlay-transparent-black;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: $overlay-z-index;
+}
+
+.register-overlay-close {
+  opacity: 1;
+  right: 5px;
+  position: absolute;
+  top: 5px;
+  z-index: $overlay-on-top;
+}
+
+.overlay-content {
+  position: absolute;
+  background: white;
+  text-align: center;
+  padding: 20px;
+  z-index: $overlay-on-top;
+  width: 200px;
+  border-radius: $overlay-border-radius;
+  @include vertical-horizontal-center();
+}
