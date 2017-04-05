@@ -4,14 +4,14 @@
   height: 100%;
   background-color: black;
   display: inline-block;
-}
 
-.expanded {
-  width: 100px;
-}
+  &.expanded {
+    width: $sidebar-expanded;
+  }
 
-.contracted {
-  width: 40px;
+  &.contracted {
+    width: $sidebar-contracted;
+  }
 }
 
 .sidebar-title {
@@ -25,7 +25,7 @@
 .sidebar-logo {
   display: table;
   width: 100%;
-  height: 55px;
+  height: $header-height;
   text-align: center;
 }
 
@@ -35,9 +35,9 @@
 }
 
 .toggle-expanded {
-  margin-left: 105px;
+  margin-left: $sidebar-expanded + 5;
 }
 
 .toggle-contracted {
-  margin-left: 45px;
+  margin-left: $sidebar-contracted + 5;
 }

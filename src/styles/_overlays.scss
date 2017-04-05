@@ -1,11 +1,11 @@
 .register-overlay {
-  background-color: rgba(1,1,1,0.9);
+  background-color: $overlay-transparent-black;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   position: absolute;
-  z-index: 1000;
+  z-index: $overlay-z-index;
 }
 
 .register-overlay-close {
@@ -13,7 +13,7 @@
   right: 5px;
   position: absolute;
   top: 5px;
-  z-index: 1001;
+  z-index: $overlay-on-top;
 }
 
 .overlay-content {
@@ -21,10 +21,8 @@
   background: white;
   text-align: center;
   padding: 20px;
-  z-index: 1001;
+  z-index: $overlay-on-top;
   width: 200px;
-  border-radius: 20px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  border-radius: $overlay-border-radius;
+  @include vertical-horizontal-center();
 }
