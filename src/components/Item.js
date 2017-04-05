@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { deleteNumber } from 'actions/todos';
+import { deleteNumber } from 'actions/numbers';
 import PureComponent from './PureComponent';
 
 export default class Item extends PureComponent {
@@ -13,7 +13,7 @@ export default class Item extends PureComponent {
     const { text, id } = this.props.number.toObject();
     return (
       <div>
-      <li>
+      <li className="single-number">
         {text}
         <button className="btn btn-danger" onClick={() => this.props.dispatch(deleteNumber(id))}>Delete Number</button>
       </li>

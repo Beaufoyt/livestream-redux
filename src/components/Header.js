@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import PureComponent from './PureComponent';
-import { showOverlay } from 'actions/todos';
+import { showOverlay } from 'actions/numbers';
 
 export default class OtherOverlay extends PureComponent {
 

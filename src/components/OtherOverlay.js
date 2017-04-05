@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { hideOverlay } from 'actions/todos';
+import { hideOverlay } from 'actions/numbers';
 import PureComponent from './PureComponent';
 import OverlayContent from './OverlayContent';
 

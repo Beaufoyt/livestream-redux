@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { addNumber } from 'actions/todos';
+import { addNumber, deleteNumbers } from 'actions/numbers';
 import PureComponent from './PureComponent';
 import Item from './Item';
 
@@ -14,8 +14,9 @@ export default class ItemList extends PureComponent {
     const { dispatch, numberList } = this.props;
     return (
       <div>
-        <div className="pull-right">
-          <button className="btn btn-danger" onClick={() => dispatch(addNumber())}>Add Number</button>
+        <div>
+          <button className="btn btn-success" onClick={() => dispatch(addNumber())}>Add Number</button>
+          <button className="btn btn-error" onClick={() => dispatch(deleteNumbers())}>Delete Numbers</button>
         </div>
 
         <ul id="numberList">

@@ -1,10 +1,7 @@
 import React, { PropTypes } from 'react';
 import PureComponent from './PureComponent';
 import { connect } from 'react-redux';
-import TodoList from './TodoList';
-import AddTodo from './AddTodo';
-import { showOverlay } from 'actions/todos';
-import Footer from './Footer';
+import { showOverlay } from 'actions/numbers';
 import ItemList from './ItemList';
 import RegisterOverlay from './RegisterOverlay';
 import OtherOverlay from './OtherOverlay';
@@ -14,10 +11,8 @@ import Sidebar from './Sidebar';
 class App extends PureComponent {
 
   static propTypes = {
-    activeFilter: PropTypes.string.isRequired,
-    todoList: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    numberList: PropTypes.object.isRequired,
+    numbers: PropTypes.object.isRequired,
     overlays: PropTypes.object.isRequired,
     sidebar: PropTypes.object.isRequired,
   }
@@ -45,33 +40,33 @@ class App extends PureComponent {
   }
 
   render() {
-    const { dispatch, activeFilter, todoList, numberList } = this.props;
+    const { dispatch, numbers } = this.props;
     return (
       <div className="app">
         <Sidebar size={ this.getSidebarSize() } dispatch={dispatch} />
         <div className={ this.getMainPadClass() }>
           <Header dispatch={dispatch} />
-          <button className="btn btn-success pull-right" onClick={() => dispatch(showOverlay('registerOverlay'))}>
-            Show Overlay
-          </button>
-          <button className="btn btn-success pull-right" onClick={() => dispatch(showOverlay('otherOverlay'))}>
-            Show Other Overlay
-          </button>
-          { this.getOverlayStack(dispatch) }
-          <div className="todos">
-            <h1>ToDo App</h1>
-            <AddTodo dispatch={dispatch} />
-            <TodoList dispatch={dispatch} activeFilter={activeFilter} todoList={todoList} />
-            <Footer dispatch={dispatch} activeFilter={activeFilter} />
-            <ItemList dispatch={dispatch} numberList={numberList} />
+          <div className="overlay-button-group">
+            <button className="btn btn-success pull-right" onClick={() => dispatch(showOverlay('registerOverlay'))}>
+              Show Overlay
+            </button>
+            <button className="btn btn-success pull-right" onClick={() => dispatch(showOverlay('otherOverlay'))}>
+              Show Other Overlay
+            </button>
           </div>
-          <small className="signature">by <b>Ivan Rogić</b> from <b>Toptal</b></small>
+          { this.getOverlayStack(dispatch) }
+          <div className="numbers-section">
+            <div className="numbers-app">
+              <h1>Number List App</h1>
+              <ItemList dispatch={dispatch} numberList={numbers} />
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ ...state.todos, ...state.overlays, ...state.sidebar });
+const mapStateToProps = state => ({ ...state.numbers, ...state.overlays, ...state.sidebar });
 
 export default connect(mapStateToProps)(App);
