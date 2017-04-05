@@ -1,9 +1,9 @@
 {
-  "name": "ToDo",
+  "name": "Livestream",
   "version": "1.0.0",
-  "description": "ToDo App using React, Redux and ImmutableJS",
+  "description": "Livestream App using React, Redux and ImmutableJS",
   "private": false,
-  "author": "Ivan Rogić",
+  "author": "Tom Beaufoy / Hugo Farroba",
   "scripts": {
     "clean": "rm -rf dist",
     "start": "npm run dev",
