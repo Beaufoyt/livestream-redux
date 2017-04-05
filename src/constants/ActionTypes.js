@@ -7,3 +7,4 @@ export const ADD_NUMBER = 'ADD_NUMBER';
 export const DELETE_NUMBER = 'DELETE_NUMBER';
 export const SHOW_OVERLAY = 'SHOW_OVERLAY';
 export const HIDE_OVERLAY = 'HIDE_REGISTER_OVERLAY';
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
