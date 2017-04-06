@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
 import PureComponent from './PureComponent';
 import { connect } from 'react-redux';
-import { showOverlay } from 'actions/numbers';
-import ItemList from './ItemList';
 import RegisterOverlay from './RegisterOverlay';
 import OtherOverlay from './OtherOverlay';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import NumberApp from './NumberApp';
 
 class App extends PureComponent {
 
@@ -46,21 +45,8 @@ class App extends PureComponent {
         <Sidebar size={ this.getSidebarSize() } dispatch={dispatch} />
         <div className={ this.getMainPadClass() }>
           <Header dispatch={dispatch} />
-          <div className="overlay-button-group">
-            <button className="btn btn-success pull-right" onClick={() => dispatch(showOverlay('registerOverlay'))}>
-              Show Overlay
-            </button>
-            <button className="btn btn-success pull-right" onClick={() => dispatch(showOverlay('otherOverlay'))}>
-              Show Other Overlay
-            </button>
-          </div>
           { this.getOverlayStack(dispatch) }
-          <div className="numbers-section">
-            <div className="numbers-app">
-              <h1>Number List App</h1>
-              <ItemList dispatch={dispatch} numberList={numbers} />
-            </div>
-          </div>
+          <NumberApp numbers={numbers} dispatch={dispatch} />
         </div>
       </div>
     );
