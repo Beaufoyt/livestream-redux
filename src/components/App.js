@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
-import { ButtonGroup } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import PureComponent from './PureComponent';
-import { connect } from 'react-redux';
 import RegisterOverlay from './RegisterOverlay';
 import OtherOverlay from './OtherOverlay';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import NumberApp from './NumberApp';
+import CamApp from './CamApp';
 
 class App extends PureComponent {
 
@@ -45,16 +45,9 @@ class App extends PureComponent {
     return (
       <div className="app">
         <Sidebar size={ this.getSidebarSize() } dispatch={dispatch} />
-        <div className={ this.getMainPadClass() }>
+        <div id="header-content-container" className={ this.getMainPadClass() }>
           <Header dispatch={dispatch} />
-          <div className="filter-controls-bar">
-            <ButtonGroup>
-              <button className="btn btn-default pull-right">Category 1</button>
-              <button className="btn btn-default pull-right">Category 2</button>
-              <button className="btn btn-default pull-right">Category 3</button>
-            </ButtonGroup>
-            <button className="btn btn-default pull-right">Filter</button>
-          </div>
+          <CamApp dispatch={dispatch}/>
           { this.getOverlayStack(dispatch) }
           <NumberApp numbers={numbers} dispatch={dispatch} />
         </div>
