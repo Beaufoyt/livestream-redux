@@ -4,7 +4,7 @@ import PureComponent from './PureComponent';
 import CategoryRadioButtons from './CategoryRadioButtons';
 import FilterShelf from './FilterShelf';
 
-export default class Item extends PureComponent {
+export default class CamApp extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -23,15 +23,17 @@ export default class Item extends PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    cams: PropTypes.object.isRequired,
   }
 
   render() {
-    const { dispatch } = this.props;
+    const { dispatch, cams } = this.props;
+    const currentCamCategory = cams.getIn(['currrentCategory']);
 
     return (
       <div id="cam-app-container">
         <div className="filter-controls-bar">
-          <CategoryRadioButtons dispatch={dispatch}/>
+          <CategoryRadioButtons currentCategory={currentCamCategory} dispatch={dispatch}/>
           <button onClick={this.toggleFilterShelf} className="btn btn-default pull-right controls-btm">Filter</button>
         </div>
         <FilterShelf expanded={this.state.filterShelfExpanded}/>

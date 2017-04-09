@@ -1,47 +1,41 @@
 import React, { PropTypes } from 'react';
 import { ButtonGroup, Button } from 'react-bootstrap';
 
+import { changeCategory } from 'actions/cams';
+import { CAM_TYPES } from 'constants/CamTypes';
 import PureComponent from './PureComponent';
 
-export default class Item extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentlySelected: 'cat1',
-    };
-  }
-
+export default class CategoryRadioButtons extends PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    currentCategory: PropTypes.string.isRequired,
   }
 
   handleSelected(category) {
-    this.setState({
-      currentlySelected: category,
-    });
+    this.props.dispatch(changeCategory(category));
   }
 
   getActiveState(category) {
-    return this.state.currentlySelected === category;
+    return this.props.currentCategory === category;
   }
 
   render() {
-    const buttonCat1 = 'cat1';
-    const buttonCat2 = 'cat2';
+    const buttonCat1 = CAM_TYPES.ALL;
+    const buttonCat2 = CAM_TYPES.GIRLS;
+    const categoryButtonClasses = 'btn btn-default category-button';
 
     return (
       <div>
         <ButtonGroup className="pull-left controls-btm">
-          <Button active={this.getActiveState(buttonCat1)}
-              onClick={() => this.handleSelected(buttonCat1)}
-              className="btn btn-default">
-              Category 1
+          <Button active={ this.getActiveState(buttonCat1) }
+              onClick={ () => this.handleSelected(buttonCat1) }
+              className={ categoryButtonClasses }>
+              { buttonCat1 }
           </Button>
-          <Button active={this.getActiveState(buttonCat2)}
-              onClick={() => this.handleSelected(buttonCat2)}
-              className="btn btn-default">
-              Category 2
+          <Button active={ this.getActiveState(buttonCat2) }
+              onClick={ () => this.handleSelected(buttonCat2) }
+              className={ categoryButtonClasses }>
+              { buttonCat2 }
           </Button>
         </ButtonGroup>
       </div>
