@@ -4,6 +4,8 @@ import PureComponent from './PureComponent';
 import CategoryRadioButtons from './CategoryRadioButtons';
 import FilterShelf from './FilterShelf';
 
+let camCount = 0;
+
 export default class CamApp extends PureComponent {
   constructor(props) {
     super(props);
@@ -39,8 +41,9 @@ export default class CamApp extends PureComponent {
         <FilterShelf expanded={this.state.filterShelfExpanded}/>
         <ul className="user-list">
           { this.props.cams.getIn(['cams']).map(number => {
+            camCount += 1;
             return (
-              <li key={ number.getIn(['name']) } className="user-item">
+              <li key={ camCount } className="user-item">
                 <div>{ number.getIn(['name']) } { number.getIn(['category']) }</div>
               </li>
             );
