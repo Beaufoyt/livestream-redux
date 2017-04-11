@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { ButtonGroup, Button } from 'react-bootstrap';
 
-import { changeCategory } from 'actions/cams';
+import { changeCategory, requestCams } from 'actions/cams';
 import { CAM_TYPES } from 'constants/CamTypes';
 import PureComponent from './PureComponent';
 
@@ -11,8 +11,13 @@ export default class CategoryRadioButtons extends PureComponent {
     currentCategory: PropTypes.string.isRequired,
   }
 
+  componentDidMount() {
+    this.props.dispatch(requestCams());
+  }
+
   handleSelected(category) {
     this.props.dispatch(changeCategory(category));
+    this.props.dispatch(requestCams());
   }
 
   getActiveState(category) {

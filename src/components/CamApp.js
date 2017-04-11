@@ -28,7 +28,7 @@ export default class CamApp extends PureComponent {
 
   render() {
     const { dispatch, cams } = this.props;
-    const currentCamCategory = cams.getIn(['currrentCategory']);
+    const currentCamCategory = cams.getIn(['currentCategory']);
 
     return (
       <div id="cam-app-container">
@@ -37,6 +37,15 @@ export default class CamApp extends PureComponent {
           <button onClick={this.toggleFilterShelf} className="btn btn-default pull-right controls-btm">Filter</button>
         </div>
         <FilterShelf expanded={this.state.filterShelfExpanded}/>
+        <ul className="user-list">
+          { this.props.cams.getIn(['cams']).map(number => {
+            return (
+              <li key={ number.getIn(['name']) } className="user-item">
+                <div>{ number.getIn(['name']) } { number.getIn(['category']) }</div>
+              </li>
+            );
+          }) }
+        </ul>
       </div>
     );
   }
