@@ -3,8 +3,7 @@ import React, { PropTypes } from 'react';
 import PureComponent from './PureComponent';
 import CategoryRadioButtons from './CategoryRadioButtons';
 import FilterShelf from './FilterShelf';
-
-let camCount = 0;
+import CamGrid from './CamGrid';
 
 export default class CamApp extends PureComponent {
   constructor(props) {
@@ -38,17 +37,8 @@ export default class CamApp extends PureComponent {
           <CategoryRadioButtons currentCategory={currentCamCategory} dispatch={dispatch}/>
           <button onClick={this.toggleFilterShelf} className="btn btn-default pull-right controls-btm">Filter</button>
         </div>
-        <FilterShelf expanded={this.state.filterShelfExpanded}/>
-        <ul className="user-list">
-          { this.props.cams.getIn(['cams']).map(number => {
-            camCount += 1;
-            return (
-              <li key={ camCount } className="user-item">
-                <div>{ number.getIn(['name']) } { number.getIn(['category']) }</div>
-              </li>
-            );
-          }) }
-        </ul>
+        <FilterShelf expanded={this.state.filterShelfExpanded} />
+        <CamGrid cams={cams} />
       </div>
     );
   }

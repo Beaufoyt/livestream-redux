@@ -17,6 +17,8 @@ function getCams() {
   return list.getIn(['camList']);
 }
 
+const requestAmount = 20;
+
 function cams(state = optionsList, action) {
   switch (action.type) {
     case types.CHANGE_CATEGORY:
@@ -24,9 +26,9 @@ function cams(state = optionsList, action) {
 
     case types.REQUEST_CAMS:
       if (state.getIn(['currentCategory']) === CAM_TYPES.ALL) {
-        return state.setIn(['cams'], getCams());
+        return state.setIn(['cams'], getCams().take(requestAmount));
       } else if (state.getIn(['currentCategory']) === CAM_TYPES.GIRLS) {
-        return state.setIn(['cams'], getCams().filter(person => person.get('category') === 'girl'));
+        return state.setIn(['cams'], getCams().filter(person => person.get('category') === 'girl').take(requestAmount));
       }
       return state;
 
