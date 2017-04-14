@@ -13,12 +13,15 @@
 
 .user-item {
   display: inline-block;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 10px;
+  width: 45%;
 
   /* Smartphones (portrait) ----------- */
   @media only screen and (max-width : 568px) {
     margin-right: 0px;
+    margin-left: 0px;
     width: 100%;
   }
 
@@ -32,8 +35,8 @@
 }
 
 .card-image {
-  width: 200px;
-  height: 120px;
+  width: 100%;
+  height: 150px;
   background-color: black;
 
   /* Smartphones (portrait) ----------- */
@@ -57,5 +60,6 @@
 
   .controls-btm {
     margin-top: 10px;
+    z-index: 0;
   }
 }
