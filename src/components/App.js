@@ -45,7 +45,7 @@ class App extends PureComponent {
 
     return (
       <div className="app">
-        <Sidebar size={ this.getSidebarSize() } dispatch={dispatch} />
+        <Sidebar size={ this.getSidebarSize() } />
         <div id="header-content-container" className={ this.getMainPadClass() }>
           <Header dispatch={dispatch} />
           <CamApp cams={cams} dispatch={dispatch}/>

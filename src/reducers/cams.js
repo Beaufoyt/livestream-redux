@@ -8,6 +8,7 @@ import { CAM_TYPES } from '../constants/CamTypes.js';
 const camOptionsList = {
   currentCategory: CAM_TYPES.ALL,
   cams: List(),
+  activeFilter: null,
 };
 
 const optionsList = fromJS(camOptionsList);
@@ -23,6 +24,9 @@ function cams(state = optionsList, action) {
   switch (action.type) {
     case types.CHANGE_CATEGORY:
       return state.setIn(['currentCategory'], action.id);
+
+    case types.FILTER_REGION:
+      return state.setIn(['activeFilter'], action.id);
 
     case types.REQUEST_CAMS:
       if (state.getIn(['currentCategory']) === CAM_TYPES.ALL) {

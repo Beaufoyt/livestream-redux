@@ -37,7 +37,7 @@ export default class CamApp extends PureComponent {
           <CategoryRadioButtons currentCategory={currentCamCategory} dispatch={dispatch}/>
           <button onClick={this.toggleFilterShelf} className="btn btn-default pull-right controls-btm">Filter</button>
         </div>
-        <FilterShelf expanded={this.state.filterShelfExpanded} />
+        <FilterShelf dispatch={dispatch} expanded={this.state.filterShelfExpanded} />
         <CamGrid cams={cams} />
       </div>
     );

@@ -37,17 +37,6 @@
   text-align: center;
 }
 
-.sidebar-toggle {
-  position: absolute;
-  top: 10px;
-  z-index: 1;
-
-  /* Smartphones (portrait) ----------- */
-  @media only screen and (max-width : 568px) {
-    display: none !important;
-  }
-}
-
 .toggle-expanded {
   margin-left: $sidebar-expanded + 5;
 }

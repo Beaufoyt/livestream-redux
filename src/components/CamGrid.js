@@ -3,16 +3,29 @@ import PureComponent from './PureComponent';
 
 export default class CamGrid extends PureComponent {
   static PropTypes = {
-    cards: PropTypes.object.isRequired,
+    cams: PropTypes.object.isRequired,
   }
 
   getCards() {
-    return this.props.cams.getIn(['cams']).map((number, index) => {
+    const currentFilter = this.props.cams.get('activeFilter');
+
+
+    return this.props.cams.get('cams').map((cam, index) => {
+      const region = cam.get('region');
+
+      let isFiltered = 'visible';
+      if (currentFilter !== null && region !== currentFilter) {
+        isFiltered = 'hidden';
+      }
+
+      const className = 'user-item ' + isFiltered;
+
       return (
-        <li key={ index } className="user-item">
+        <li key={ index } className={className}>
           <div id="card-image" className="card-image" />
-          <span className="pull-left user">{ number.getIn(['name']) }</span>
-          <span className="pull-right gender">{ number.getIn(['category']) }</span>
+          <span className="pull-left user">{ cam.getIn(['name']) }</span>
+          &nbsp;<span>{ cam.getIn(['region']) }</span>
+          <span className="pull-right gender">{ cam.getIn(['category']) }</span>
         </li>
       );
     });

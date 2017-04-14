@@ -14,6 +14,16 @@
     @media only screen and (max-width : 568px) {
       margin: 0px 20px;
     }
+
+    .filter-dropdown {
+      width: 150px;
+      text-transform: uppercase;
+      margin-right: 5px;
+    }
+
+    .filter-control {
+      z-index: 0 !important;
+    }
   }
 
   /* Smartphones (portrait) ----------- */
