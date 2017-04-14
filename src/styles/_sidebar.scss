@@ -14,7 +14,7 @@
   }
 
   /* Smartphones (portrait) ----------- */
-  @media only screen and (max-width : 320px) {
+  @media only screen and (max-width : 568px) {
     display: block;
     height: 50px;
     width: 100% !important;
@@ -41,7 +41,7 @@
   top: 10px;
 
   /* Smartphones (portrait) ----------- */
-  @media only screen and (max-width : 320px) {
+  @media only screen and (max-width : 568px) {
     display: none !important;
   }
 }
