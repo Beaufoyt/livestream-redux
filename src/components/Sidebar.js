@@ -18,7 +18,7 @@ export default class OtherOverlay extends PureComponent {
   }
 
   getToggleClass() {
-    return `btn btn-success sidebar-toggle toggle-${this.props.size}`;
+    return `btn btn-success toggle-${this.props.size} sidebar-toggle`;
   }
 
   render() {

@@ -1,15 +1,16 @@
 .header-content {
   text-align: center;
+
+  /* Smartphones (portrait) ----------- */
+  @media only screen and (max-width : 320px) {
+    padding-left: 0 !important;
+  }
 }
 
-.filter-controls-bar {
-  height: 50px;
-  display: block;
-  margin: 0px 50px;
-  border-bottom: 1px solid gray;
-  background-color: rgb(252, 252, 252);
+.sidebar-pad-expanded {
+  padding-left: $sidebar-expanded;
+}
 
-  .controls-btm {
-    margin-top: 10px;
-  }
+.sidebar-pad-contracted {
+  padding-left: $sidebar-contracted;
 }

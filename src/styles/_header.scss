@@ -4,12 +4,5 @@
   height: $header-height;
   left: 0;
   padding: 10px 5px;
-}
-
-.sidebar-pad-expanded {
-  padding-left: $sidebar-expanded;
-}
-
-.sidebar-pad-contracted {
-  padding-left: $sidebar-contracted;
+  position: relative;
 }

@@ -6,7 +6,6 @@ import RegisterOverlay from './RegisterOverlay';
 import OtherOverlay from './OtherOverlay';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import NumberApp from './NumberApp';
 import CamApp from './CamApp';
 
 class App extends PureComponent {
@@ -42,7 +41,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const { dispatch, numbers, cams } = this.props;
+    const { dispatch, cams } = this.props;
 
     return (
       <div className="app">
@@ -51,7 +50,6 @@ class App extends PureComponent {
           <Header dispatch={dispatch} />
           <CamApp cams={cams} dispatch={dispatch}/>
           { this.getOverlayStack(dispatch) }
-          <NumberApp numbers={numbers} dispatch={dispatch} />
         </div>
       </div>
     );

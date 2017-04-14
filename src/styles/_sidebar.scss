@@ -12,6 +12,13 @@
   &.contracted {
     width: $sidebar-contracted;
   }
+
+  /* Smartphones (portrait) ----------- */
+  @media only screen and (max-width : 320px) {
+    display: block;
+    height: 50px;
+    width: 100% !important;
+  }
 }
 
 .sidebar-title {
@@ -32,6 +39,11 @@
 .sidebar-toggle {
   position: absolute;
   top: 10px;
+
+  /* Smartphones (portrait) ----------- */
+  @media only screen and (max-width : 320px) {
+    display: none !important;
+  }
 }
 
 .toggle-expanded {
