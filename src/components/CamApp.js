@@ -32,7 +32,7 @@ export default class CamApp extends PureComponent {
     const currentCamCategory = cams.getIn(['currentCategory']);
 
     return (
-      <div id="cam-app-container">
+      <div className="cam-app-container">
         <div className="filter-controls-bar">
           <CategoryRadioButtons currentCategory={currentCamCategory} dispatch={dispatch}/>
           <button onClick={this.toggleFilterShelf} className="btn btn-default pull-right controls-btm">Filter</button>
