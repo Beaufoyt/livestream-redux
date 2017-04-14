@@ -14,20 +14,16 @@ export default class CamGrid extends PureComponent {
       const region = cam.get('region');
 
       let isFiltered = 'visible';
-      if (currentFilter !== null && region !== currentFilter) {
-        isFiltered = 'hidden';
-      }
-
-      const className = 'user-item ' + isFiltered;
-
-      return (
-        <li key={ index } className={className}>
+      if (currentFilter === null || region === currentFilter) {
+        return (
+          <li key={ index } className='user-item'>
           <div id="card-image" className="card-image" />
           <span className="pull-left user">{ cam.getIn(['name']) }</span>
           &nbsp;<span>{ cam.getIn(['region']) }</span>
           <span className="pull-right gender">{ cam.getIn(['category']) }</span>
-        </li>
-      );
+          </li>
+        );
+      }
     });
   }
 
