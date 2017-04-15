@@ -9,10 +9,10 @@
     font-size: 10px;
     position: relative;
     text-indent: -9999em;
-    border-top: 1.1em solid rgba(88,114,255, 0.2);
-    border-right: 1.1em solid rgba(88,114,255, 0.2);
-    border-bottom: 1.1em solid rgba(88,114,255, 0.2);
-    border-left: 1.1em solid #5872ff;
+    border-top: 1.1em solid rgba(207, 88, 255, 0.2);
+    border-right: 1.1em solid rgba(207, 88, 255, 0.2);
+    border-bottom: 1.1em solid rgba(207, 88, 255, 0.2);
+    border-left: 1.1em solid $primary-brand-color;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
     transform: translateZ(0);
