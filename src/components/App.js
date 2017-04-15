@@ -36,7 +36,7 @@ class App extends PureComponent {
   }
 
   getMainPadClass() {
-    return `header-content sidebar-pad-${this.props.sidebar.getIn(['sidebar', 'size'])}`;
+    return `header-content sidebar-pad-${this.getSidebarSize()}`;
   }
 
   render() {

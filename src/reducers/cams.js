@@ -6,7 +6,6 @@ import { camData } from '../../spec/fixtures/camData';
 import { CAM_TYPES } from '../constants/CamTypes.js';
 
 const camOptionsList = {
-  currentCategory: CAM_TYPES.ALL,
   cams: List(),
   activeFilter: null,
 };
@@ -22,16 +21,13 @@ const requestAmount = 20;
 
 function cams(state = optionsList, action) {
   switch (action.type) {
-    case types.CHANGE_CATEGORY:
-      return state.setIn(['currentCategory'], action.id);
-
     case types.FILTER_REGION:
       return state.setIn(['activeFilter'], action.id);
 
     case types.REQUEST_CAMS:
-      if (state.getIn(['currentCategory']) === CAM_TYPES.ALL) {
+      if (action.category === CAM_TYPES.ALL) {
         return state.setIn(['cams'], getCams().take(requestAmount));
-      } else if (state.getIn(['currentCategory']) === CAM_TYPES.GIRLS) {
+      } else if (action.category === CAM_TYPES.GIRLS) {
         return state.setIn(['cams'], getCams().filter(person => person.get('category') === 'girl').take(requestAmount));
       }
       return state;

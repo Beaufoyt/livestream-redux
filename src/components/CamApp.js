@@ -30,12 +30,11 @@ class CamApp extends PureComponent {
 
   render() {
     const { dispatch, cams } = this.props;
-    const currentCamCategory = cams.getIn(['currentCategory']);
 
     return (
       <div className="cam-app-container">
         <div className="filter-controls-bar">
-          <CategoryRadioButtons currentCategory={currentCamCategory} dispatch={dispatch}/>
+          <CategoryRadioButtons dispatch={dispatch}/>
           <button onClick={this.toggleFilterShelf} className="btn btn-default pull-right controls-btm">Filter</button>
         </div>
         <FilterShelf dispatch={dispatch} expanded={this.state.filterShelfExpanded} />

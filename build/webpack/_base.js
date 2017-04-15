@@ -12,6 +12,7 @@ var webpackConfig = {
   target  : 'web',
   entry   : {
     app : [
+      'babel-polyfill',
       paths.project(config.dir_src) + '/init.js',
     ],
     vendor : config.vendor_dependencies
