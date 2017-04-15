@@ -27,7 +27,8 @@ export default class FilterShelf extends PureComponent {
   }
 
   getFilterControls() {
-    const dropdownTitle = (this.state.currentRegion === null) ? 'select region' : this.state.currentRegion;
+    const { currentRegion } = this.state;
+    const dropdownTitle = (currentRegion === null) ? 'Select Region' : currentRegion.toUpperCase();
 
     return (
       <div className="filter-controls">
