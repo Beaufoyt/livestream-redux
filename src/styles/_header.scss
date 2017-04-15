@@ -4,8 +4,10 @@
   padding: 10px 5px;
   position: fixed;
   z-index: 1;
+  pointer-events: none;
 
   .sidebar-toggle {
+    pointer-events: all;
     position: absolute;
     top: 10px;
     left: 5px;
@@ -17,6 +19,7 @@
     }
   }
   .register {
+    pointer-events: all;
     position: inherit;
     right: 5px;
   }
