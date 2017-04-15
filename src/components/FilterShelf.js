@@ -32,8 +32,12 @@ export default class FilterShelf extends PureComponent {
     return (
       <div className="filter-controls">
         <DropdownButton className="filter-dropdown filter-control" title={dropdownTitle} id="bg-vertical-dropdown-1">
-          <MenuItem className="filter-control" eventKey="UK" onSelect={() => this.onDropdownChange(REGIONS.UK) }>UK</MenuItem>
-          <MenuItem className="filter-control" eventKey="US" onSelect={() => this.onDropdownChange(REGIONS.US) }>US</MenuItem>
+          <MenuItem className="filter-control"
+              eventKey="UK"
+              onSelect={() => this.onDropdownChange(REGIONS.UK) }>UK</MenuItem>
+          <MenuItem className="filter-control"
+              eventKey="US"
+              onSelect={() => this.onDropdownChange(REGIONS.US) }>US</MenuItem>
         </DropdownButton>
         <button className="btn btn-danger" onClick={() => this.onDropdownChange(null)}>Clear Filter</button>
       </div>
