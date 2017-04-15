@@ -15,7 +15,6 @@ class App extends PureComponent {
     numbers: PropTypes.object.isRequired,
     overlays: PropTypes.object.isRequired,
     sidebar: PropTypes.object.isRequired,
-    cams: PropTypes.object.isRequired,
   }
 
   getOverlayStack(dispatch) {
@@ -41,14 +40,14 @@ class App extends PureComponent {
   }
 
   render() {
-    const { dispatch, cams } = this.props;
+    const { dispatch } = this.props;
 
     return (
       <div className="app">
         <Sidebar size={ this.getSidebarSize() } />
         <div id="header-content-container" className={ this.getMainPadClass() }>
           <Header dispatch={dispatch} />
-          <CamApp cams={cams} dispatch={dispatch}/>
+          <CamApp />
           { this.getOverlayStack(dispatch) }
         </div>
       </div>

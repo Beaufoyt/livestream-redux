@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 import PureComponent from './PureComponent';
 import CategoryRadioButtons from './CategoryRadioButtons';
 import FilterShelf from './FilterShelf';
 import CamGrid from './CamGrid';
 
-export default class CamApp extends PureComponent {
+class CamApp extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -43,3 +44,7 @@ export default class CamApp extends PureComponent {
     );
   }
 }
+
+const mapStateToProps = state => ({ ...state.cams });
+
+export default connect(mapStateToProps)(CamApp);
