@@ -7,7 +7,7 @@
   margin-bottom: 50px;
   text-align: left;
   padding: 0;
-  margin: 0 20px;
+  margin: 0 10px;
 }
 
 .user-item {
@@ -15,29 +15,26 @@
   margin-bottom: 10px;
   width: 100%;
   color: #d3d3d3;
+  padding: 0 10px;
 
   /* Smartphones (portrait) ----------- */
   @media only screen and (min-width : 568px) {
     width: 50%;
-    padding: 0 10px;
   }
 
   /* Smartphones (portrait) ----------- */
   @media only screen and (min-width : 768px) {
-    width: 33%;
-    padding: 0 10px;
+    width: 33.333333333333%;
   }
 
   /* Smartphones (portrait) ----------- */
   @media only screen and (min-width : 1024px) {
     width: 25%;
-    padding: 0 10px;
   }
 
   /* Smartphones (portrait) ----------- */
   @media only screen and (min-width : 1224px) {
     width: 20%;
-    padding: 0 10px;
   }
 
   .user {
