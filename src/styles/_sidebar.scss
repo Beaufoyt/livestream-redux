@@ -23,12 +23,28 @@
   }
 
   .burger-menu {
+    display: none;
     /* Smartphones (portrait) ----------- */
     @media only screen and (max-width : 568px) {
+      display: block;
       position: fixed;
       top: 10px;
       left: 5px;
     }
+  }
+
+  .burger-nav {
+    padding: 20px 0;
+    background-color: rgb(33, 33, 33);
+
+    /* Smartphones (portrait) ----------- */
+    @media only screen and (max-width : 568px) {
+      display: none;
+    }
+  }
+
+  .show-burger-nav {
+    display: block;
   }
 }
 
@@ -45,7 +61,6 @@
   width: 100%;
   height: $header-height;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 .toggle-expanded {
