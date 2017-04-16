@@ -16,8 +16,8 @@ export default class Sidebar extends PureComponent {
     size: PropTypes.string.isRequired,
   }
 
-  getSiteTitle() {
-    return this.props.size === 'expanded' ? 'React Live' : 'R';
+  getTitleClass() {
+    return `sidebar-title sidebar-title-${this.props.size}`;
   }
 
   getSidebarClass() {
@@ -64,7 +64,7 @@ export default class Sidebar extends PureComponent {
     return (
       <div className={ this.getSidebarClass() }>
         <div className="sidebar-logo">
-          <h2 className="sidebar-title">{this.getSiteTitle()}</h2>
+          <h2 className={ this.getTitleClass() } />
         </div>
         { this.getNavBar() }
       </div>
