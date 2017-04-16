@@ -13,6 +13,8 @@
   }
 
   .sidebar-toggle-caret {
+    filter: brightness(0.4);
+    -webkit-filter: brightness(0.4);
     width: 22px;
     height: 22px;
     position: absolute;
