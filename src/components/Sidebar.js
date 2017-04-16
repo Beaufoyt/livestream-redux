@@ -38,23 +38,26 @@ export default class Sidebar extends PureComponent {
     return navclass;
   }
 
-  getNavBarText() {
-    if (this.props.size === 'expanded') {
-      return { NavTitle1: 'NavItem 1', NavTitle2: 'NavItem 2' };
-    } else {
-      return { NavTitle1: '1', NavTitle2: '2' };
-    }
+  getNavBarTextClasses() {
+    return {
+      homeClass: `home-text-${this.props.size}`,
+      aboutClass: `about-text-${this.props.size}`,
+    };
   }
 
   getNavBar() {
-    const { NavTitle1, NavTitle2} = this.getNavBarText();
+    const { homeClass, aboutClass } = this.getNavBarTextClasses();
 
     return (
       <div>
         <button className="btn btn-success burger-menu" onClick={() => this.toggleNav()}>Menu</button>
         <Nav className={this.getNavClassName()} bsStyle="pills" stacked activeKey={1}>
-          <NavItem eventKey={1} href="#">{NavTitle1}</NavItem>
-          <NavItem eventKey={2} title="Item">{NavTitle2}</NavItem>
+          <NavItem eventKey={1} href="#">
+            <div className={homeClass} />
+          </NavItem>
+          <NavItem eventKey={2} href="#">
+            <div className={aboutClass} />
+          </NavItem>
         </Nav>
       </div>
     );

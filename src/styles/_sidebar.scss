@@ -41,6 +41,38 @@
     @media only screen and (max-width : 568px) {
       display: none;
     }
+
+    .home-text-expanded:before {
+      content: 'Home';
+
+      @media only screen and (max-width : 568px) {
+        content: 'Home';
+      }
+    }
+
+    .home-text-contracted:before {
+      content: 'H';
+
+      @media only screen and (max-width : 568px) {
+        content: 'Home';
+      }
+    }
+
+    .about-text-expanded:before {
+      content: 'About';
+
+      @media only screen and (max-width : 568px) {
+        content: 'About';
+      }
+    }
+
+    .about-text-contracted:before {
+      content: 'A';
+
+      @media only screen and (max-width : 568px) {
+        content: 'About';
+      }
+    }
   }
 
   .show-burger-nav {
