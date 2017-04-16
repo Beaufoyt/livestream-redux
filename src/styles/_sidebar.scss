@@ -2,9 +2,10 @@
   position: fixed;
   left: 0;
   height: 100%;
-  background-color: rgb(29, 29, 29);
+  background-color: rgb(33, 33, 33);
   display: inline-block;
   z-index: 1;
+  text-align: center;
 
   &.expanded {
     width: $sidebar-expanded;
@@ -19,6 +20,15 @@
     display: block;
     height: $header-height;
     width: 100% !important;
+  }
+
+  .burger-menu {
+    /* Smartphones (portrait) ----------- */
+    @media only screen and (max-width : 568px) {
+      position: fixed;
+      top: 10px;
+      left: 5px;
+    }
   }
 }
 
@@ -35,6 +45,7 @@
   width: 100%;
   height: $header-height;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .toggle-expanded {

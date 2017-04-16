@@ -17,7 +17,6 @@ export function fetchCams(category) {
     dispatch(requestCams());
 
     const requestTime = getRandomArbitrary(0, 3) * 1000;
-    console.log(requestTime);
 
     const list = fromJS(camData);
     setTimeout(() => {

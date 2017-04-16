@@ -1,10 +1,12 @@
 .loader,
   .loader:after {
+    background-color: #141414;
     border-radius: 50%;
     width: 10em;
     height: 10em;
   }
   .loader {
+    background-color: #141414;
     margin: 60px auto;
     font-size: 10px;
     position: relative;
