@@ -2,7 +2,7 @@
   position: fixed;
   left: 0;
   height: 100%;
-  background-color: rgb(33, 33, 33);
+  background-color: #1e1e1e;
   display: inline-block;
   z-index: 1;
   text-align: center;
@@ -35,7 +35,7 @@
 
   .burger-nav {
     padding: 20px 0;
-    background-color: rgb(33, 33, 33);
+    background-color: #1e1e1e;
 
     /* Smartphones (portrait) ----------- */
     @media only screen and (max-width : 568px) {
@@ -44,34 +44,18 @@
 
     .home-text-expanded:before {
       content: 'Home';
-
-      @media only screen and (max-width : 568px) {
-        content: 'Home';
-      }
     }
 
     .home-text-contracted:before {
       content: 'H';
-
-      @media only screen and (max-width : 568px) {
-        content: 'Home';
-      }
     }
 
     .about-text-expanded:before {
       content: 'About';
-
-      @media only screen and (max-width : 568px) {
-        content: 'About';
-      }
     }
 
     .about-text-contracted:before {
       content: 'A';
-
-      @media only screen and (max-width : 568px) {
-        content: 'About';
-      }
     }
   }
 
@@ -90,18 +74,10 @@
 
 .sidebar-title-expanded:before {
   content: 'React Live';
-
-  @media only screen and (max-width : 568px) {
-    content: 'React Live';
-  }
 }
 
 .sidebar-title-contracted:before {
   content: 'R';
-
-  @media only screen and (max-width : 568px) {
-    content: 'React Live';
-  }
 }
 
 .sidebar-logo {

@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Nav, NavItem } from 'react-bootstrap';
+
+import { toggleSidebar } from 'actions/sidebar';
 import Classnames from 'classnames';
 import PureComponent from './PureComponent';
 
@@ -13,7 +15,20 @@ export default class Sidebar extends PureComponent {
   }
 
   static propTypes = {
+    dispatch: PropTypes.func.isRequired,
     size: PropTypes.string.isRequired,
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth <= 568 && this.props.size === 'contracted') {
+        this.props.dispatch(toggleSidebar());
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize');
   }
 
   getTitleClass() {

@@ -1,26 +1,50 @@
 .header {
   width: 100%;
   height: $header-height;
-  padding: 10px 5px;
+  padding: 13px 5px;
   position: fixed;
   z-index: 1;
   pointer-events: none;
+  background-color: #282828;
 
-  .sidebar-toggle {
-    pointer-events: all;
+  /* Smartphones (portrait) ----------- */
+  @media only screen and (max-width : 568px) {
+    background: none;
+  }
+
+  .sidebar-toggle-caret {
+    width: 22px;
+    height: 22px;
     position: absolute;
-    top: 10px;
-    left: 5px;
+    left: 8px;
     z-index: 1;
+    top: 19px;
+    background-size: contain;
+    pointer-events: all;
+    border-radius: 3px;
+    cursor: pointer;
 
     /* Smartphones (portrait) ----------- */
     @media only screen and (max-width : 568px) {
       display: none !important;
     }
   }
+
+  .sidebar-toggle-caret:hover {
+    background-color: white;
+  }
+
+  .sidebar-toggle-expanded {
+    background-image: url('../images/caret-left.png');
+  }
+
+  .sidebar-toggle-contracted {
+    background-image: url('../images/caret-right.png');
+  }
+
   .register {
     pointer-events: all;
     position: inherit;
-    right: 5px;
+    right: 10px;
   }
 }

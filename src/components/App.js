@@ -41,12 +41,13 @@ class App extends PureComponent {
 
   render() {
     const { dispatch } = this.props;
+    const sidebarSize = this.getSidebarSize();
 
     return (
       <div className="app">
-        <Sidebar size={ this.getSidebarSize() } />
+        <Sidebar dispatch={dispatch} size={ sidebarSize } />
         <div id="header-content-container" className={ this.getMainPadClass() }>
-          <Header dispatch={dispatch} />
+          <Header dispatch={dispatch} sidebarSize={ sidebarSize } />
           <CamApp />
           { this.getOverlayStack(dispatch) }
         </div>

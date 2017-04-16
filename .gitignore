@@ -4,3 +4,4 @@ dist/
 config/config.js
 .sass-cache/
 npm-debug.log
+.DS_STORE
