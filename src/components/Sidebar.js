@@ -125,27 +125,27 @@ export default class Sidebar extends PureComponent {
       <div id="mini-nav" className={this.getMiniNavBarClass()}>
         <Button active={this.getActiveState(miniNavContact)}
             onClick={() => this.handleMiniNavSelected(miniNavContact)}
-            className="mini-nav-link">{miniNavContact}
+            className="mini-nav-link">Contact
         </Button>
         <Button active={this.getActiveState(miniNavJobs)}
             onClick={() => this.handleMiniNavSelected(miniNavJobs)}
-            className="mini-nav-link">{miniNavJobs}
+            className="mini-nav-link">Jobs
         </Button>
         <Button active={this.getActiveState(miniNavCookiePolicy)}
             onClick={() => this.handleMiniNavSelected(miniNavCookiePolicy)}
-            className="mini-nav-link">{miniNavCookiePolicy}
+            className="mini-nav-link">Cookie Policy
         </Button>
         <Button active={this.getActiveState(miniNavHelp)}
             onClick={() => this.handleMiniNavSelected(miniNavHelp)}
-            className="mini-nav-link">{miniNavHelp}
+            className="mini-nav-link">Help
         </Button>
         <Button active={this.getActiveState(miniNavTerms)}
             onClick={() => this.handleMiniNavSelected(miniNavTerms)}
-            className="mini-nav-link">{miniNavTerms}
+            className="mini-nav-link">Terms
         </Button>
         <Button active={this.getActiveState(miniNavModels)}
             onClick={() => this.handleMiniNavSelected(miniNavModels)}
-            className="mini-nav-link">{miniNavModels}
+            className="mini-nav-link">Models
         </Button>
       </div>
     );

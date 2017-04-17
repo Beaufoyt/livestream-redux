@@ -39,6 +39,11 @@
     display: block;
     width: 75%;
     margin: 0 auto;
+
+    /* Smartphones (portrait) ----------- */
+    @media only screen and (max-width : 568px) {
+      display: none;
+    }
   }
 
   .burger-nav {
@@ -101,6 +106,13 @@
       background-color: #1e1e1e;
       padding: 12px 0;
       position: absolute;
+
+      /* Smartphones (portrait) ----------- */
+      @media only screen and (max-width : 568px) {
+        position: initial;
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .mini-nav-expanded {
@@ -130,6 +142,13 @@
       background-color: #1e1e1e;
       border-radius: 0;
       border: none;
+      text-transform: capitalize;
+
+      /* Smartphones (portrait) ----------- */
+      @media only screen and (max-width : 568px) {
+        display: block;
+        width: 100%;
+      }
 
       &.active {
         color: white;
