@@ -31,7 +31,7 @@ class CamApp extends PureComponent {
   renderCamGrid(cams) {
     const isRequesting = cams.get('requesting');
 
-    return isRequesting ? <div className="loader">Loading...</div> : <CamGrid cams={cams} />;
+    return isRequesting ? <div className="loader"/> : <CamGrid cams={cams} />;
   }
 
   render() {
