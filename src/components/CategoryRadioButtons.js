@@ -5,15 +5,15 @@ import { fetchCams } from 'actions/cams';
 import { CAM_TYPES } from 'constants/CamTypes';
 import PureComponent from './PureComponent';
 
-const buttonCat1 = CAM_TYPES.ALL;
-const buttonCat2 = CAM_TYPES.GIRLS;
+const categoryAll = CAM_TYPES.ALL;
+const categoryGirls = CAM_TYPES.GIRLS;
 
 export default class CategoryRadioButtons extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentCamCategory: buttonCat1,
+      currentCamCategory: categoryAll,
     };
   }
 
@@ -43,15 +43,15 @@ export default class CategoryRadioButtons extends PureComponent {
     return (
       <div>
         <ButtonGroup className="pull-left controls-btm">
-          <Button active={ this.getActiveState(buttonCat1) }
-              onClick={ () => this.handleSelected(buttonCat1) }
+          <Button active={ this.getActiveState(categoryAll) }
+              onClick={ () => this.handleSelected(categoryAll) }
               className={ categoryButtonClasses }>
-              { buttonCat1 }
+              { categoryAll }
           </Button>
-          <Button active={ this.getActiveState(buttonCat2) }
-              onClick={ () => this.handleSelected(buttonCat2) }
+          <Button active={ this.getActiveState(categoryGirls) }
+              onClick={ () => this.handleSelected(categoryGirls) }
               className={ categoryButtonClasses }>
-              { buttonCat2 }
+              { categoryGirls }
           </Button>
         </ButtonGroup>
       </div>
