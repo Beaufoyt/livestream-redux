@@ -170,12 +170,24 @@ export default class Sidebar extends PureComponent {
     return this.getMiniNavBarToggle();
   }
 
+  getBurgerClass() {
+    const iconClass = Classnames('icon', {
+      active: this.state.showBurgerNav,
+    });
+
+    return iconClass;
+  }
+
   getNavBar() {
     const { homeClass, aboutClass } = this.getNavBarTextClasses();
 
     return (
       <div>
-        <button className="btn btn-success burger-menu" onClick={() => this.toggleNav()}>Menu</button>
+        <div id="hamburger-icon" onClick={() => this.toggleNav()} className={this.getBurgerClass()}title="Menu">
+          <span className="line line-1"></span>
+          <span className="line line-2"></span>
+          <span className="line line-3"></span>
+        </div>
         <div className={this.getNavClassName()}>
           <div id="big-nav">
             <Button className="nav-link"
