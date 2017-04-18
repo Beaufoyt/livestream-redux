@@ -52,6 +52,8 @@
       border: 0;
       color: gray;
       padding: 10px 0;
+      transition: border-left 0.15s;
+      transition-timing-function: linear;
 
       &.active {
         background-color: #282828;
@@ -132,6 +134,8 @@
       border-radius: 0;
       border: none;
       text-transform: capitalize;
+      transition: box-shadow 0.3s;
+      transition-timing-function: linear;
 
       /* Smartphones (portrait) ----------- */
       @media only screen and (max-width : 568px) {
