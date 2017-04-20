@@ -1,5 +1,5 @@
 .filter-bar {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
   .filter-controls {
     padding: 20px 0px;
@@ -17,5 +17,17 @@
     .filter-control {
       z-index: 0 !important;
     }
+  }
+}
+
+.filter-controls-bar {
+  height: 50px;
+  display: block;
+  margin: 10px 20px 0px 20px;
+  border-bottom: 1px solid gray;
+
+  .controls-btm {
+    margin-top: 10px;
+    z-index: 0;
   }
 }

@@ -19,7 +19,7 @@ export default class CamGrid extends PureComponent {
             <div id="card-image" style={{ backgroundImage: `url(${cam.get('image')})` }} className="card-image" />
             <span className="pull-left user">{ cam.getIn(['name']) }</span>
             &nbsp;<span>{ cam.getIn(['region']) }</span>
-            <span className="pull-right gender">{ cam.getIn(['category']) }</span>
+            <span className="pull-right viewers">{ cam.getIn(['viewers']) }</span>
           </li>
         );
 
