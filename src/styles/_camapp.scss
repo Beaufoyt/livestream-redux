@@ -37,6 +37,11 @@
   padding: 0 10px;
   text-align: center;
 
+  &.user:hover {
+    cursor: pointer;
+    color: white;
+  }
+
   /* Smartphones (portrait) ----------- */
   @media only screen and (min-width : 568px) {
     width: 50%;

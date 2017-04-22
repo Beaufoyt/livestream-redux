@@ -51,7 +51,7 @@ export default class CamGrid extends PureComponent {
 
       if (currentFilter === null || region === currentFilter) {
         const card = (
-          <li key={ index } className="user-item">
+          <li key={ index } className="user-item user">
             <div id="card-image" style={{ backgroundImage: `url(${cam.get('image')})` }} className="card-image" />
             <span className="pull-left user">{ cam.getIn(['name']) }</span>
             &nbsp;<span>{ cam.getIn(['region']) }</span>
