@@ -25,6 +25,7 @@ function cams(state = optionsList, action) {
         return state.merge({
           error: action.error,
           requesting: false,
+          requestingMore: false,
         });
       }
 
