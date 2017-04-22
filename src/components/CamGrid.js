@@ -28,16 +28,14 @@ export default class CamGrid extends PureComponent {
       waypointActive: false,
     });
 
-    console.log('cams', camSize, 'newCams', newCamSize);
   }
 
   componentDidUpdate() {
-    console.log('updated');
     if (!this.state.waypointActive) {
       window.requestAnimationFrame(() => {
         if (this.refs.waypoint) {
           const waypointEl = document.getElementById('waypoint');
-          console.log(this.isElementInViewport(waypointEl));
+
           if (this.isElementInViewport(waypointEl)) {
             this._handleWaypointEnter();
           }
@@ -139,7 +137,6 @@ export default class CamGrid extends PureComponent {
   }
 
   render() {
-    console.log('rendered');
     return (
       <div>
         { this.renderUserList() }
