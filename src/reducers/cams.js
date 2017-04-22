@@ -20,6 +20,13 @@ function cams(state = optionsList, action) {
       return state.setIn(['activeFilter'], action.id);
 
     case types.RECEIVE_CAMS: {
+      if (action.error) {
+        return state.merge({
+          error: action.error,
+          requesting: false,
+        });
+      }
+
       if (action.isFirstRequest) {
         return state.merge({
           cams: action.cams,
@@ -35,12 +42,6 @@ function cams(state = optionsList, action) {
         error: null,
       });
     }
-
-    case types.CAM_ERROR:
-      return state.merge({
-        error: true,
-        requesting: false,
-      });
 
     case types.CHANGE_CATEGORY:
       return state.setIn(['currentCamCategory'], action.id);

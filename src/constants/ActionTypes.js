@@ -8,4 +8,3 @@ export const CHANGE_CATEGORY = 'CHANGE_CATEGORY';
 export const REQUEST_CAMS = 'REQUEST_CAMS';
 export const RECEIVE_CAMS = 'RECEIVE_CAMS';
 export const FILTER_REGION = 'FILTER_REGION';
-export const CAM_ERROR = 'CAM_ERROR';

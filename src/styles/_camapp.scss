@@ -12,20 +12,30 @@
 
 .cam-error {
   height: 50px;
-  background-color: coral;
+  background-color: lighten(coral, 20);
+  color: $primary-text-color;
   margin: 0 20px;
   text-align: center;
   line-height: 50px;
-  color: white;
   border-radius: 5px;
+
+  .text {
+    display: inline-block;
+    background-size: 22px;
+    background-image: url('../images/danger.svg');
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+  }
 }
 
 .user-item {
   display: inline-block;
   margin-bottom: 10px;
   width: 100%;
-  color: #d3d3d3;
+  color: #969696;
   padding: 0 10px;
+  text-align: center;
 
   /* Smartphones (portrait) ----------- */
   @media only screen and (min-width : 568px) {
@@ -47,14 +57,9 @@
     width: 20%;
   }
 
-  .user {
-    margin-left: 5px;
-  }
-
   .viewers {
     color: $viewer-color;
     background-size: 16px 16px;
-    margin-right: 5px;
     background-image: url('../images/user.png');
     background-position: left center;
     background-repeat: no-repeat;
@@ -73,6 +78,16 @@
     background-position: center;
     background-size: 50px;
     background-image: url('../images/spinner.svg');
+  }
+
+  &.no-more-cams {
+    background-position: center;
+    background-size: 50px;
+    background-image: url('../images/danger.svg');
+  }
+
+  &.no-more-cams-text {
+
   }
 
   /* Smartphones (portrait) ----------- */

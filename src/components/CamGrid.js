@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import Waypoint from 'react-waypoint';
 
 import { fetchCams } from 'actions/cams';
+import { ERROR_TYPES } from 'constants/ErrorTypes';
 import PureComponent from './PureComponent';
 
 export default class CamGrid extends PureComponent {
@@ -20,11 +21,16 @@ export default class CamGrid extends PureComponent {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.cams.get('cams').size > this.props.cams.get('cams').size) {
+    const camSize = this.props.cams.get('cams').size;
+    const newCamSize = newProps.cams.get('cams').size;
+
+    if (newCamSize > camSize) {
       this.setState({
         waypointActive: false,
       });
     }
+
+    console.log('cams', camSize, 'newCams', newCamSize);
   }
 
   _handleWaypointEnter() {
@@ -64,11 +70,36 @@ export default class CamGrid extends PureComponent {
     });
   }
 
+  getWaypoint(error) {
+    if (error && error === ERROR_TYPES.NO_MORE) {
+      return (
+        <div>
+          <div className="card-image no-more-cams" />
+          <span className="no-more-cams-text">Looks like we've hit the end</span>
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        { !this.props.isLoading &&
+          <Waypoint onEnter={() => { this._handleWaypointEnter(); }}
+              onLeave={() => { this._handleWaypointLeave(); }} /> }
+        { this.state.waypointActive && <div className="card-image waypoint" /> }
+      </div>
+    );
+  }
+
   renderUserList() {
     const noCamsText = 'No cams found :(';
+    const error = this.props.cams.get('error');
 
-    if (this.props.cams.get('error')) {
-      return <div className="cam-error">{ noCamsText }</div>;
+    if (error && error === ERROR_TYPES.NOT_FOUND) {
+      return (
+        <div className="cam-error">
+          <div className="text">{ noCamsText }</div>
+        </div>
+      );
     }
 
     return (
@@ -76,10 +107,7 @@ export default class CamGrid extends PureComponent {
         <ul className="user-list">
           { this.getCards() }
           <div id="waypoint" className="user-item">
-            { !this.props.isLoading &&
-              <Waypoint onEnter={() => { this._handleWaypointEnter(); }}
-                  onLeave={() => { this._handleWaypointLeave(); }} /> }
-            { this.state.waypointActive && <div className="card-image waypoint" /> }
+            { this.getWaypoint(error) }
           </div>
         </ul>
       </div>
