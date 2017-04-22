@@ -6,6 +6,7 @@ import { CAM_TYPES } from '../constants/CamTypes.js';
 
 const camOptionsList = {
   requesting: false,
+  requestingMore: false,
   currentCamCategory: CAM_TYPES.ALL,
   error: null,
   cams: List(),
@@ -38,7 +39,7 @@ function cams(state = optionsList, action) {
       newCams = newCams.concat(action.cams);
       return state.merge({
         cams: newCams,
-        requesting: false,
+        requestingMore: false,
         error: null,
       });
     }
@@ -47,7 +48,10 @@ function cams(state = optionsList, action) {
       return state.setIn(['currentCamCategory'], action.id);
 
     case types.REQUEST_CAMS:
-      return state.setIn(['requesting'], true);
+      if (action.isFirstRequest) {
+        return state.setIn(['requesting'], true);
+      }
+      return state.setIn(['requestingMore'], true);
 
     default:
       return state;

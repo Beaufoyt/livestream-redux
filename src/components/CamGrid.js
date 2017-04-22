@@ -6,32 +6,15 @@ import { ERROR_TYPES } from 'constants/ErrorTypes';
 import PureComponent from './PureComponent';
 
 export default class CamGrid extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      waypointActive: false,
-    };
-  }
-
   static PropTypes = {
     dispatch: PropTypes.func.isRequired,
     cams: PropTypes.object.isRequired,
     isLoading: PropTypes.bool.isRequired,
-  }
-
-  componentWillReceiveProps(newProps) {
-    const camSize = this.props.cams.get('cams').size;
-    const newCamSize = newProps.cams.get('cams').size;
-
-    this.setState({
-      waypointActive: false,
-    });
-
+    isLoadingMore: PropTypes.bool.isRequired,
   }
 
   componentDidUpdate() {
-    if (!this.state.waypointActive) {
+    if (!this.props.isLoadingMore) {
       window.requestAnimationFrame(() => {
         if (this.refs.waypoint) {
           const waypointEl = document.getElementById('waypoint');
@@ -57,16 +40,7 @@ export default class CamGrid extends PureComponent {
 
   _handleWaypointEnter() {
     const currentCamCategory = this.props.cams.get('currentCamCategory');
-    this.setState({
-      waypointActive: true,
-    });
     this.props.dispatch(fetchCams(currentCamCategory, false));
-  }
-
-  _handleWaypointLeave() {
-    this.setState({
-      waypointActive: false,
-    });
   }
 
   getCards() {
@@ -105,9 +79,8 @@ export default class CamGrid extends PureComponent {
     return (
       <div>
         { !this.props.isLoading &&
-          <Waypoint onEnter={() => { this._handleWaypointEnter(); }}
-              onLeave={() => { this._handleWaypointLeave(); }} /> }
-        { this.state.waypointActive && <div className="card-image waypoint" /> }
+          <Waypoint onEnter={() => { this._handleWaypointEnter(); }} /> }
+        { this.props.isLoadingMore && <div className="card-image waypoint" /> }
       </div>
     );
   }

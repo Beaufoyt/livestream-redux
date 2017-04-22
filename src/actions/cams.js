@@ -7,7 +7,7 @@ import { ERROR_TYPES } from 'constants/ErrorTypes';
 
 export const changeCategory = (id) => ({ type: types.CHANGE_CATEGORY, id });
 const receiveCams = (cams, isFirstRequest, error) => ({ type: types.RECEIVE_CAMS, cams, isFirstRequest, error });
-const requestCams = () => ({ type: types.REQUEST_CAMS });
+const requestCams = (isFirstRequest) => ({ type: types.REQUEST_CAMS, isFirstRequest });
 export const filterRegion = (id) => ({ type: types.FILTER_REGION, id });
 
 function getRandomArbitrary(min, max) {
@@ -28,10 +28,11 @@ function getCamsByCategory(category, startIndex, endIndex) {
 export function fetchCams(category, isFirstRequest) {
   const fetch = (dispatch) => {
     if (isFirstRequest) {
-      dispatch(requestCams());
       requestStart = 0;
       requestEnd = 20;
     }
+
+    dispatch(requestCams(isFirstRequest));
 
     const requestTime = getRandomArbitrary(0, 3) * 1000;
 

@@ -30,23 +30,29 @@ class CamApp extends PureComponent {
 
   renderCamGrid(dispatch, cams) {
     const isRequesting = cams.get('requesting');
+    const isRequestingMore = cams.get('requestingMore');
 
     if (isRequesting) {
       return <div className="loader"/>;
     }
 
-    return <CamGrid dispatch={dispatch} isLoading={isRequesting} cams={cams} />;
+    return <CamGrid dispatch={dispatch} isLoading={isRequesting} isLoadingMore={isRequestingMore} cams={cams} />;
   }
 
   render() {
     const { dispatch, cams } = this.props;
     const currentCamCategory = cams.get('currentCamCategory');
     const isRequesting = cams.get('requesting');
+    const isRequestingMore = cams.get('requestingMore');
 
     return (
       <div className="cam-app-container">
         <div className="filter-controls-bar">
-          <CategoryRadioButtons isLoading={isRequesting} currentCategory={currentCamCategory} dispatch={dispatch}/>
+          <CategoryRadioButtons
+              isLoading={isRequesting}
+              isLoadingMore={isRequestingMore}
+              currentCategory={currentCamCategory}
+              dispatch={dispatch}/>
           <button onClick={this.toggleFilterShelf} className="btn btn-default pull-right controls-btm">Filter</button>
         </div>
         <FilterShelf dispatch={dispatch} expanded={this.state.filterShelfExpanded} />
