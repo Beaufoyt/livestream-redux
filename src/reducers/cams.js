@@ -6,6 +6,8 @@ import { CAM_TYPES } from '../constants/CamTypes.js';
 
 const camOptionsList = {
   requesting: false,
+  currentCamCategory: CAM_TYPES.ALL,
+  error: null,
   cams: List(),
   activeFilter: null,
 };
@@ -17,33 +19,34 @@ function cams(state = optionsList, action) {
     case types.FILTER_REGION:
       return state.setIn(['activeFilter'], action.id);
 
-    case types.RECEIVE_CAMS:
-      if (action.category === CAM_TYPES.ALL) {
-        if (action.isFirstRequest) {
-          return state.merge({
-            cams: action.cams,
-            requesting: false,
-          });
-        }
-        let newCams = state.get('cams');
-        newCams = newCams.concat(action.cams);
+    case types.RECEIVE_CAMS: {
+      if (action.isFirstRequest) {
         return state.merge({
-          cams: newCams,
+          cams: action.cams,
           requesting: false,
-        });
-      } else if (action.category === CAM_TYPES.GIRLS) {
-        return state.merge({
-          cams: action.cams.filter(person => person.get('category') === 'girl'),
-          requesting: false,
+          error: null,
         });
       }
-      return state;
+      let newCams = state.get('cams');
+      newCams = newCams.concat(action.cams);
+      return state.merge({
+        cams: newCams,
+        requesting: false,
+        error: null,
+      });
+    }
+
+    case types.CAM_ERROR:
+      return state.merge({
+        error: true,
+        requesting: false,
+      });
+
+    case types.CHANGE_CATEGORY:
+      return state.setIn(['currentCamCategory'], action.id);
 
     case types.REQUEST_CAMS:
-      if (action.isFirstRequest) {
-        return state.setIn(['requesting'], true);
-      }
-      return state;
+      return state.setIn(['requesting'], true);
 
     default:
       return state;

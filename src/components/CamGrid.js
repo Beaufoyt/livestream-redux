@@ -1,9 +1,7 @@
 import React, { PropTypes } from 'react';
-import { Button } from 'react-bootstrap';
 import Waypoint from 'react-waypoint';
 
 import { fetchCams } from 'actions/cams';
-import { CAM_TYPES } from 'constants/CamTypes';
 import PureComponent from './PureComponent';
 
 export default class CamGrid extends PureComponent {
@@ -30,7 +28,8 @@ export default class CamGrid extends PureComponent {
   }
 
   _handleWaypointEnter() {
-    this.props.dispatch(fetchCams(CAM_TYPES.ALL, false));
+    const currentCamCategory = this.props.cams.get('currentCamCategory');
+    this.props.dispatch(fetchCams(currentCamCategory, false));
     this.setState({
       waypointActive: true,
     });
@@ -65,11 +64,16 @@ export default class CamGrid extends PureComponent {
     });
   }
 
-  render() {
+  renderUserList() {
+    const noCamsText = 'No cams found :(';
+
+    if (this.props.cams.get('error')) {
+      return <div className="cam-error">{ noCamsText }</div>;
+    }
+
     return (
       <div>
         <ul className="user-list">
-          <Button onClick={() => { this.props.dispatch(fetchCams(CAM_TYPES.ALL, false)); }}>click meh</Button>
           { this.getCards() }
           <div id="waypoint" className="user-item">
             { !this.props.isLoading &&
@@ -78,6 +82,14 @@ export default class CamGrid extends PureComponent {
             { this.state.waypointActive && <div className="card-image waypoint" /> }
           </div>
         </ul>
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div>
+        { this.renderUserList() }
       </div>
     );
   }
