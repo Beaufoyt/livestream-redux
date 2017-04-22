@@ -12,6 +12,7 @@ export default class CategoryRadioButtons extends PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     currentCategory: PropTypes.string.isRequired,
+    isLoading: PropTypes.bool.isRequired,
   }
 
   componentDidMount() {
@@ -19,8 +20,10 @@ export default class CategoryRadioButtons extends PureComponent {
   }
 
   handleSelected(category) {
-    this.props.dispatch(changeCategory(category));
-    this.props.dispatch(fetchCams(category, true));
+    if (!this.props.isLoading) {
+      this.props.dispatch(changeCategory(category));
+      this.props.dispatch(fetchCams(category, true));
+    }
   }
 
   getActiveState(category) {

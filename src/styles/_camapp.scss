@@ -12,8 +12,8 @@
 
 .cam-error {
   height: 50px;
-  background-color: lighten(coral, 20);
-  color: $primary-text-color;
+  background-color: darken($primary-brand-color, 2);
+  color: $secondary-text-color;
   margin: 0 20px;
   text-align: center;
   line-height: 50px;
@@ -22,7 +22,7 @@
   .text {
     display: inline-block;
     background-size: 22px;
-    background-image: url('../images/danger.svg');
+    background-image: url('../images/error.svg');
     background-position: left center;
     background-repeat: no-repeat;
     padding-left: 30px;
@@ -84,10 +84,6 @@
     background-position: center;
     background-size: 50px;
     background-image: url('../images/danger.svg');
-  }
-
-  &.no-more-cams-text {
-
   }
 
   /* Smartphones (portrait) ----------- */

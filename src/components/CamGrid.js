@@ -24,21 +24,45 @@ export default class CamGrid extends PureComponent {
     const camSize = this.props.cams.get('cams').size;
     const newCamSize = newProps.cams.get('cams').size;
 
-    if (newCamSize > camSize) {
-      this.setState({
-        waypointActive: false,
-      });
-    }
+    this.setState({
+      waypointActive: false,
+    });
 
     console.log('cams', camSize, 'newCams', newCamSize);
   }
 
+  componentDidUpdate() {
+    console.log('updated');
+    if (!this.state.waypointActive) {
+      window.requestAnimationFrame(() => {
+        if (this.refs.waypoint) {
+          const waypointEl = document.getElementById('waypoint');
+          console.log(this.isElementInViewport(waypointEl));
+          if (this.isElementInViewport(waypointEl)) {
+            this._handleWaypointEnter();
+          }
+        }
+      });
+    }
+  }
+
+  isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
   _handleWaypointEnter() {
     const currentCamCategory = this.props.cams.get('currentCamCategory');
-    this.props.dispatch(fetchCams(currentCamCategory, false));
     this.setState({
       waypointActive: true,
     });
+    this.props.dispatch(fetchCams(currentCamCategory, false));
   }
 
   _handleWaypointLeave() {
@@ -106,7 +130,7 @@ export default class CamGrid extends PureComponent {
       <div>
         <ul className="user-list">
           { this.getCards() }
-          <div id="waypoint" className="user-item">
+          <div id="waypoint" ref="waypoint" className="user-item">
             { this.getWaypoint(error) }
           </div>
         </ul>
@@ -115,6 +139,7 @@ export default class CamGrid extends PureComponent {
   }
 
   render() {
+    console.log('rendered');
     return (
       <div>
         { this.renderUserList() }
