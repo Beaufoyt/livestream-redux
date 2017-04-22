@@ -22,7 +22,7 @@ export default class CategoryRadioButtons extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchCams(this.state.currentCamCategory));
+    this.props.dispatch(fetchCams(this.state.currentCamCategory, true));
   }
 
   handleSelected(category) {
@@ -30,7 +30,7 @@ export default class CategoryRadioButtons extends PureComponent {
       currentCamCategory: category,
     });
 
-    this.props.dispatch(fetchCams(category));
+    this.props.dispatch(fetchCams(category, true));
   }
 
   getActiveState(category) {

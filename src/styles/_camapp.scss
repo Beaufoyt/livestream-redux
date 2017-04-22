@@ -59,6 +59,12 @@
   background-size: contain;
   background-repeat: no-repeat;
 
+  &.waypoint {
+    background-position: center;
+    background-size: 50px;
+    background-image: url('../images/spinner.svg');
+  }
+
   /* Smartphones (portrait) ----------- */
   @media only screen and (max-width : 568px) {
     width: 100%;

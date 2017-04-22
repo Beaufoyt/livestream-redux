@@ -28,10 +28,14 @@ class CamApp extends PureComponent {
     cams: PropTypes.object.isRequired,
   }
 
-  renderCamGrid(cams) {
+  renderCamGrid(dispatch, cams) {
     const isRequesting = cams.get('requesting');
 
-    return isRequesting ? <div className="loader"/> : <CamGrid cams={cams} />;
+    if (isRequesting) {
+      return <div className="loader"/>;
+    }
+
+    return <CamGrid dispatch={dispatch} isLoading={isRequesting} cams={cams} />;
   }
 
   render() {
@@ -44,7 +48,7 @@ class CamApp extends PureComponent {
           <button onClick={this.toggleFilterShelf} className="btn btn-default pull-right controls-btm">Filter</button>
         </div>
         <FilterShelf dispatch={dispatch} expanded={this.state.filterShelfExpanded} />
-        { this.renderCamGrid(cams) }
+        { this.renderCamGrid(dispatch, cams) }
       </div>
     );
   }

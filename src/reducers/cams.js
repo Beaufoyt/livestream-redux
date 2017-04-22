@@ -12,8 +12,6 @@ const camOptionsList = {
 
 const optionsList = fromJS(camOptionsList);
 
-const requestAmount = 20;
-
 function cams(state = optionsList, action) {
   switch (action.type) {
     case types.FILTER_REGION:
@@ -21,20 +19,31 @@ function cams(state = optionsList, action) {
 
     case types.RECEIVE_CAMS:
       if (action.category === CAM_TYPES.ALL) {
+        if (action.isFirstRequest) {
+          return state.merge({
+            cams: action.cams,
+            requesting: false,
+          });
+        }
+        let newCams = state.get('cams');
+        newCams = newCams.concat(action.cams);
         return state.merge({
-          cams: action.cams.take(requestAmount),
+          cams: newCams,
           requesting: false,
         });
       } else if (action.category === CAM_TYPES.GIRLS) {
         return state.merge({
-          cams: action.cams.filter(person => person.get('category') === 'girl').take(requestAmount),
+          cams: action.cams.filter(person => person.get('category') === 'girl'),
           requesting: false,
         });
       }
       return state;
 
     case types.REQUEST_CAMS:
-      return state.setIn(['requesting'], true);
+      if (action.isFirstRequest) {
+        return state.setIn(['requesting'], true);
+      }
+      return state;
 
     default:
       return state;

@@ -1,14 +1,49 @@
 import React, { PropTypes } from 'react';
+import { Button } from 'react-bootstrap';
+import Waypoint from 'react-waypoint';
+
+import { fetchCams } from 'actions/cams';
+import { CAM_TYPES } from 'constants/CamTypes';
 import PureComponent from './PureComponent';
 
 export default class CamGrid extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      waypointActive: false,
+    };
+  }
+
   static PropTypes = {
+    dispatch: PropTypes.func.isRequired,
     cams: PropTypes.object.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.cams.get('cams').size > this.props.cams.get('cams').size) {
+      this.setState({
+        waypointActive: false,
+      });
+    }
+  }
+
+  _handleWaypointEnter() {
+    this.props.dispatch(fetchCams(CAM_TYPES.ALL, false));
+    this.setState({
+      waypointActive: true,
+    });
+  }
+
+  _handleWaypointLeave() {
+    this.setState({
+      waypointActive: false,
+    });
   }
 
   getCards() {
     const currentFilter = this.props.cams.get('activeFilter');
-
 
     return this.props.cams.get('cams').map((cam, index) => {
       const region = cam.get('region');
@@ -34,7 +69,14 @@ export default class CamGrid extends PureComponent {
     return (
       <div>
         <ul className="user-list">
+          <Button onClick={() => { this.props.dispatch(fetchCams(CAM_TYPES.ALL, false)); }}>click meh</Button>
           { this.getCards() }
+          <div id="waypoint" className="user-item">
+            { !this.props.isLoading &&
+              <Waypoint onEnter={() => { this._handleWaypointEnter(); }}
+                  onLeave={() => { this._handleWaypointLeave(); }} /> }
+            { this.state.waypointActive && <div className="card-image waypoint" /> }
+          </div>
         </ul>
       </div>
     );
