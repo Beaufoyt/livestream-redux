@@ -5,6 +5,7 @@ import PureComponent from './PureComponent';
 import CategoryRadioButtons from './CategoryRadioButtons';
 import FilterShelf from './FilterShelf';
 import CamGrid from './CamGrid';
+import { CAM_OPTIONS_PROPERTIES } from 'constants/CamConstants';
 
 class CamApp extends PureComponent {
   constructor(props) {
@@ -28,23 +29,35 @@ class CamApp extends PureComponent {
     cams: PropTypes.object.isRequired,
   }
 
-  renderCamGrid(cams) {
-    const isRequesting = cams.get('requesting');
+  renderCamGrid(dispatch, cams) {
+    const isRequesting = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING);
+    const isRequestingMore = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING_MORE);
 
-    return isRequesting ? <div className="loader"/> : <CamGrid cams={cams} />;
+    if (isRequesting) {
+      return <div className="loader"/>;
+    }
+
+    return <CamGrid dispatch={dispatch} isLoading={isRequesting} isLoadingMore={isRequestingMore} cams={cams} />;
   }
 
   render() {
     const { dispatch, cams } = this.props;
+    const currentCamCategory = cams.get(CAM_OPTIONS_PROPERTIES.CURRENT_CATEGORY);
+    const isRequesting = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING);
+    const isRequestingMore = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING_MORE);
 
     return (
       <div className="cam-app-container">
         <div className="filter-controls-bar">
-          <CategoryRadioButtons dispatch={dispatch}/>
+          <CategoryRadioButtons
+              isLoading={isRequesting}
+              isLoadingMore={isRequestingMore}
+              currentCategory={currentCamCategory}
+              dispatch={dispatch}/>
           <button onClick={this.toggleFilterShelf} className="btn btn-default pull-right controls-btm">Filter</button>
         </div>
         <FilterShelf dispatch={dispatch} expanded={this.state.filterShelfExpanded} />
-        { this.renderCamGrid(cams) }
+        { this.renderCamGrid(dispatch, cams) }
       </div>
     );
   }
