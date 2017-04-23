@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { ButtonGroup, Button } from 'react-bootstrap';
 
 import { fetchCams, changeCategory } from 'actions/cams';
-import { CAM_TYPES } from 'constants/CamTypes';
+import { CAM_TYPES } from 'constants/CamConstants';
 import PureComponent from './PureComponent';
 
 const categoryAll = CAM_TYPES.ALL;

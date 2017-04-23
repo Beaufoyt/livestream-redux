@@ -2,7 +2,7 @@ import * as types from 'constants/ActionTypes';
 import { List, fromJS } from 'immutable';
 import { combineReducers } from 'redux';
 
-import { CAM_TYPES } from '../constants/CamTypes.js';
+import { CAM_TYPES } from '../constants/CamConstants.js';
 
 const camOptionsList = {
   requesting: false,

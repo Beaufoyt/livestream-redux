@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 
 import * as types from 'constants/ActionTypes';
 import { camData } from '../../spec/fixtures/camData';
-import { CAM_TYPES } from 'constants/CamTypes';
+import { CAM_TYPES } from 'constants/CamConstants';
 import { ERROR_TYPES } from 'constants/ErrorTypes';
 
 export const changeCategory = (id) => ({ type: types.CHANGE_CATEGORY, id });

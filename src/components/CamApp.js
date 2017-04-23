@@ -5,6 +5,7 @@ import PureComponent from './PureComponent';
 import CategoryRadioButtons from './CategoryRadioButtons';
 import FilterShelf from './FilterShelf';
 import CamGrid from './CamGrid';
+import { CAM_OPTIONS_PROPERTIES } from 'constants/CamConstants';
 
 class CamApp extends PureComponent {
   constructor(props) {
@@ -29,8 +30,8 @@ class CamApp extends PureComponent {
   }
 
   renderCamGrid(dispatch, cams) {
-    const isRequesting = cams.get('requesting');
-    const isRequestingMore = cams.get('requestingMore');
+    const isRequesting = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING);
+    const isRequestingMore = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING_MORE);
 
     if (isRequesting) {
       return <div className="loader"/>;
@@ -41,9 +42,9 @@ class CamApp extends PureComponent {
 
   render() {
     const { dispatch, cams } = this.props;
-    const currentCamCategory = cams.get('currentCamCategory');
-    const isRequesting = cams.get('requesting');
-    const isRequestingMore = cams.get('requestingMore');
+    const currentCamCategory = cams.get(CAM_OPTIONS_PROPERTIES.CURRENT_CATEGORY);
+    const isRequesting = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING);
+    const isRequestingMore = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING_MORE);
 
     return (
       <div className="cam-app-container">
