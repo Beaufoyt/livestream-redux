@@ -2,7 +2,7 @@ import * as types from 'constants/ActionTypes';
 import { List, fromJS } from 'immutable';
 import { combineReducers } from 'redux';
 
-import { CAM_TYPES } from '../constants/CamConstants.js';
+import { CAM_TYPES, CAM_OPTIONS_PROPERTIES } from '../constants/CamConstants.js';
 
 const camOptionsList = {
   requesting: false,
@@ -18,7 +18,7 @@ const optionsList = fromJS(camOptionsList);
 function cams(state = optionsList, action) {
   switch (action.type) {
     case types.FILTER_REGION:
-      return state.setIn(['activeFilter'], action.id);
+      return state.setIn([CAM_OPTIONS_PROPERTIES.FILTER], action.id);
 
     case types.RECEIVE_CAMS: {
       if (action.error) {
@@ -36,7 +36,7 @@ function cams(state = optionsList, action) {
           error: null,
         });
       }
-      let newCams = state.get('cams');
+      let newCams = state.get(CAM_OPTIONS_PROPERTIES.CAMS);
       newCams = newCams.concat(action.cams);
       return state.merge({
         cams: newCams,
@@ -46,13 +46,13 @@ function cams(state = optionsList, action) {
     }
 
     case types.CHANGE_CATEGORY:
-      return state.setIn(['currentCamCategory'], action.id);
+      return state.setIn([CAM_OPTIONS_PROPERTIES.CURRENT_CATEGORY], action.id);
 
     case types.REQUEST_CAMS:
       if (action.isFirstRequest) {
-        return state.setIn(['requesting'], true);
+        return state.setIn([CAM_OPTIONS_PROPERTIES.REQUESTING], true);
       }
-      return state.setIn(['requestingMore'], true);
+      return state.setIn([CAM_OPTIONS_PROPERTIES.REQUESTING_MORE], true);
 
     default:
       return state;
