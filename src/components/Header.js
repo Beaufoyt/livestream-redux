@@ -22,7 +22,7 @@ export default class Header extends PureComponent {
     return (
       <div className="header">
         <div className={this.getToggleClass()} onClick={() => dispatch(toggleSidebar())} />
-        <button className="btn primary-btn register" onClick={() => dispatch(showOverlay(OVERLAYS.OTHER))}>
+        <button className="btn primary-btn register" onClick={() => dispatch(showOverlay(OVERLAYS.REGISTER))}>
           Register
         </button>
       </div>

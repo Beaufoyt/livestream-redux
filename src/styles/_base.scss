@@ -1,3 +1,7 @@
 body {
   background-color: $body-color !important;
 }
+
+.no-scroll {
+  overflow: hidden;
+}

@@ -7,6 +7,13 @@
 
   &.active {
     background-color: $body-color !important;
+    -webkit-box-shadow: inset 5px 0px 0px 0px $primary-brand-color !important;
+    -moz-box-shadow: inset 5px 0px 0px 0px $primary-brand-color !important;
+    box-shadow: inset 5px 0px 0px 0px $primary-brand-color !important;
+
+    &:hover {
+      background-color: $body-color !important;
+    }
   }
 
   &:hover {

@@ -12,7 +12,7 @@
   opacity: 1;
   right: 5px;
   position: absolute;
-  top: 5px;
+  top: 13px;
   z-index: $overlay-on-top;
 }
 
@@ -22,7 +22,33 @@
   text-align: center;
   padding: 20px;
   z-index: $overlay-on-top;
-  width: 200px;
+  width: 400px;
   border-radius: $overlay-border-radius;
   @include vertical-horizontal-center();
+}
+
+.register-overlay {
+  .register-label {
+    float: left;
+    margin-left: 20px;
+  }
+
+  .register-description {
+    margin-bottom: 10px;
+  }
+
+  .register-overlay-title {
+    margin-top: 0px;
+  }
+
+  .cancel-button {
+    float: left;
+    margin-right: 15px;
+    width: 150px;
+  }
+
+  .register-button {
+    float: right;
+    width: 150px;
+  }
 }
