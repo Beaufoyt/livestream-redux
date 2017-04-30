@@ -13,6 +13,7 @@ class App extends PureComponent {
     dispatch: PropTypes.func.isRequired,
     numbers: PropTypes.object.isRequired,
     sidebar: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
   }
 
   getSidebarSize() {
@@ -24,7 +25,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const { dispatch } = this.props;
+    const { dispatch, auth } = this.props;
     const sidebarSize = this.getSidebarSize();
 
     return (
@@ -33,13 +34,13 @@ class App extends PureComponent {
         <div id="header-content-container" className={ this.getMainPadClass() }>
           <Header dispatch={dispatch} sidebarSize={ sidebarSize } />
           <CamApp />
-          <Overlays />
+          <Overlays auth={ auth }/>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ ...state.numbers, ...state.sidebar, ...state.cams });
+const mapStateToProps = state => ({ ...state.numbers, ...state.auth, ...state.sidebar, ...state.cams });
 
 export default connect(mapStateToProps)(App);

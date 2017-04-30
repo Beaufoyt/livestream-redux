@@ -9,6 +9,7 @@ import OtherOverlay from './OtherOverlay';
 class Overlays extends PureComponent {
   static propTypes = {
     overlays: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
   }
 
   isOverlayVisible(key) {
@@ -16,12 +17,12 @@ class Overlays extends PureComponent {
   }
 
   render() {
-    const { dispatch } = this.props;
+    const { dispatch, auth } = this.props;
 
     return (
       <div>
           { this.isOverlayVisible(OVERLAYS.REGISTER) &&
-            <RegisterOverlay key={ OVERLAYS.REGISTER } dispatch={ dispatch }/> }
+            <RegisterOverlay key={ OVERLAYS.REGISTER } auth={auth} dispatch={ dispatch }/> }
           { this.isOverlayVisible(OVERLAYS.OTHER) &&
             <OtherOverlay key={ OVERLAYS.OTHER } dispatch={ dispatch } /> }
       </div>

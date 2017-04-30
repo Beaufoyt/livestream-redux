@@ -18,12 +18,12 @@
 
 .overlay-content {
   position: absolute;
-  background: white;
+  color: gray;
   text-align: center;
   padding: 20px;
   z-index: $overlay-on-top;
   width: 400px;
-  border-radius: $overlay-border-radius;
+  border: 2px solid $primary-brand-color;
   @include vertical-horizontal-center();
 }
 
@@ -45,6 +45,33 @@
     float: left;
     margin-right: 15px;
     width: 150px;
+    background-color: transparent !important;
+    border: 1px solid gray !important;
+
+    &:hover {
+      background-color: gray !important;
+    }
+  }
+
+  .register-field {
+    background-color: gray !important;
+    border: none !important;
+    color: black !important;
+    border-radius: 0 !important;
+
+    &:disabled {
+      background-color: $sidebar-color !important;
+    }
+  }
+
+  .login-requesting {
+    float: right;
+    width: 150px;
+    height: 34px;
+    background-image: url('../images/spinner.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .register-button {

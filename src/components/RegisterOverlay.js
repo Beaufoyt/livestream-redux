@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 import { hideOverlay } from 'actions/numbers';
+import { register } from 'actions/auth';
 import { OVERLAYS } from 'constants/Overlays';
 
 import PureComponent from './PureComponent';
 import Overlay from './Overlay';
 
 export default class RegisterOverlay extends PureComponent {
+  static propTypes = {
+    auth: PropTypes.object.isRequired,
+  }
+
+  _getRegisterButton() {
+    if (this.props.auth.get('isRequesting')) {
+      return <div className="login-requesting" />;
+    }
+
+    return (
+      <button
+          className="register-button btn primary-btn"
+          bsStyle="success"
+          type="button"
+          onClick={() => this.props.dispatch(register('hello'))}>
+          Register
+      </button>
+    );
+  }
+
   render() {
     const { dispatch } = this.props;
 
@@ -42,7 +63,7 @@ export default class RegisterOverlay extends PureComponent {
               onClick={() => dispatch(hideOverlay(OVERLAYS.REGISTER)) }>
               Cancel
           </Button>
-          <Button className="register-button" bsStyle="success" type="button">Register</Button>
+          { this._getRegisterButton() }
         </Overlay>
       </div>
     );

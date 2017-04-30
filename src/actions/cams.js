@@ -38,7 +38,7 @@ export function fetchCams(category, isFirstRequest) {
 
     dispatch(requestCams(isFirstRequest));
 
-    const requestTime = getRandomArbitrary(0, 3) * 1000;
+    const requestTime = getRandomArbitrary(0.5, 3) * 1000;
 
     setTimeout(() => {
       const list = getCamsByCategory(category, requestStart, requestEnd);
