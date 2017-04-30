@@ -7,6 +7,7 @@ import PureComponent from './PureComponent';
 
 const categoryAll = CAM_TYPES.ALL;
 const categoryGirls = CAM_TYPES.GIRLS;
+const categoryGaming = CAM_TYPES.GAMING;
 
 export default class CategoryRadioButtons extends PureComponent {
   static propTypes = {
@@ -32,11 +33,11 @@ export default class CategoryRadioButtons extends PureComponent {
   }
 
   render() {
-    const categoryButtonClasses = 'btn btn-default category-button';
+    const categoryButtonClasses = 'btn category-button';
 
     return (
       <div>
-        <ButtonGroup className="pull-left controls-btm">
+        <ButtonGroup className="category-radio-buttons controls-btm">
           <Button active={ this.getActiveState(categoryAll) }
               onClick={ () => this.handleSelected(categoryAll) }
               className={ categoryButtonClasses }>
@@ -46,6 +47,11 @@ export default class CategoryRadioButtons extends PureComponent {
               onClick={ () => this.handleSelected(categoryGirls) }
               className={ categoryButtonClasses }>
               { categoryGirls }
+          </Button>
+          <Button active={ this.getActiveState(categoryGaming) }
+              onClick={ () => this.handleSelected(categoryGaming) }
+              className={ categoryButtonClasses + ' primary-btn gaming-cat' }>
+              { categoryGaming }
           </Button>
         </ButtonGroup>
       </div>

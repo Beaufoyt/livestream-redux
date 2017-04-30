@@ -1,4 +1,19 @@
 .category-button {
   width: 100px;
+  color: white !important;
   text-transform: capitalize;
+  border: none !important;
+  background-color: $header-color !important;
+
+  &.active {
+    background-color: $body-color !important;
+  }
+
+  &:hover {
+    background-color: $sidebar-color !important;
+  }
+}
+
+.gaming-cat {
+
 }

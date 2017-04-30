@@ -19,7 +19,11 @@ let requestEnd = 20;
 
 function getCamsByCategory(category, startIndex, endIndex) {
   if (category === CAM_TYPES.GIRLS) {
-    return fromJS(camData.camList.filter((cam) => { return cam.category === category; }));
+    return fromJS(camData.camList.filter((cam) => { return cam.category === category; }).slice(startIndex, endIndex));
+  }
+
+  if (category === CAM_TYPES.GAMING) {
+    return fromJS(camData.camList.filter((cam) => { return cam.category === category; }).slice(startIndex, endIndex));
   }
 
   return fromJS(camData.camList.slice(startIndex, endIndex));

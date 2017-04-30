@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import Waypoint from 'react-waypoint';
+import classnames from 'classnames';
 
 import { fetchCams } from 'actions/cams';
 import { ERROR_TYPES } from 'constants/ErrorTypes';
-import { CAM_PROPERTIES, CAM_OPTIONS_PROPERTIES } from 'constants/CamConstants';
+import { CAM_PROPERTIES, CAM_OPTIONS_PROPERTIES, CAM_TYPES } from 'constants/CamConstants';
 import PureComponent from './PureComponent';
 import { dictionary } from '../messages/dictionary';
 
@@ -110,9 +111,22 @@ export default class CamGrid extends PureComponent {
     );
   }
 
+  _isGamingActive() {
+    const { cams } = this.props;
+    const camProperties = CAM_OPTIONS_PROPERTIES;
+
+    return cams.get(camProperties.CURRENT_CATEGORY) === CAM_TYPES.GAMING && !cams.get(camProperties.ERROR);
+  }
+
+  _getGridClassName() {
+    return classnames('cam-grid-container', {
+      'gaming-active': this._isGamingActive(),
+    });
+  }
+
   render() {
     return (
-      <div>
+      <div className={ this._getGridClassName() }>
       { this.renderUserList() }
       </div>
     );

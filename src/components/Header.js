@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Button } from 'react-bootstrap';
 
 import PureComponent from './PureComponent';
 import { showOverlay } from 'actions/numbers';
@@ -21,9 +20,9 @@ export default class Header extends PureComponent {
     return (
       <div className="header">
         <div className={this.getToggleClass()} onClick={() => dispatch(toggleSidebar())} />
-        <Button className="register" onClick={() => dispatch(showOverlay('otherOverlay'))}>
+        <button className="btn primary-btn register" onClick={() => dispatch(showOverlay('otherOverlay'))}>
           Register
-        </Button>
+        </button>
       </div>
     );
   }

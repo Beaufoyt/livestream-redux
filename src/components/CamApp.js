@@ -54,7 +54,12 @@ class CamApp extends PureComponent {
               isLoadingMore={isRequestingMore}
               currentCategory={currentCamCategory}
               dispatch={dispatch}/>
-          <button onClick={this.toggleFilterShelf} className="btn btn-default pull-right controls-btm">Filter</button>
+          <div className="filter-border" />
+          <button
+              onClick={this.toggleFilterShelf}
+              className="btn btn-default controls-btm filter-toggle">
+              Filter
+          </button>
         </div>
         <FilterShelf dispatch={dispatch} expanded={this.state.filterShelfExpanded} />
         { this.renderCamGrid(dispatch, cams) }

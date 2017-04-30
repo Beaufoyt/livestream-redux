@@ -1,6 +1,7 @@
 export const CAM_TYPES = {
   ALL: 'all',
   GIRLS: 'girls',
+  GAMING: 'gaming',
 };
 
 export const CAM_OPTIONS_PROPERTIES = {

@@ -11,6 +11,9 @@
     "dev": "node --harmony bin/webpack-dev-server",
     "dev:no-debug": "npm run dev -- --no_debug"
   },
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",

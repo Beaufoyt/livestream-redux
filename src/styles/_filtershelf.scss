@@ -1,12 +1,7 @@
 .filter-bar {
-  margin-bottom: 20px;
-
   .filter-controls {
     padding: 20px 0px;
-    border: 1px solid gray;
-    border-top: none;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom: 1px solid $separator-color;
     margin: 0px 20px;
 
     .filter-dropdown {
@@ -24,10 +19,35 @@
   height: 50px;
   display: block;
   margin: 10px 20px 0px 20px;
-  border-bottom: 1px solid gray;
+  position: relative;
+
+  .filter-toggle {
+    background-color: $body-color !important;
+    border: none;
+    right: 0;
+    color: white !important;
+    background-size: 30px;
+    background-image: url('../images/switch.svg') !important;
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left: 35px;
+
+    &.active {
+      color: gray !important;
+    }
+
+    &:hover {
+      color: gray !important;
+    }
+  }
 
   .controls-btm {
-    margin-top: 10px;
     z-index: 0;
+    position: absolute;
+    bottom: 0;
   }
+}
+
+.category-radio-buttons {
+  left: 0;
 }

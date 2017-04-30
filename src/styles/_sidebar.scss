@@ -2,7 +2,7 @@
   position: fixed;
   left: 0;
   height: 100%;
-  background-color: #1e1e1e;
+  background-color: $sidebar-color;
   display: inline-block;
   z-index: 1;
   text-align: center;
@@ -24,7 +24,7 @@
 
   .separator {
     height: 10px;
-    border-top: 1px solid rgb(61, 61, 61);
+    border-top: 1px solid $separator-color;
     display: block;
     width: 75%;
     margin: 0 auto;
@@ -37,7 +37,7 @@
 
   .burger-nav {
     padding: 15px 0;
-    background-color: #1e1e1e;
+    background-color: $sidebar-color;
 
     /* Smartphones (portrait) ----------- */
     @media only screen and (max-width : 568px) {
@@ -48,7 +48,7 @@
       border-radius: 0;
       display: block;
       width: 100%;
-      background-color: #1e1e1e;
+      background-color: $sidebar-color;
       border: 0;
       color: gray;
       padding: 10px 0;
@@ -94,7 +94,7 @@
     .mini-nav {
       width: $sidebar-expanded;
       height: 120px;
-      background-color: #1e1e1e;
+      background-color: $sidebar-color;
       padding: 12px 0;
       position: absolute;
 
@@ -124,13 +124,13 @@
         border-top: 10px solid transparent;
         border-bottom: 10px solid transparent;
 
-        border-right:10px solid #1e1e1e;
+        border-right:10px solid $sidebar-color;
       }
     }
 
     .mini-nav-link {
       color: rgb(61, 61, 61);
-      background-color: #1e1e1e;
+      background-color: $sidebar-color;
       border-radius: 0;
       border: none;
       text-transform: capitalize;
@@ -149,10 +149,10 @@
         -webkit-box-shadow:inset 0px 0px 0px 2px $primary-brand-color;
         -moz-box-shadow:inset 0px 0px 0px 2px $primary-brand-color;
         box-shadow:inset 0px 0px 0px 2px $primary-brand-color;
-        background-color: #1e1e1e;
+        background-color: $sidebar-color;
 
         &:hover {
-          background-color: #1e1e1e;
+          background-color: $sidebar-color;
         }
       }
 

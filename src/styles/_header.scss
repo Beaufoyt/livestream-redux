@@ -5,7 +5,7 @@
   position: fixed;
   z-index: 1;
   pointer-events: none;
-  background-color: #282828;
+  background-color: $header-color;
 
   /* Smartphones (portrait) ----------- */
   @media only screen and (max-width : 568px) {
@@ -48,32 +48,5 @@
     pointer-events: all;
     position: inherit;
     right: 10px;
-    background-color: $primary-brand-color;
-    border-radius: 0;
-    border: 0;
-    color: white;
-
-    &.active {
-      color: white;
-      background-color: $primary-brand-color;
-
-      &:hover {
-        color: white;
-        background-color: $primary-brand-color;
-      }
-    }
-
-    &:active {
-      background-color: $primary-brand-color !important;
-    }
-
-    &:focus {
-      background-color: $primary-brand-color;
-    }
-
-    &:hover {
-      color: white;
-      background-color: lighten($primary-brand-color, 4%);
-    }
   }
 }
