@@ -1,4 +1,4 @@
-.register-overlay {
+.overlay {
   background-color: $overlay-transparent-black;
   top: 0;
   left: 0;
@@ -8,7 +8,7 @@
   z-index: $overlay-z-index;
 }
 
-.register-overlay-close {
+.overlay-close {
   opacity: 1;
   right: 5px;
   position: absolute;

@@ -15,5 +15,7 @@
 }
 
 .gaming-cat {
-
+  &:hover {
+    background-color: $primary-brand-color !important;
+  }
 }

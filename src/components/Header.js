@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import PureComponent from './PureComponent';
 import { showOverlay } from 'actions/numbers';
 import { toggleSidebar } from 'actions/sidebar';
+import { OVERLAYS } from 'constants/Overlays';
 
 export default class Header extends PureComponent {
 
@@ -17,10 +18,11 @@ export default class Header extends PureComponent {
 
   render() {
     const { dispatch } = this.props;
+
     return (
       <div className="header">
         <div className={this.getToggleClass()} onClick={() => dispatch(toggleSidebar())} />
-        <button className="btn primary-btn register" onClick={() => dispatch(showOverlay('otherOverlay'))}>
+        <button className="btn primary-btn register" onClick={() => dispatch(showOverlay(OVERLAYS.OTHER))}>
           Register
         </button>
       </div>
