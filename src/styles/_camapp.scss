@@ -42,24 +42,28 @@
     color: white;
   }
 
-  /* Smartphones (portrait) ----------- */
-  @media only screen and (min-width : 568px) {
+  @media only screen and (min-width : $mobile) {
     width: 50%;
   }
 
-  /* Smartphones (portrait) ----------- */
-  @media only screen and (min-width : 768px) {
+  @media only screen and (min-width : $tablet) {
     width: 33.333333333333%;
   }
 
-  /* Smartphones (portrait) ----------- */
-  @media only screen and (min-width : 1024px) {
+  @media only screen and (min-width : $medium) {
     width: 25%;
   }
 
-  /* Smartphones (portrait) ----------- */
-  @media only screen and (min-width : 1224px) {
+  @media only screen and (min-width : $large) {
     width: 20%;
+  }
+
+  @media only screen and (min-width : $x-large) {
+    width: 16.6666666666666%;
+  }
+
+  @media only screen and (min-width : $xx-large) {
+    width: 14.2857142857%;
   }
 
   .viewers {
@@ -91,8 +95,7 @@
     background-image: url('../images/danger.svg');
   }
 
-  /* Smartphones (portrait) ----------- */
-  @media only screen and (max-width : 568px) {
+  @media only screen and (max-width : $mobile) {
     width: 100%;
     height: 150px;
   }
@@ -102,6 +105,6 @@
   padding-top: 20px;
 
   &.gaming-active {
-    
+
   }
 }

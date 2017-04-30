@@ -15,8 +15,8 @@
     width: $sidebar-contracted;
   }
 
-  /* Smartphones (portrait) ----------- */
-  @media only screen and (max-width : 568px) {
+
+  @media only screen and (max-width : $mobile) {
     display: block;
     height: $header-height;
     width: 100% !important;
@@ -29,8 +29,8 @@
     width: 75%;
     margin: 0 auto;
 
-    /* Smartphones (portrait) ----------- */
-    @media only screen and (max-width : 568px) {
+
+    @media only screen and (max-width : $mobile) {
       display: none;
     }
   }
@@ -39,8 +39,8 @@
     padding: 15px 0;
     background-color: $sidebar-color;
 
-    /* Smartphones (portrait) ----------- */
-    @media only screen and (max-width : 568px) {
+
+    @media only screen and (max-width : $mobile) {
       display: none;
     }
 
@@ -98,8 +98,8 @@
       padding: 12px 0;
       position: absolute;
 
-      /* Smartphones (portrait) ----------- */
-      @media only screen and (max-width : 568px) {
+
+      @media only screen and (max-width : $mobile) {
         position: initial;
         width: 100%;
         height: 100%;
@@ -137,8 +137,8 @@
       transition: box-shadow 0.3s;
       transition-timing-function: linear;
 
-      /* Smartphones (portrait) ----------- */
-      @media only screen and (max-width : 568px) {
+
+      @media only screen and (max-width : $mobile) {
         display: block;
         width: 100%;
       }
@@ -216,8 +216,8 @@ $translateX: 0;
   height:$height-icon;
   display: none;
 
-  /* Smartphones (portrait) ----------- */
-  @media only screen and (max-width : 568px) {
+
+  @media only screen and (max-width : $mobile) {
     display: block;
     position: fixed;
     top: 22px;

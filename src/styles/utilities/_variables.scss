@@ -10,6 +10,7 @@ $separator-color: rgb(61, 61, 61);
 $primary-text-color: #969696;
 $secondary-text-color: #dedede;
 
+// Sizes
 $header-height: 60px;
 
 $sidebar-expanded: 175px;
@@ -18,3 +19,11 @@ $sidebar-contracted: 40px;
 $overlay-border-radius: 20px;
 $overlay-z-index: 1000;
 $overlay-on-top: $overlay-z-index + 1;
+
+// Breakpoints
+$mobile: 568px;
+$tablet: 768px;
+$medium: 1024px;
+$large: 1224px;
+$x-large: 1600px;
+$xx-large: 1920px;

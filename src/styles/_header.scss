@@ -7,8 +7,8 @@
   pointer-events: none;
   background-color: $header-color;
 
-  /* Smartphones (portrait) ----------- */
-  @media only screen and (max-width : 568px) {
+
+  @media only screen and (max-width : $mobile) {
     background: none;
   }
 
@@ -26,8 +26,8 @@
     border-radius: 3px;
     cursor: pointer;
 
-    /* Smartphones (portrait) ----------- */
-    @media only screen and (max-width : 568px) {
+
+    @media only screen and (max-width : $mobile) {
       display: none !important;
     }
   }
