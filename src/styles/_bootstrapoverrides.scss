@@ -53,7 +53,8 @@
   }
 
   input[type="checkbox"]:hover{
-    border: none;
+    border: none !important;
+    color: $primary-brand-color !important;
     padding-left: 1px;
     padding-top: 1px;
     -webkit-box-shadow: 0px 0px 5px 3px $primary-brand-color !important;
