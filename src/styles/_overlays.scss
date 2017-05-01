@@ -29,7 +29,7 @@
 
   .overlay-content {
     padding: 20px;
-    overflow: scroll;
+    overflow: auto;
     max-height: 330px;
 
     @media only screen and (max-width : $mobile) {
