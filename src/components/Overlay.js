@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
-
+import { fromJS } from 'immutable';
 import { hideOverlay } from 'actions/numbers';
 
 import PureComponent from './PureComponent';
@@ -17,6 +17,7 @@ export default class Overlay extends PureComponent {
     cancelText: PropTypes.string,
     onCancel: PropTypes.func,
     isLoading: PropTypes.bool,
+    error: PropTypes.object,
   }
 
   componentDidMount() {
@@ -53,7 +54,8 @@ export default class Overlay extends PureComponent {
   }
 
   render() {
-    const { dispatch, id, title, error } = this.props;
+    const { dispatch, id, title } = this.props;
+    const error = this.props.error ? fromJS(this.props.error) : null;
 
     return (
       <div className="overlay">

@@ -18,7 +18,7 @@ export function register(details) {
       let error = null;
       const response = { status: 404 };
 
-      console.log(details);
+      console.log('username:', details.username, 'password:', details.password, 'tncAccepted:', details.tncAccepted);
 
       if (response.status === 200) {
         dispatch(registerResponse(true, error));

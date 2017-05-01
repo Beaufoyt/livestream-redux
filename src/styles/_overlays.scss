@@ -43,6 +43,10 @@
   .overlay-content-header {
     height: 70px;
 
+    h3 {
+      font-weight: 300;
+    }
+
     .overlay-close {
       opacity: 1;
       right: 2px;
