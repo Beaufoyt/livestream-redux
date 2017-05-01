@@ -3,9 +3,10 @@
 }
 
 .form-control:focus,.form-control:active {
-  -webkit-box-shadow: 0px 0px 7px 0px $primary-brand-color !important;
-  -moz-box-shadow: 0px 0px 7px 0px $primary-brand-color !important;
-  box-shadow: 0px 0px 7px 0px $primary-brand-color !important;
+  -webkit-box-shadow: 0px 0px 5px 3px $primary-brand-color !important;
+  -moz-box-shadow: 0px 0px 5px 3px $primary-brand-color !important;
+  box-shadow: 0px 0px 5px 3px $primary-brand-color !important;
+  caret-color: $primary-brand-color;
 }
 
 .btn {

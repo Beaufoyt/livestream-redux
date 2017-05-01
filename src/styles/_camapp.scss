@@ -10,14 +10,16 @@
   margin: 0 10px;
 }
 
+.camgrid-error-container {
+  margin: 0 20px;
+}
+
 .cam-error {
   height: 50px;
   background-color: darken($primary-brand-color, 2);
   color: $secondary-text-color;
-  margin: 0 20px;
   text-align: center;
   line-height: 50px;
-  border-radius: 5px;
 
   .text {
     display: inline-block;

@@ -93,8 +93,10 @@ export default class CamGrid extends PureComponent {
 
     if (error && error === ERROR_TYPES.NOT_FOUND) {
       return (
-        <div className="cam-error">
-          <div className="text">{ dictionary.noCamsFoundText }</div>
+        <div className="camgrid-error-container">
+          <div className="cam-error">
+            <div className="text">{ dictionary.noCamsFoundText }</div>
+          </div>
         </div>
       );
     }

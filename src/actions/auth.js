@@ -14,14 +14,19 @@ export function register(details) {
     const requestTime = getRandomArbitrary(0.5, 3) * 1000;
 
     setTimeout(() => {
-      const error = null;
-      const response = { status: 200 };
+      let error = null;
+      const response = { status: 404 };
 
       console.log(details);
 
       if (response.status === 200) {
         dispatch(registerResponse(true, error));
       } else {
+        error = {
+          status: response.status,
+          detail: 'Register Failed',
+        };
+
         dispatch(registerResponse(false, error));
       }
     }, requestTime);
