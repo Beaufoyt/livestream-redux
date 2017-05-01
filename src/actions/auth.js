@@ -2,6 +2,7 @@ import * as types from 'constants/ActionTypes';
 
 const registerResponse = (isLoggedIn, error) => ({ type: types.REGISTER_RESPONSE, isLoggedIn, error });
 const registerRequest = () => ({ type: types.REGISTER_REQUEST });
+export const clearError = () => ({ type: types.CLEAR_AUTH_ERROR });
 
 function getRandomArbitrary(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;

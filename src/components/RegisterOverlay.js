@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, Checkbox } from 'react-bootstrap';
 
 import { hideOverlay } from 'actions/numbers';
-import { register } from 'actions/auth';
+import { register, clearError } from 'actions/auth';
 import { OVERLAYS } from 'constants/Overlays';
 
 import PureComponent from './PureComponent';
@@ -11,6 +11,10 @@ import Overlay from './Overlay';
 export default class RegisterOverlay extends PureComponent {
   static propTypes = {
     auth: PropTypes.object.isRequired,
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(clearError());
   }
 
   render() {
@@ -45,13 +49,17 @@ export default class RegisterOverlay extends PureComponent {
 
           <FormGroup controlId="formComfirmPass">
             <ControlLabel className="register-label">Confirm Password</ControlLabel>
-            <FormControl disabled className="register-field" type="password"/>
+            <FormControl className="register-field" type="password"/>
           </FormGroup>
 
           <FormGroup controlId="formEmail">
             <ControlLabel className="register-label">Email</ControlLabel>
             <FormControl className="register-field" type="text"/>
           </FormGroup>
+
+          <Checkbox className="register-tnc">
+            I have read and accept the T&C's
+          </Checkbox>
         </Overlay>
       </div>
     );

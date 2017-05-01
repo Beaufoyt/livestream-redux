@@ -27,6 +27,9 @@ function auth(state = list, action) {
         error: null,
       });
 
+    case types.CLEAR_AUTH_ERROR:
+      return state.set('error', null);
+
     default:
       return state;
   }
