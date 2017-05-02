@@ -6,11 +6,10 @@
   bottom: 0;
   position: absolute;
   z-index: $overlay-z-index;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .overlay-content-container {
-  margin: 30px 0;
   position: absolute;
   color: white;
   text-align: center;
@@ -18,7 +17,8 @@
   max-width: 400px;
   scrollbar-face-color: $primary-brand-color;
   border: 2px solid $primary-brand-color;
-  @include horizontal-center();
+  @include vertical-horizontal-center();
+  max-height: 100%;
 
   @media only screen and (max-width : $mobile) {
     margin: 0;
@@ -29,15 +29,9 @@
 
   .overlay-content {
     padding: 20px;
-    padding-bottom: 0;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     overflow: auto;
-    max-height: 350px;
-
-    @media only screen and (max-width : $mobile) {
-      height: calc(100% - 145px);
-      max-height: initial;
-    }
+    max-height: calc(100vh - 152px);
   }
 
   .overlay-content-header {
