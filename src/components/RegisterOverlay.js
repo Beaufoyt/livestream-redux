@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 import { FormGroup, ControlLabel, FormControl, Checkbox } from 'react-bootstrap';
 
 import { hideOverlay } from 'actions/numbers';
@@ -19,6 +20,7 @@ export default class RegisterOverlay extends PureComponent {
       password: '',
       confirmedPassword: '',
       email: '',
+      emailValidation: null,
       usernameValidation: null,
       passwordValidation: null,
       confirmedPasswordValidation: null,
@@ -42,24 +44,25 @@ export default class RegisterOverlay extends PureComponent {
 
   _handleRegisterContinue() {
     const validationStates = [
-      this._getusernameValidationState(),
-      this._getpasswordValidationState(),
-      this._getconfirmedPasswordValidationState(),
+      this._getUsernameValidationState(),
+      this._getPasswordValidationState(),
+      this._getConfirmedPasswordValidationState(),
     ];
 
     if (validationStates.some((el) => { return ['error', null].includes(el); })) {
-      const cpv = this._getconfirmedPasswordValidationState() ? this._getconfirmedPasswordValidationState() : 'error';
+      const cpv = this._getConfirmedPasswordValidationState() ? this._getConfirmedPasswordValidationState() : 'error';
       this.setState({
         registerError: {
           detail: 'Invalid details',
         },
-        usernameValidation: this._getusernameValidationState() ? this._getusernameValidationState() : 'error',
-        passwordValidation: this._getpasswordValidationState() ? this._getpasswordValidationState() : 'error',
+        usernameValidation: this._getUsernameValidationState() ? this._getUsernameValidationState() : 'error',
+        passwordValidation: this._getPasswordValidationState() ? this._getPasswordValidationState() : 'error',
         confirmedPasswordValidation: cpv,
       });
     } else if (!this.state.tncAccepted) {
       this.setState({
         registerError: {
+          id: 'tnc',
           detail: 'Please accept the T&C\'s',
         },
       });
@@ -70,7 +73,8 @@ export default class RegisterOverlay extends PureComponent {
 
   _handleDetailChange(e) {
     const { id, value } = e.target;
-    const validationFunc = `_get${e.target.id}ValidationState`;
+    const validationFunc = `_get${id.charAt(0).toUpperCase() + id.slice(1)}ValidationState`;
+    console.log(validationFunc);
 
     this.setState({
       [id]: value,
@@ -79,17 +83,18 @@ export default class RegisterOverlay extends PureComponent {
     });
   }
 
-  _getusernameValidationState(username = this.state.username) {
+  _getUsernameValidationState(username = this.state.username) {
+    const userNameRegex = /^[a-zA-Z0-9\_]+$/;
     const length = username.length;
     if (length) {
-      if (length > 10) return 'success';
+      if (length >= 6 && username.match(userNameRegex) && length <= 16) return 'success';
       return 'error';
     }
 
     return null;
   }
 
-  _getpasswordValidationState(password = this.state.password) {
+  _getPasswordValidationState(password = this.state.password) {
     const length = password.length;
     if (length) {
       if (length < 6) return 'error';
@@ -99,9 +104,20 @@ export default class RegisterOverlay extends PureComponent {
     return null;
   }
 
-  _getconfirmedPasswordValidationState(confirmedPassword = this.state.confirmedPassword) {
+  _getConfirmedPasswordValidationState(confirmedPassword = this.state.confirmedPassword) {
     if (confirmedPassword) {
       if (this.state.password === confirmedPassword) return 'success';
+      return 'error';
+    }
+
+    return null;
+  }
+
+  _getEmailValidationState(email = this.state.email) {
+    const emailRegex = /.+@.+/;
+
+    if (email) {
+      if (email.match(emailRegex)) return 'success';
       return 'error';
     }
 
@@ -114,6 +130,57 @@ export default class RegisterOverlay extends PureComponent {
       password: this.state.password,
       tncAccepted: this.state.tncAccepted,
     };
+  }
+
+  _getValidationIcon(validationState) {
+    if (!validationState) {
+      return null;
+    }
+
+    if (validationState === 'error') {
+      return <i className="fa fa-times error" aria-hidden="true" />;
+    }
+
+    return <i className="fa fa-check success" aria-hidden="true" />;
+  }
+
+  _getValidationIconHolder(validationState) {
+    return (
+      <div className="validation-icon">
+        { this._getValidationIcon(validationState) }
+      </div>
+    );
+  }
+
+  _getValidationInfoContainer(validationMessage) {
+    return <div className="validation-info"><span>{validationMessage}</span></div>;
+  }
+
+  _getUsernameValidationInfo() {
+    const validationMessage = (this.state.usernameValidation === 'error') ? 'come on dude, get your shit together' : null;
+    return this._getValidationInfoContainer(validationMessage);
+  }
+
+  _getPasswordValidationInfo() {
+    const validationMessage = (this.state.passwordValidation === 'error') ? 'come on dude, get your shit together' : null;
+    return this._getValidationInfoContainer(validationMessage);
+  }
+
+  _getConfirmedPasswordValidationInfo() {
+    const validationMessage = (this.state.confirmedPasswordValidation === 'error') ? 'come on dude, get your shit together' : null;
+    return this._getValidationInfoContainer(validationMessage);
+  }
+
+  _getEmailValidationInfo() {
+    const validationMessage = (this.state.emailValidation === 'error') ? 'Please enter a valid email address' : null;
+    return this._getValidationInfoContainer(validationMessage);
+  }
+
+  _getTncClassName() {
+    return classnames('register-tnc', {
+      success: this.state.tncAccepted,
+      error: (this.state.registerError && this.state.registerError.id === 'tnc'),
+    });
   }
 
   render() {
@@ -138,36 +205,42 @@ export default class RegisterOverlay extends PureComponent {
             onContinue={ () => this._handleRegisterContinue() }>
           <FormGroup validationState={ this.state.usernameValidation }>
             <ControlLabel className="register-label">Username</ControlLabel>
+            { this._getValidationIconHolder(this.state.usernameValidation) }
             <FormControl
                 id="username"
                 value={ this.state.username }
                 onChange={ (e) => this._handleDetailChange(e) }
                 className="register-field"
                 type="text"/>
+            { this._getUsernameValidationInfo() }
           </FormGroup>
 
-          <FormGroup validationState={ this.state.passwordValidation }>
+          <FormGroup controlId="password" validationState={ this.state.passwordValidation }>
             <ControlLabel className="register-label">Password</ControlLabel>
+            { this._getValidationIconHolder(this.state.passwordValidation) }
             <FormControl
-                id="password"
                 value={ this.state.password }
                 onChange={ (e) => this._handleDetailChange(e) }
                 className="register-field"
                 type="password"/>
+            { this._getPasswordValidationInfo() }
           </FormGroup>
 
           <FormGroup validationState={ this.state.confirmedPasswordValidation }>
             <ControlLabel className="register-label">Confirm Password</ControlLabel>
+            { this._getValidationIconHolder(this.state.confirmedPasswordValidation) }
             <FormControl
                 id="confirmedPassword"
                 value={ this.state.confirmedPassword }
                 onChange={ (e) => this._handleDetailChange(e) }
                 className="register-field"
                 type="password"/>
+            { this._getConfirmedPasswordValidationInfo() }
           </FormGroup>
 
-          <FormGroup>
+          <FormGroup validationState={ this.state.emailValidation }>
             <ControlLabel className="register-label">Email</ControlLabel>
+            { this._getValidationIconHolder(this.state.emailValidation) }
             <FormControl
                 disabled
                 id="email"
@@ -175,9 +248,10 @@ export default class RegisterOverlay extends PureComponent {
                 onChange={ (e) => this._handleDetailChange(e) }
                 className="register-field"
                 type="email"/>
+            { this._getEmailValidationInfo() }
           </FormGroup>
 
-          <Checkbox className="register-tnc" onChange={e => this._handleTncChange(e)}>
+          <Checkbox className={ this._getTncClassName() } onChange={e => this._handleTncChange(e)}>
             I have read and accept the T&C's
           </Checkbox>
         </Overlay>

@@ -26,18 +26,15 @@
     border: none;
     right: 0;
     color: white !important;
-    background-size: 30px;
-    background-image: url('../images/switch.svg') !important;
-    background-position: left center;
-    background-repeat: no-repeat;
-    padding-left: 35px;
 
     &.active {
-      color: gray !important;
+      i {
+        color: $primary-brand-color !important;
+      }
     }
 
     &:hover {
-      color: gray !important;
+      color: $primary-brand-color !important;
     }
   }
 

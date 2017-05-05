@@ -12,8 +12,9 @@ export default class Header extends PureComponent {
     sidebarSize: PropTypes.string.isRequired,
   }
 
-  getToggleClass() {
-    return `sidebar-toggle-caret sidebar-toggle-${this.props.sidebarSize}`;
+  _getToggleIcon() {
+    const iconClass = (this.props.sidebarSize === 'expanded') ? 'fa fa-chevron-left' : 'fa fa-chevron-right';
+    return <i className={iconClass} />;
   }
 
   render() {
@@ -21,7 +22,7 @@ export default class Header extends PureComponent {
 
     return (
       <div className="header">
-        <div className={this.getToggleClass()} onClick={() => dispatch(toggleSidebar())} />
+        <div className="sidebar-toggle-caret" onClick={() => dispatch(toggleSidebar())} >{ this._getToggleIcon() }</div>
         <button className="btn primary-btn register" onClick={() => dispatch(showOverlay(OVERLAYS.REGISTER))}>
           Register
         </button>

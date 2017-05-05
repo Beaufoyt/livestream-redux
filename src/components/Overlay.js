@@ -45,7 +45,6 @@ export default class Overlay extends PureComponent {
     return (
       <button
           className="submit-button btn primary-btn"
-          bsStyle="success"
           type="button"
           onClick={ () => this.props.onContinue() }>
           { this.props.continueText }
@@ -64,13 +63,15 @@ export default class Overlay extends PureComponent {
             <h3>
               { title }
             </h3>
-            <div className="overlay-close" onClick={() => dispatch(hideOverlay(id))} />
+            <div className="overlay-close" onClick={() => dispatch(hideOverlay(id))}>
+              <i className="fa fa-times" aria-hidden="true" />
+            </div>
           </div>
           <div id="overlay-content" className="overlay-content">
             { this.props.children }
             { error &&
               <div id="cam-error" className="cam-error">
-                <div className="text">{ error.get('detail') }</div>
+                <span><i className="fa fa-exclamation-circle" aria-hidden="true" />&nbsp;{ error.get('detail') }</span>
               </div>
             }
           </div>

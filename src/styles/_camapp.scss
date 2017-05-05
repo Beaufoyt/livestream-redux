@@ -21,15 +21,6 @@
   color: $secondary-text-color;
   text-align: center;
   line-height: 50px;
-
-  .text {
-    display: inline-block;
-    background-size: 22px;
-    background-image: url('../images/error.svg');
-    background-position: left center;
-    background-repeat: no-repeat;
-    padding-left: 30px;
-  }
 }
 
 .user-item {
@@ -71,11 +62,10 @@
 
   .viewers {
     color: $viewer-color;
-    background-size: 16px 16px;
-    background-image: url('../images/user.png');
-    background-position: left center;
-    background-repeat: no-repeat;
-    padding-left: 18px;
+
+    i {
+      font-size: 15px;
+    }
   }
 }
 

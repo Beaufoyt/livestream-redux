@@ -13,19 +13,17 @@
   }
 
   .sidebar-toggle-caret {
-    filter: brightness(0.4);
-    -webkit-filter: brightness(0.4);
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     position: absolute;
     left: 8px;
     z-index: 1;
     top: 19px;
-    background-size: contain;
+    color: white;
+    line-height: 26px;
     pointer-events: all;
-    border-radius: 3px;
     cursor: pointer;
-
+    background-color: lighten($header-color, 5);
 
     @media only screen and (max-width : $mobile) {
       display: none !important;
@@ -33,15 +31,7 @@
   }
 
   .sidebar-toggle-caret:hover {
-    background-color: white;
-  }
-
-  .sidebar-toggle-expanded {
-    background-image: url('../images/caret-left.png');
-  }
-
-  .sidebar-toggle-contracted {
-    background-image: url('../images/caret-right.png');
+    background-color: lighten($header-color, 2);
   }
 
   .register {

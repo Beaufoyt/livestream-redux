@@ -40,6 +40,12 @@ class CamApp extends PureComponent {
     return <CamGrid dispatch={dispatch} isLoading={isRequesting} isLoadingMore={isRequestingMore} cams={cams} />;
   }
 
+  _getFilterButtonClassName() {
+    const base = 'btn btn-default controls-btm filter-toggle';
+
+    return this.state.filterShelfExpanded ? base + ' active' : base;
+  }
+
   render() {
     const { dispatch, cams } = this.props;
     const currentCamCategory = cams.get(CAM_OPTIONS_PROPERTIES.CURRENT_CATEGORY);
@@ -56,8 +62,10 @@ class CamApp extends PureComponent {
               dispatch={dispatch}/>
           <div className="filter-border" />
           <button
+              active={this.state.filterShelfExpanded}
               onClick={this.toggleFilterShelf}
-              className="btn btn-default controls-btm filter-toggle">
+              className={ this._getFilterButtonClassName() }>
+              <i className="fa fa-list" aria-hidden="true" />&nbsp;
               Filter
           </button>
         </div>

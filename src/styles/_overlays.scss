@@ -16,9 +16,9 @@
   z-index: $overlay-on-top;
   max-width: 400px;
   scrollbar-face-color: $primary-brand-color;
-  border: 2px solid $primary-brand-color;
   @include vertical-horizontal-center();
   max-height: 100%;
+  background-color: $sidebar-color;
 
   @media only screen and (max-width : $mobile) {
     margin: 0;
@@ -28,14 +28,14 @@
   }
 
   .overlay-content {
-    padding: 20px;
-    padding-bottom: 20px;
+    padding: 30px 20px 20px 20px;
     overflow: auto;
     max-height: calc(100vh - 152px);
   }
 
   .overlay-content-header {
     height: 70px;
+    background-color: $primary-brand-color;
 
     h3 {
       font-weight: 300;
@@ -47,20 +47,19 @@
       position: absolute;
       top: 2px;
       z-index: $overlay-on-top;
-      background-image: url('../images/cancel.svg');
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
       cursor: pointer;
       display: inline-block;
-      width: 50px;
-      height: 50px;
-      background-size: 35px;
+      width: 35px;
+      height: 28px;
+      border: none;
+      line-height: 28px;
+      font-size: 24px;
+      text-align: center;
       transition: transform 0.3s;
       transition-timing-function: linear;
 
       &:hover {
-        transform: rotate(90deg);
+        color: $sidebar-color;
       }
     }
 
@@ -74,7 +73,25 @@
   .register-tnc {
     width: 100%;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
+
+    &.success {
+      color: $success !important;
+    }
+
+    &.error {
+      color: $error !important;
+    }
+  }
+
+  .validation-info {
+    padding-top: 3px;
+    height: 25px;
+    color: $error;
+
+    & span {
+      float: left;
+    }
   }
 
   .register-label {
@@ -96,28 +113,41 @@
     border-radius: 0 !important;
 
     &:disabled {
-      background-color: $sidebar-color !important;
+      background-color: darken($sidebar-color, 5) !important;
     }
   }
 
   .overlay-requesting {
     float: right;
-    width: 150px;
-    height: 34px;
+    width: 50%;
+    height: 100%;
     background-image: url('../images/spinner.svg');
-    background-size: contain;
+    background-size: 30px;
     background-position: center;
     background-repeat: no-repeat;
+  }
 
-    @media only screen and (max-width : $tablet) {
-      width: 100px;
+  .validation-icon {
+    height: 20px;
+    width: 20px;
+    background-size: 18px;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    float: left;
+    margin-left: 5px;
+
+    .success {
+      color: $success;
+    }
+
+    .error {
+      color: $error;
     }
   }
 }
 
 .footer {
-  padding: 20px;
-  border-top: 1px solid $primary-brand-color;
   height: 75px;
 
   @media only screen and (max-width : $mobile) {
@@ -129,31 +159,24 @@
 
 .footer-buttons {
   display: block;
+  height: 100%;
 
   .cancel-button {
     color: white !important;
-    margin-right: 15px;
-    width: 150px;
-    background-color: transparent !important;
-    border: 1px solid gray !important;
+    width: 50%;
+    height: 100%;
+    background-color: $sidebar-color !important;
+    border: 1px solid $primary-brand-color !important;
     float: left;
 
     &:hover {
-      background-color: gray !important;
-    }
-
-    @media only screen and (max-width : $tablet) {
-      width: 100px;
-      margin-right: 0;
+      background-color: darken($sidebar-color, 5) !important;
     }
   }
 
   .submit-button {
-    width: 150px;
+    width: 50%;
+    height: 100%;
     float: right;
-
-    @media only screen and (max-width : $tablet) {
-      width: 100px;
-    }
   }
 }
