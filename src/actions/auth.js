@@ -4,33 +4,34 @@ const registerResponse = (isLoggedIn, error) => ({ type: types.REGISTER_RESPONSE
 const registerRequest = () => ({ type: types.REGISTER_REQUEST });
 export const clearError = () => ({ type: types.CLEAR_AUTH_ERROR });
 
-function getRandomArbitrary(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
 export function register(details) {
   const fetch = (dispatch) => {
     dispatch(registerRequest());
 
-    const requestTime = getRandomArbitrary(0.5, 3) * 1000;
+    const username = encodeURIComponent(details.username);
+    const terms = encodeURIComponent(details.tncAccepted);
+    const password = encodeURIComponent(details.password);
+    const formData = `username=${username}&terms=${terms}&password=${password}`;
 
-    setTimeout(() => {
+    // create an AJAX request
+    const xhr = new XMLHttpRequest();
+    xhr.open('post', 'http://localhost:3001/api/registered');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', () => {
       let error = null;
-      const response = { status: 404 };
-
-      console.log('username:', details.username, 'password:', details.password, 'tncAccepted:', details.tncAccepted);
-
-      if (response.status === 200) {
+      if (xhr.status === 200) {
         dispatch(registerResponse(true, error));
       } else {
         error = {
-          status: response.status,
+          status: xhr.status,
           detail: 'Register Failed',
         };
 
         dispatch(registerResponse(false, error));
       }
-    }, requestTime);
+    });
+    xhr.send(formData);
   };
 
   return fetch;
