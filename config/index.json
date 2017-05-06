@@ -1,0 +1,4 @@
+{
+  "dbUri": "mongodb://connect:connect1!@ds163060.mlab.com:63060/test_db",
+  "jwtSecret": "A+;fqFKAHpF]qBk>bAmcWxjpBHJ&7>"
+}
