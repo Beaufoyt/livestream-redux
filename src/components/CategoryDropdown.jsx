@@ -1,8 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
-import { fetchCams, changeCategory } from 'actions/cams';
-import { CAM_TYPES } from 'constants/CamConstants';
+import { fetchCams, changeCategory } from '../actions/cams';
+import { CAM_TYPES } from '../constants/CamConstants';
 import PureComponent from './PureComponent';
 
 const categoryAll = CAM_TYPES.ALL;
@@ -17,6 +18,10 @@ export default class CategoryDropdown extends PureComponent {
     isLoadingMore: PropTypes.bool.isRequired,
   }
 
+  getActiveState(category) {
+    return this.props.currentCategory === category;
+  }
+
   handleSelected(category) {
     if (!this.props.isLoading && !this.props.isLoadingMore) {
       this.props.dispatch(changeCategory(category));
@@ -24,14 +29,10 @@ export default class CategoryDropdown extends PureComponent {
     }
   }
 
-  getActiveState(category) {
-    return this.props.currentCategory === category;
-  }
-
   render() {
     return (
       <div className="controls-btm category-dropdown">
-        <DropdownButton id="Category" title={ this.props.currentCategory }>
+        <DropdownButton id="Category" title={this.props.currentCategory}>
           <MenuItem
               id={categoryAll}
               active={this.getActiveState(categoryAll)}

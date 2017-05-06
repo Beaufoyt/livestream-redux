@@ -1,4 +1,4 @@
-export const camData = {
+const camData = {
   camList: [
     {
       name: 'John Doe',
@@ -548,3 +548,5 @@ export const camData = {
     },
   ],
 };
+
+export default camData;

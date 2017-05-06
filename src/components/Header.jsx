@@ -1,18 +1,18 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import PureComponent from './PureComponent';
-import { showOverlay } from 'actions/numbers';
-import { toggleSidebar } from 'actions/sidebar';
-import { OVERLAYS } from 'constants/Overlays';
+import { showOverlay } from '../actions/overlays';
+import toggleSidebar from '../actions/sidebar';
+import OVERLAYS from '../constants/Overlays';
 
 export default class Header extends PureComponent {
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     sidebarSize: PropTypes.string.isRequired,
   }
 
-  _getToggleIcon() {
+  getToggleIcon() {
     const iconClass = (this.props.sidebarSize === 'expanded') ? 'fa fa-chevron-left' : 'fa fa-chevron-right';
     return <i className={iconClass} />;
   }
@@ -22,7 +22,11 @@ export default class Header extends PureComponent {
 
     return (
       <div className="header">
-        <div className="sidebar-toggle-caret" onClick={() => dispatch(toggleSidebar())} >{ this._getToggleIcon() }</div>
+        <button
+            className="btn sidebar-toggle-caret"
+            onClick={() => dispatch(toggleSidebar())} >
+          { this.getToggleIcon() }
+        </button>
         <button className="btn primary-btn register" onClick={() => dispatch(showOverlay(OVERLAYS.REGISTER))}>
           Register
         </button>

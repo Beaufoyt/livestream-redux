@@ -55,6 +55,8 @@
       line-height: 28px;
       font-size: 24px;
       text-align: center;
+      padding: 0;
+      background-color: transparent !important;
 
       &:hover {
         color: $sidebar-color;

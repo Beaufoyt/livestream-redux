@@ -1,15 +1,22 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import { fetchCams } from 'actions/cams';
+import { fetchCams } from '../actions/cams';
 import PureComponent from './PureComponent';
 import CategoryRadioButtons from './CategoryRadioButtons';
 import FilterShelf from './FilterShelf';
 import CamGrid from './CamGrid';
 import CategoryDropdown from './CategoryDropdown';
-import { CAM_OPTIONS_PROPERTIES } from 'constants/CamConstants';
+import { CAM_OPTIONS_PROPERTIES } from '../constants/CamConstants';
 
 class CamApp extends PureComponent {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    cams: PropTypes.instanceOf(Object).isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -19,17 +26,6 @@ class CamApp extends PureComponent {
     };
 
     this.toggleFilterShelf = this.toggleFilterShelf.bind(this);
-  }
-
-  toggleFilterShelf() {
-    this.setState({
-      filterShelfExpanded: !this.state.filterShelfExpanded,
-    });
-  }
-
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    cams: PropTypes.object.isRequired,
   }
 
   componentDidMount() {
@@ -45,18 +41,7 @@ class CamApp extends PureComponent {
     window.onresize = null;
   }
 
-  renderCamGrid(dispatch, cams) {
-    const isRequesting = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING);
-    const isRequestingMore = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING_MORE);
-
-    if (isRequesting) {
-      return <div className="loader"/>;
-    }
-
-    return <CamGrid dispatch={dispatch} isLoading={isRequesting} isLoadingMore={isRequestingMore} cams={cams} />;
-  }
-
-  _getCategoryComponent() {
+  getCategoryComponent() {
     const { dispatch, cams } = this.props;
     const currentCamCategory = cams.get(CAM_OPTIONS_PROPERTIES.CURRENT_CATEGORY);
     const isRequesting = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING);
@@ -68,7 +53,7 @@ class CamApp extends PureComponent {
             isLoading={isRequesting}
             isLoadingMore={isRequestingMore}
             currentCategory={currentCamCategory}
-            dispatch={dispatch}/>
+            dispatch={dispatch} />
       );
     }
 
@@ -77,14 +62,25 @@ class CamApp extends PureComponent {
           isLoading={isRequesting}
           isLoadingMore={isRequestingMore}
           currentCategory={currentCamCategory}
-          dispatch={dispatch}/>
+          dispatch={dispatch} />
     );
   }
 
-  _getFilterButtonClassName() {
-    const base = 'btn btn-default controls-btm filter-toggle';
+  toggleFilterShelf() {
+    this.setState({
+      filterShelfExpanded: !this.state.filterShelfExpanded,
+    });
+  }
 
-    return this.state.filterShelfExpanded ? base + ' active' : base;
+  renderCamGrid(dispatch, cams) {
+    const isRequesting = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING);
+    const isRequestingMore = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING_MORE);
+
+    if (isRequesting) {
+      return <div className="loader" />;
+    }
+
+    return <CamGrid dispatch={dispatch} isLoading={isRequesting} isLoadingMore={isRequestingMore} cams={cams} />;
   }
 
   render() {
@@ -93,15 +89,15 @@ class CamApp extends PureComponent {
     return (
       <div className="cam-app-container">
         <div className="filter-controls-bar">
-          { this._getCategoryComponent() }
+          { this.getCategoryComponent() }
           <div className="filter-border" />
-          <button
+          <Button
               active={this.state.filterShelfExpanded}
               onClick={this.toggleFilterShelf}
-              className={ this._getFilterButtonClassName() }>
-              <i className="fa fa-list" aria-hidden="true" />&nbsp;
+              className="btn btn-default controls-btm filter-toggle">
+            <i className="fa fa-list" aria-hidden="true" />&nbsp;
               Filter
-          </button>
+          </Button>
         </div>
         <FilterShelf dispatch={dispatch} expanded={this.state.filterShelfExpanded} />
         { this.renderCamGrid(dispatch, cams) }

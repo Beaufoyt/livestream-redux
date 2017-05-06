@@ -1,7 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Button } from 'react-bootstrap';
 import { fromJS } from 'immutable';
-import { hideOverlay } from 'actions/numbers';
+import { hideOverlay } from '../actions/overlays';
 
 import PureComponent from './PureComponent';
 
@@ -17,15 +19,23 @@ export default class Overlay extends PureComponent {
     cancelText: PropTypes.string,
     onCancel: PropTypes.func,
     isLoading: PropTypes.bool,
-    error: PropTypes.object,
+    error: PropTypes.instanceOf(Object),
+    children: PropTypes.node,
+  }
+
+  static defaultProps = {
+    title: '',
+    onContinue: () => {},
+    continueText: '',
+    cancelText: '',
+    onCancel: () => {},
+    isLoading: false,
+    error: {},
+    children: null,
   }
 
   componentDidMount() {
     document.body.className = bodyClasses + ' no-scroll';
-  }
-
-  componentWillUnmount() {
-    document.body.className = bodyClasses;
   }
 
   componentDidUpdate() {
@@ -37,7 +47,11 @@ export default class Overlay extends PureComponent {
     }
   }
 
-  _getContinueButton() {
+  componentWillUnmount() {
+    document.body.className = bodyClasses;
+  }
+
+  getContinueButton() {
     if (this.props.isLoading) {
       return <div className="overlay-requesting" />;
     }
@@ -46,8 +60,8 @@ export default class Overlay extends PureComponent {
       <button
           className="submit-button btn primary-btn"
           type="button"
-          onClick={ () => this.props.onContinue() }>
-          { this.props.continueText }
+          onClick={() => this.props.onContinue()}>
+        { this.props.continueText }
       </button>
     );
   }
@@ -63,9 +77,9 @@ export default class Overlay extends PureComponent {
             <h3>
               { title }
             </h3>
-            <div className="overlay-close" onClick={() => dispatch(hideOverlay(id))}>
+            <button className="btn overlay-close" onClick={() => dispatch(hideOverlay(id))}>
               <i className="fa fa-times" aria-hidden="true" />
-            </div>
+            </button>
           </div>
           <div id="overlay-content" className="overlay-content">
             { this.props.children }
@@ -80,10 +94,10 @@ export default class Overlay extends PureComponent {
               <Button
                   className="cancel-button"
                   type="button"
-                  onClick={() => this.props.onCancel() }>
-                  { this.props.cancelText }
+                  onClick={() => this.props.onCancel()}>
+                { this.props.cancelText }
               </Button>
-              { this._getContinueButton() }
+              { this.getContinueButton() }
             </div>
           </div>
         </div>

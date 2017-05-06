@@ -1,19 +1,15 @@
-import * as types from 'constants/ActionTypes';
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux';
 
-import { OVERLAYS } from 'constants/Overlays';
+import * as types from '../constants/ActionTypes';
+
+import OVERLAYS from '../constants/Overlays';
 
 function getOverlaysFromConfig() {
   const base = { overlays: {} };
 
-  for (const overlay in OVERLAYS) {
-    if (Object.prototype.hasOwnProperty.call(OVERLAYS, overlay)) {
-      base.overlays[OVERLAYS[overlay]] = { isVisible: false };
-    }
-    if ({}.hasOwnProperty.call(OVERLAYS, overlay)) {
-      base.overlays[OVERLAYS[overlay]] = { isVisible: false };
-    }
+  for (let i = 0; i < OVERLAYS.length; i += 1) {
+    base.overlays[OVERLAYS[i]] = { isVisible: false };
   }
 
   return base;

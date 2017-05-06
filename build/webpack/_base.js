@@ -1,76 +1,97 @@
-var webpack =           require ('webpack');
-var config =            require ('../../config');
-var HtmlWebpackPlugin = require ('html-webpack-plugin');
+const webpack = require('webpack');
+const config = require('../../config');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
-var cache = config.cache;
-var paths = config.utils_paths;
+const cache = config.cache;
+const paths = config.utils_paths;
 
-var filename = cache ? '[name].[hash].js' : '[name].js';
+const filename = cache ? '[name].[hash].js' : '[name].js';
 
-var webpackConfig = {
-  name    : 'client',
-  target  : 'web',
-  entry   : {
-    app : [
+const webpackConfig = {
+  name: 'client',
+  target: 'web',
+  entry: {
+    app: [
       'babel-polyfill',
-      paths.project(config.dir_src) + '/init.js',
+      paths.project(config.dir_src) + '/init.jsx',
     ],
-    vendor : config.vendor_dependencies
+    vendor: config.vendor_dependencies,
   },
-  output : {
-    filename   : filename,
-    path       : paths.project(config.dir_dist),
-    publicPath : '/'
+  output: {
+    filename,
+    path: paths.project(config.dir_dist),
+    publicPath: '/',
   },
-  plugins : [
+  plugins: [
     new webpack.DefinePlugin(config.globals),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        eslint: {
+          configFile: paths.project('.eslintrc'),
+          emitWarning: true,
+        },
+      },
+    }),
     new HtmlWebpackPlugin({
-      template : paths.src('index.html'),
-      hash     : cache,
-      filename : 'index.html',
-      inject   : 'body'
-    })
+      template: paths.src('index.html'),
+      hash: cache,
+      filename: 'index.html',
+      inject: 'body',
+    }),
   ],
-  resolve : {
-    extensions : ['', '.js', '.jsx'],
-    alias      : config.utils_aliases
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    alias: {
+      actions: path.resolve(__dirname, '../../src/actions/'),
+      components: path.resolve(__dirname, '../../src/components/'),
+      constants: path.resolve(__dirname, '../../src/constants/'),
+      reducers: path.resolve(__dirname, '../../src/reducers/'),
+      styles: path.resolve(__dirname, '../../src/styles/'),
+    },
   },
-  module : {
-    preLoaders : [
+  module: {
+    rules: [
       {
-        test : /\.(js|jsx)$/,
-        loaders : ['eslint-loader'],
-        exclude : /node_modules/
-      }
-    ],
-    loaders : [
-      {
-        test : /\.(js|jsx)$/,
-        exclude : /node_modules/,
-        loader  : 'babel-loader'
+        test: /\.(js|jsx)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        exclude: /node_modules/,
       },
       {
-        test    : /\.scss$/,
-        loaders : [
-          'style-loader',
-          'css-loader',
-          'sass-loader?includePaths[]=' + paths.src('styles')
-        ]
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [paths.src('styles')],
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader',
       },
-      { test: /\.json$/, loader: 'json-loader'},
-      { test: /\.(png|jpg)$/, loader : 'url-loader?limit=8192' },
-      { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader : 'file-loader' }
-    ]
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
+      { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader' },
+    ],
   },
-  eslint : {
-    configFile : paths.project('.eslintrc')
-  }
 };
+
+console.log('fssfag', __dirname);
 
 module.exports = webpackConfig;
