@@ -17,10 +17,6 @@ export default class CategoryRadioButtons extends PureComponent {
     isLoadingMore: PropTypes.bool.isRequired,
   }
 
-  componentDidMount() {
-    this.props.dispatch(fetchCams(this.props.currentCategory, true));
-  }
-
   handleSelected(category) {
     if (!this.props.isLoading && !this.props.isLoadingMore) {
       this.props.dispatch(changeCategory(category));

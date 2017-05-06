@@ -215,7 +215,7 @@ $translateX: 0;
   width:$width-line;
   height:$height-icon;
   display: none;
-
+  cursor: pointer;
 
   @media only screen and (max-width : $mobile) {
     display: block;

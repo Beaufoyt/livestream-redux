@@ -28,7 +28,7 @@
   }
 
   .overlay-content {
-    padding: 30px 20px 20px 20px;
+    padding: 25px 20px 20px 20px;
     overflow: auto;
     max-height: calc(100vh - 152px);
   }
@@ -55,11 +55,13 @@
       line-height: 28px;
       font-size: 24px;
       text-align: center;
-      transition: transform 0.3s;
-      transition-timing-function: linear;
 
       &:hover {
         color: $sidebar-color;
+      }
+
+      &:active {
+        font-size: 18px;
       }
     }
 
@@ -85,9 +87,26 @@
   }
 
   .validation-info {
+    width: 360px;
     padding-top: 3px;
     height: 25px;
     color: $error;
+    font-size: 11px;
+    text-align: left;
+
+    @media only screen and (max-width : $mobile) {
+      width: auto;
+      height: 20px;
+    }
+
+    &.expanded {
+      height: auto;
+    }
+
+    ul {
+      padding-left: 25px;
+      padding-top: 5px;
+    }
 
     & span {
       float: left;

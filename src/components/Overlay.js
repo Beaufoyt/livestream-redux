@@ -71,7 +71,7 @@ export default class Overlay extends PureComponent {
             { this.props.children }
             { error &&
               <div id="cam-error" className="cam-error">
-                <span><i className="fa fa-exclamation-circle" aria-hidden="true" />&nbsp;{ error.get('detail') }</span>
+                <span><i className="fa fa-exclamation-circle fa-2x" aria-hidden="true" />{ error.get('detail') }</span>
               </div>
             }
           </div>

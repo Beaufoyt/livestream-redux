@@ -26,6 +26,10 @@ export default class FilterShelf extends PureComponent {
     });
   }
 
+  _getActiveDropdownState(region) {
+    return this.state.currentRegion === region;
+  }
+
   getFilterControls() {
     const { currentRegion } = this.state;
     const dropdownTitle = (currentRegion === null) ? 'Select Region' : currentRegion.toUpperCase();
@@ -34,9 +38,11 @@ export default class FilterShelf extends PureComponent {
       <div className="filter-controls">
         <DropdownButton className="filter-dropdown filter-control" title={dropdownTitle} id="bg-vertical-dropdown-1">
           <MenuItem className="filter-control"
+              active={this._getActiveDropdownState(REGIONS.UK)}
               eventKey="UK"
               onSelect={() => this.onDropdownChange(REGIONS.UK) }>UK</MenuItem>
           <MenuItem className="filter-control"
+              active={this._getActiveDropdownState(REGIONS.US)}
               eventKey="US"
               onSelect={() => this.onDropdownChange(REGIONS.US) }>US</MenuItem>
         </DropdownButton>

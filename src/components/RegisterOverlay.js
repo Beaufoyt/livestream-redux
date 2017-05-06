@@ -21,7 +21,10 @@ export default class RegisterOverlay extends PureComponent {
       confirmedPassword: '',
       email: '',
       emailValidation: null,
-      usernameValidation: null,
+      usernameValidation: {
+        status: null,
+        detail: null,
+      },
       passwordValidation: null,
       confirmedPasswordValidation: null,
     };
@@ -44,19 +47,22 @@ export default class RegisterOverlay extends PureComponent {
 
   _handleRegisterContinue() {
     const validationStates = [
-      this._getUsernameValidationState(),
+      this._getUsernameValidationState().status,
       this._getPasswordValidationState(),
       this._getConfirmedPasswordValidationState(),
     ];
 
     if (validationStates.some((el) => { return ['error', null].includes(el); })) {
+      const uv = this._getUsernameValidationState().status ? this._getUsernameValidationState().status : 'error';
+      const pv = this._getUsernameValidationState().status ? this._getUsernameValidationState().status : 'error';
       const cpv = this._getConfirmedPasswordValidationState() ? this._getConfirmedPasswordValidationState() : 'error';
+
       this.setState({
         registerError: {
           detail: 'Invalid details',
         },
-        usernameValidation: this._getUsernameValidationState() ? this._getUsernameValidationState() : 'error',
-        passwordValidation: this._getPasswordValidationState() ? this._getPasswordValidationState() : 'error',
+        usernameValidation: uv,
+        passwordValidation: pv,
         confirmedPasswordValidation: cpv,
       });
     } else if (!this.state.tncAccepted) {
@@ -74,7 +80,6 @@ export default class RegisterOverlay extends PureComponent {
   _handleDetailChange(e) {
     const { id, value } = e.target;
     const validationFunc = `_get${id.charAt(0).toUpperCase() + id.slice(1)}ValidationState`;
-    console.log(validationFunc);
 
     this.setState({
       [id]: value,
@@ -83,22 +88,34 @@ export default class RegisterOverlay extends PureComponent {
     });
   }
 
+  _getUserObject(status, detail) {
+    return {
+      status,
+      detail,
+    };
+  }
+
   _getUsernameValidationState(username = this.state.username) {
     const userNameRegex = /^[a-zA-Z0-9\_]+$/;
     const length = username.length;
+
     if (length) {
-      if (length >= 6 && username.match(userNameRegex) && length <= 16) return 'success';
-      return 'error';
+      if (!username.match(userNameRegex)) return this._getUserObject('error', 'char');
+      else if (length < 8) return this._getUserObject('error', 'short');
+      else if (length > 16) return this._getUserObject('error', 'long');
+      return this._getUserObject('success', null);
     }
 
-    return null;
+    return this._getUserObject(null, null);
   }
 
   _getPasswordValidationState(password = this.state.password) {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[\s\S]{8,}$/;
     const length = password.length;
+
     if (length) {
-      if (length < 6) return 'error';
-      return 'success';
+      if (password.match(passwordRegex)) return 'success';
+      return 'error';
     }
 
     return null;
@@ -152,22 +169,60 @@ export default class RegisterOverlay extends PureComponent {
     );
   }
 
-  _getValidationInfoContainer(validationMessage) {
-    return <div className="validation-info"><span>{validationMessage}</span></div>;
+  _getValidationInfoContainer(validationMessage, detail) {
+    const infoClass = detail ? 'validation-info expanded' : 'validation-info';
+
+    return <div className={ infoClass }><div>{ validationMessage }</div>{ detail }</div>;
   }
 
   _getUsernameValidationInfo() {
-    const validationMessage = (this.state.usernameValidation === 'error') ? 'come on dude, get your shit together' : null;
+    let validationMessage;
+
+    if (this.state.usernameValidation.detail === 'char') {
+      validationMessage = 'No special characters allowed, except Underscores (_)';
+    }
+
+    if (this.state.usernameValidation.detail === 'short') {
+      validationMessage = 'Your username must be at least 8 characters in length';
+    }
+
+    if (this.state.usernameValidation.detail === 'long') {
+      validationMessage = 'Your username cannot be longer than 16 characters';
+    }
+
     return this._getValidationInfoContainer(validationMessage);
+  }
+
+  _getPasswordValidationDetail() {
+    return (
+      <ul>
+        <li>
+          1 Uppercase character
+        </li>
+        <li>
+          1 Lowercase character
+        </li>
+        <li>
+          1 Number
+        </li>
+        <li>
+          1 Special character ($@$!%*#?&)
+        </li>
+      </ul>
+    );
   }
 
   _getPasswordValidationInfo() {
-    const validationMessage = (this.state.passwordValidation === 'error') ? 'come on dude, get your shit together' : null;
-    return this._getValidationInfoContainer(validationMessage);
+    if (this.state.passwordValidation === 'error') {
+      const validationMessage = 'Your password must be at least 8 characters long and contain at least:';
+      return this._getValidationInfoContainer(validationMessage, this._getPasswordValidationDetail());
+    }
+
+    return this._getValidationInfoContainer(null);
   }
 
   _getConfirmedPasswordValidationInfo() {
-    const validationMessage = (this.state.confirmedPasswordValidation === 'error') ? 'come on dude, get your shit together' : null;
+    const validationMessage = (this.state.confirmedPasswordValidation === 'error') ? 'Your passwords must match' : null;
     return this._getValidationInfoContainer(validationMessage);
   }
 
@@ -203,9 +258,9 @@ export default class RegisterOverlay extends PureComponent {
             {...overlayProps}
             onCancel={ () => dispatch(hideOverlay(OVERLAYS.REGISTER)) }
             onContinue={ () => this._handleRegisterContinue() }>
-          <FormGroup validationState={ this.state.usernameValidation }>
+          <FormGroup validationState={ this.state.usernameValidation.status }>
             <ControlLabel className="register-label">Username</ControlLabel>
-            { this._getValidationIconHolder(this.state.usernameValidation) }
+            { this._getValidationIconHolder(this.state.usernameValidation.status) }
             <FormControl
                 id="username"
                 value={ this.state.username }

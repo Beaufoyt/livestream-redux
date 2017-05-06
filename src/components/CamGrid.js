@@ -59,7 +59,10 @@ export default class CamGrid extends PureComponent {
             <div id="card-image" style={{ backgroundImage }} className="card-image" />
             <span className="pull-left user">{ cam.get(CAM_PROPERTIES.NAME) }</span>
             &nbsp;<span>{ cam.get(CAM_PROPERTIES.REGION) }</span>
-            <span className="pull-right viewers"><i className="fa fa-user" aria-hidden="true" />&nbsp;{ cam.get(CAM_PROPERTIES.VIEWERS) }</span>
+            <span className="pull-right viewers">
+              <i className="fa fa-user" aria-hidden="true" />&nbsp;
+              { cam.get(CAM_PROPERTIES.VIEWERS) }
+            </span>
           </li>
         );
 
@@ -95,7 +98,10 @@ export default class CamGrid extends PureComponent {
       return (
         <div className="camgrid-error-container">
           <div className="cam-error">
-            <span><i className="fa fa-exclamation-circle" aria-hidden="true" />&nbsp;{ dictionary.noCamsFoundText }</span>
+            <span>
+              <i className="fa fa-exclamation-circle fa-2x" aria-hidden="true" />
+              { dictionary.noCamsFoundText }
+            </span>
           </div>
         </div>
       );

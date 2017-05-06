@@ -86,3 +86,78 @@
 .form-group {
   margin-bottom: 10px !important;
 }
+
+.dropdown-menu {
+  margin-left: -1px !important;
+  border-radius: 0 !important;
+  background-color: $header-color !important;
+  padding: 0 !important;
+
+  .active {
+    a {
+      background-color: $primary-brand-color !important;
+
+      &:hover {
+        background-color: $primary-brand-color !important;
+      }
+    }
+  }
+
+  li {
+    a {
+      background-color: $header-color !important;
+      color: white !important;
+      font-weight: 100 !important;
+
+      &:focus{
+        outline: none;
+      }
+
+      &:active {
+        outline: none;
+      }
+
+      &:hover {
+        background-color: darken($header-color, 3) !important;
+      }
+    }
+  }
+}
+
+.dropdown.btn-group {
+  .btn-default {
+    border: none;
+    border-left: 5px solid $primary-brand-color !important;
+    background-color: $body-color !important;
+    color: white !important;
+    text-transform: capitalize;
+    font-weight: 100;
+    padding: 6px 10px !important;
+
+    &.active {
+      background-color: $header-color !important;
+    }
+
+    &:hover {
+      background-color: darken($header-color, 2) !important;
+    }
+
+    &:active {
+      background-color: $header-color !important;
+    }
+
+    &:focus {
+      background-color: $header-color !important;
+    }
+  }
+
+  span {
+    float: left;
+  }
+  .caret {
+    position: absolute;
+    right: 12px;
+    top: 47%;
+    color: $primary-brand-color;
+  }
+}

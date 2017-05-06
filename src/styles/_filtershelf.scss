@@ -8,10 +8,6 @@
       width: 150px;
       margin-right: 5px;
     }
-
-    .filter-control {
-      z-index: 0 !important;
-    }
   }
 }
 
@@ -22,6 +18,7 @@
   position: relative;
 
   .filter-toggle {
+    padding-right: 0;
     background-color: $body-color !important;
     border: none;
     right: 0;
@@ -47,4 +44,23 @@
 
 .category-radio-buttons {
   left: 0;
+}
+
+.category-dropdown {
+  left: 0;
+
+  button {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+
+    .caret {
+      border-width: 6px !important;
+    }
+  }
+
+  a {
+    height: 35px;
+    padding-top: 7px !important;
+  }
 }

@@ -21,6 +21,14 @@
   color: $secondary-text-color;
   text-align: center;
   line-height: 50px;
+
+  i {
+    vertical-align: sub;
+  }
+
+  span {
+    padding-left: 10px;
+  }
 }
 
 .user-item {
