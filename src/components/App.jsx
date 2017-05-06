@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import PureComponent from './PureComponent';
@@ -11,9 +12,8 @@ class App extends PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    numbers: PropTypes.object.isRequired,
-    sidebar: PropTypes.object.isRequired,
-    auth: PropTypes.object.isRequired,
+    sidebar: PropTypes.instanceOf(Object).isRequired,
+    auth: PropTypes.instanceOf(Object).isRequired,
   }
 
   getSidebarSize() {
@@ -30,17 +30,17 @@ class App extends PureComponent {
 
     return (
       <div className="app">
-        <Sidebar dispatch={dispatch} size={ sidebarSize } />
-        <div id="header-content-container" className={ this.getMainPadClass() }>
-          <Header dispatch={dispatch} sidebarSize={ sidebarSize } />
+        <Sidebar dispatch={dispatch} size={sidebarSize} />
+        <div id="header-content-container" className={this.getMainPadClass()}>
+          <Header dispatch={dispatch} sidebarSize={sidebarSize} />
           <CamApp />
-          <Overlays auth={ auth }/>
+          <Overlays auth={auth} />
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ ...state.numbers, ...state.auth, ...state.sidebar, ...state.cams });
+const mapStateToProps = state => ({ ...state.auth, ...state.sidebar, ...state.cams });
 
 export default connect(mapStateToProps)(App);

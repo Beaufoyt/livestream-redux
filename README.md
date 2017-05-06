@@ -24,5 +24,5 @@ Structure
     ├── styles                   # App SASS styles, all are imported into app.scss
     ├── utils                    # Reusable utility functions
     ├── index.html               # Most basic index.html
-    └── init.js                  # App bootstrap and rendering
+    └── init.jsx                 # App bootstrap and rendering
 ```

@@ -1,4 +1,6 @@
-export const REGIONS = {
+const REGIONS = {
   UK: 'uk',
   US: 'us',
 };
+
+export default REGIONS;

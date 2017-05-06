@@ -1,4 +1,4 @@
-import * as types from 'constants/ActionTypes';
+import * as types from '../constants/ActionTypes';
 
 const registerResponse = (isLoggedIn, error) => ({ type: types.REGISTER_RESPONSE, isLoggedIn, error });
 const registerRequest = () => ({ type: types.REGISTER_REQUEST });

@@ -1,6 +1,7 @@
-import * as types from 'constants/ActionTypes';
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux';
+
+import * as types from '../constants/ActionTypes';
 
 const input = {
   sidebar: {

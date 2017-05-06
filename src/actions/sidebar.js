@@ -1,3 +1,5 @@
-import * as types from 'constants/ActionTypes';
+import * as types from '../constants/ActionTypes';
 
-export const toggleSidebar = () => ({ type: types.TOGGLE_SIDEBAR });
+const toggleSidebar = () => ({ type: types.TOGGLE_SIDEBAR });
+
+export default toggleSidebar;
