@@ -53,8 +53,9 @@ export default class RegisterOverlay extends PureComponent {
     ];
 
     if (validationStates.some((el) => { return ['error', null].includes(el); })) {
-      const uv = this._getUsernameValidationState().status ? this._getUsernameValidationState().status : 'error';
-      const pv = this._getUsernameValidationState().status ? this._getUsernameValidationState().status : 'error';
+      const uvStatus = this._getUsernameValidationState().status;
+      const uv = uvStatus ? this._getUsernameValidationState() : this._getUserObject('error', 'short');
+      const pv = this._getPasswordValidationState() ? this._getPasswordValidationState() : 'error';
       const cpv = this._getConfirmedPasswordValidationState() ? this._getConfirmedPasswordValidationState() : 'error';
 
       this.setState({
