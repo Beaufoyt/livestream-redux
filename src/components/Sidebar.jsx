@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 import { Button } from 'react-bootstrap';
 import Classnames from 'classnames';
@@ -39,6 +40,8 @@ export default class Sidebar extends PureComponent {
     window.addEventListener('resize', () => {
       if (window.innerWidth <= 568 && this.props.size === 'contracted') {
         this.props.dispatch(toggleSidebar());
+      } else if (this.state.showBurgerNav) {
+        this.setState({ showBurgerNav: false });
       }
     });
   }
@@ -71,15 +74,19 @@ export default class Sidebar extends PureComponent {
     return navclass;
   }
 
+  getBurgerClass() {
+    const iconClass = Classnames('hamburger', {
+      'is-active': this.state.showBurgerNav,
+    });
+
+    return iconClass;
+  }
+
   getNavBarTextClasses() {
     return {
       homeClass: `home-text-${this.props.size}`,
       aboutClass: `about-text-${this.props.size}`,
     };
-  }
-
-  getActiveState(id) {
-    return id === this.state.activeNavLink;
   }
 
   getActiveMoreState() {
@@ -103,14 +110,6 @@ export default class Sidebar extends PureComponent {
     return this.renderMiniNavBarToggle();
   }
 
-  getBurgerClass() {
-    const iconClass = Classnames('icon', {
-      active: this.state.showBurgerNav,
-    });
-
-    return iconClass;
-  }
-
   toggleNav() {
     this.setState({
       showBurgerNav: !this.state.showBurgerNav,
@@ -121,6 +120,7 @@ export default class Sidebar extends PureComponent {
     this.setState({
       activeNavLink: selected,
       moreButtonActive: false,
+      showBurgerNav: false,
     });
   }
 
@@ -135,42 +135,55 @@ export default class Sidebar extends PureComponent {
       activeNavLink: selected,
       overflowActive: false,
       moreButtonActive: true,
+      showBurgerNav: false,
     });
   }
 
   renderMiniNavBar() {
     return (
       <div id="mini-nav" className={this.getMiniNavBarClass()}>
-        <Button
-            active={this.getActiveState(miniNavContact)}
+        <NavLink
+            activeClassName="active"
             onClick={() => this.handleMiniNavSelected(miniNavContact)}
-            className="mini-nav-link">Contact
-        </Button>
-        <Button
-            active={this.getActiveState(miniNavJobs)}
+            className="mini-nav-link"
+            to="/contact">
+          Contact
+        </NavLink>
+        <NavLink
+            activeClassName="active"
             onClick={() => this.handleMiniNavSelected(miniNavJobs)}
-            className="mini-nav-link">Jobs
-        </Button>
-        <Button
-            active={this.getActiveState(miniNavCookiePolicy)}
+            className="mini-nav-link"
+            to="/jobs">
+          Jobs
+        </NavLink>
+        <NavLink
+            activeClassName="active"
             onClick={() => this.handleMiniNavSelected(miniNavCookiePolicy)}
-            className="mini-nav-link">Cookie Policy
-        </Button>
-        <Button
-            active={this.getActiveState(miniNavHelp)}
+            className="mini-nav-link"
+            to="/cookiepolicy">
+          Cookie Policy
+        </NavLink>
+        <NavLink
+            activeClassName="active"
             onClick={() => this.handleMiniNavSelected(miniNavHelp)}
-            className="mini-nav-link">Help
-        </Button>
-        <Button
-            active={this.getActiveState(miniNavTerms)}
+            className="mini-nav-link"
+            to="/help">
+          Help
+        </NavLink>
+        <NavLink
+            activeClassName="active"
             onClick={() => this.handleMiniNavSelected(miniNavTerms)}
-            className="mini-nav-link">Terms
-        </Button>
-        <Button
-            active={this.getActiveState(miniNavModels)}
+            className="mini-nav-link"
+            to="/terms">
+          Terms
+        </NavLink>
+        <NavLink
+            activeClassName="active"
             onClick={() => this.handleMiniNavSelected(miniNavModels)}
-            className="mini-nav-link">Models
-        </Button>
+            className="mini-nav-link"
+            to="/models">
+          Models
+        </NavLink>
       </div>
     );
   }
@@ -191,25 +204,31 @@ export default class Sidebar extends PureComponent {
 
     return (
       <div>
-        <button id="hamburger-icon" onClick={() => this.toggleNav()} className={this.getBurgerClass()}title="Menu">
-          <span className="line line-1" />
-          <span className="line line-2" />
-          <span className="line line-3" />
+        <button
+            id="hamburger-11"
+            onClick={() => this.toggleNav()}
+            className={this.getBurgerClass()}>
+          <span className="line" />
+          <span className="line" />
+          <span className="line" />
         </button>
         <div className={this.getNavClassName()}>
           <div id="big-nav">
-            <Button
+            <NavLink
+                exact
+                activeClassName="active"
+                onClick={() => this.handleNavSelected(navHome)}
                 className="nav-link"
-                active={this.getActiveState(navHome)}
-                onClick={() => this.handleNavSelected(navHome)}>
+                to="/">
               <div className={homeClass} />
-            </Button>
-            <Button
+            </NavLink>
+            <NavLink
+                activeClassName="active"
+                onClick={() => this.handleNavSelected(navAbout)}
                 className="nav-link"
-                active={this.getActiveState(navAbout)}
-                onClick={() => this.handleNavSelected(navAbout)}>
+                to="/about">
               <div className={aboutClass} />
-            </Button>
+            </NavLink>
           </div>
           { this.getMiniNavBarSize() }
         </div>

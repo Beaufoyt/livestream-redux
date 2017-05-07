@@ -1,7 +1,6 @@
 .header {
   width: 100%;
   height: $header-height;
-  padding: 13px 5px;
   position: fixed;
   z-index: 1;
   pointer-events: none;
@@ -39,5 +38,7 @@
     pointer-events: all;
     position: inherit;
     right: 10px;
+    top: 10px;
+    height: 40px;
   }
 }

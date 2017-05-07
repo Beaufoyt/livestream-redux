@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -35,4 +36,4 @@ class Overlays extends PureComponent {
 
 const mapStateToProps = state => ({ ...state.overlays });
 
-export default connect(mapStateToProps)(Overlays);
+export default withRouter(connect(mapStateToProps)(Overlays));
