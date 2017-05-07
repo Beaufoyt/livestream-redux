@@ -39,7 +39,6 @@
     padding: 15px 0;
     background-color: $sidebar-color;
 
-
     @media only screen and (max-width : $mobile) {
       display: none;
     }
@@ -55,20 +54,12 @@
       transition: border-left 0.15s;
       transition-timing-function: linear;
       height: 40px;
+      text-decoration: none;
 
       &.active {
         background-color: #282828;
         color: white;
         border-left: 5px solid $primary-brand-color !important;
-
-        &:hover {
-          background-color: #282828;
-        }
-      }
-
-      &:active {
-        color: gray;
-        background-color: #282828;
       }
 
       &:hover {
@@ -94,11 +85,10 @@
 
     .mini-nav {
       width: $sidebar-expanded;
-      height: 120px;
+      height: auto;
       background-color: $sidebar-color;
       padding: 12px 0;
       position: absolute;
-
 
       @media only screen and (max-width : $mobile) {
         position: initial;
@@ -137,11 +127,18 @@
       text-transform: capitalize;
       transition: box-shadow 0.3s;
       transition-timing-function: linear;
-
+      display: inline-block;
+      width: auto;
+      height: auto;
+      line-height: 30px;
+      padding: 4px 11px 4px 11px;
+      margin: 3px;
+      text-decoration: none;
 
       @media only screen and (max-width : $mobile) {
         display: block;
         width: 100%;
+        margin: 0;
       }
 
       &.active {
@@ -169,12 +166,16 @@
 }
 
 .sidebar-title {
-  color: rgb(204, 204, 204);
+  color: white;
   margin: 0;
   vertical-align: middle;
   display: table-cell;
-  font-size: 20px;
-  font-weight: 200;
+  font-weight: 300;
+  font-size: 30px;
+
+  @media only screen and (max-width: $mobile) {
+    font-size: 20px;
+  }
 }
 
 .sidebar-title-expanded:before {
@@ -200,78 +201,84 @@
   margin-left: $sidebar-contracted + 5;
 }
 
-$background: #3d566e;
-$color: #ecf0f1;
+.hamburger .line{
+  width: 40px;
+  height: 5px;
+  background-color: #ecf0f1;
+  display: block;
+  margin: 8px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
 
-$height-icon: 16px;
-$width-line: 30px;
-$height-line: 3px;
+.hamburger {
+  position: fixed;
+  top: 0;
+  left: 4px;
+  height: $header-height;
+  background-color: transparent;
+  border: none;
+  outline: none !important;
+}
 
-$transition-time: 0.4s;
-$rotation: 45deg;
-$translateY: ($height-icon / 2);
-$translateX: 0;
-
-#hamburger-icon {
-  width:$width-line;
-  height:$height-icon;
-  display: none;
+.hamburger:hover{
   cursor: pointer;
+}
+
+#hamburger-11{
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  display: none;
 
   @media only screen and (max-width : $mobile) {
-    display: block;
-    position: fixed;
-    top: 22px;
-    left: 15px;
+    display: initial;
   }
+}
+//
+// #hamburger-11.is-active{
+//   animation: smallbig 0.6s forwards;
+// }
+//
+// @keyframes smallbig{
+//   0%, 100%{
+//     -webkit-transform: scale(1);
+//     -ms-transform: scale(1);
+//     -o-transform: scale(1);
+//     transform: scale(1);
+//   }
+//
+//   50%{
+//     -webkit-transform: scale(0);
+//     -ms-transform: scale(0);
+//     -o-transform: scale(0);
+//     transform: scale(0);
+//   }
+// }
 
-  .line {
-    display:block;
-    background:$color;
-    width:$width-line;
-    height:$height-line;
-    position:absolute;
-    left:0;
-    border-radius:($height-line / 2);
-    transition: all $transition-time;
-    -webkit-transition: all $transition-time;
-    -moz-transition: all $transition-time;
+// #hamburger-11.is-active .line:nth-child(1),
+// #hamburger-11.is-active .line:nth-child(2),
+// #hamburger-11.is-active .line:nth-child(3){
+//   -webkit-transition-delay: 0.2s;
+//   -o-transition-delay: 0.2s;
+//   transition-delay: 0.2s;
+// }
 
-    &.line-1 {
-      top:0;
-    }
-    &.line-2 {
-      top:50%;
-    }
-    &.line-3 {
-      top:100%;
-    }
-  }
-  &:hover, &:focus {
-     .line-1 {
-        transform: translateY($height-line / 2 * -1);
-        -webkit-transform: translateY($height-line / 2 * -1);
-        -moz-transform: translateY($height-line / 2 * -1);
-     }
-    .line-3 {
-        transform: translateY($height-line / 2);
-        -webkit-transform: translateY($height-line / 2);
-        -moz-transform: translateY($height-line / 2);
-    }
-  }
-  &.active {
-    .line-1 {
-      transform: translateY($translateY) translateX($translateX) rotate($rotation);
-      -webkit-transform: translateY($translateY) translateX($translateX) rotate($rotation);
-      -moz-transform: translateY($translateY) translateX($translateX) rotate($rotation);
-    }
-    .line-2 {
-      opacity:0;
-    }
-    .line-3 {
-      transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
-      -webkit-transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
-      -moz-transform: translateY($translateY * -1) translateX($translateX) rotate($rotation * -1);
-    }
-  }
+#hamburger-11.is-active .line:nth-child(2){
+  opacity: 0;
+}
+
+#hamburger-11.is-active .line:nth-child(1){
+  -webkit-transform: translateY(13px) rotate(45deg);
+  -ms-transform: translateY(13px) rotate(45deg);
+  -o-transform: translateY(13px) rotate(45deg);
+  transform: translateY(13px) rotate(45deg);
+}
+
+#hamburger-11.is-active .line:nth-child(3){
+  -webkit-transform: translateY(-13px) rotate(-45deg);
+  -ms-transform: translateY(-13px) rotate(-45deg);
+  -o-transform: translateY(-13px) rotate(-45deg);
+  transform: translateY(-13px) rotate(-45deg);
 }

@@ -128,6 +128,7 @@
     text-transform: capitalize;
     font-weight: 100;
     padding: 6px 10px !important;
+    text-align: left;
 
     &.active {
       background-color: $header-color !important;
@@ -146,9 +147,6 @@
     }
   }
 
-  span {
-    float: left;
-  }
   .caret {
     position: absolute;
     right: 12px;

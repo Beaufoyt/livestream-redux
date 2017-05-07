@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { fetchCams } from '../actions/cams';
 import PureComponent from './PureComponent';
@@ -108,4 +109,4 @@ class CamApp extends PureComponent {
 
 const mapStateToProps = state => ({ ...state.cams });
 
-export default connect(mapStateToProps)(CamApp);
+export default withRouter(connect(mapStateToProps)(CamApp));

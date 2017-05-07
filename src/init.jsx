@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, hashHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import App from './components/App';
@@ -12,8 +13,10 @@ import './styles/index.scss';
 const store = applyMiddleware(thunkMiddleware)(createStore)(rootReducer);
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Router history={hashHistory}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>,
   document.getElementById('todo'),
 );
