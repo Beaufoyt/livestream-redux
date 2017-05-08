@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Waypoint from 'react-waypoint';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import { fetchCams } from '../actions/cams';
 import ERROR_TYPES from '../constants/ErrorTypes';
@@ -41,15 +42,19 @@ export default class CamGrid extends PureComponent {
 
       if (currentFilter === null || region === currentFilter) {
         const backgroundImage = `url(${cam.get(CAM_PROPERTIES.IMAGE)})`;
+        const userLink = `/${cam.get(CAM_PROPERTIES.NAME)}`;
+
         const card = (
           <li key={cam.get(CAM_PROPERTIES.VIEWERS)} className="user-item user">
-            <div id="card-image" style={{ backgroundImage }} className="card-image" />
-            <span className="pull-left user">{ cam.get(CAM_PROPERTIES.NAME) }</span>
-            &nbsp;<span>{ cam.get(CAM_PROPERTIES.REGION) }</span>
-            <span className="pull-right viewers">
-              <i className="fa fa-user" aria-hidden="true" />&nbsp;
-              { cam.get(CAM_PROPERTIES.VIEWERS) }
-            </span>
+            <Link to={userLink}>
+              <div id="card-image" style={{ backgroundImage }} className="card-image" />
+              <span className="pull-left user">{ cam.get(CAM_PROPERTIES.NAME) }</span>
+              &nbsp;<span>{ cam.get(CAM_PROPERTIES.REGION) }</span>
+              <span className="pull-right viewers">
+                <i className="fa fa-user" aria-hidden="true" />&nbsp;
+                { cam.get(CAM_PROPERTIES.VIEWERS) }
+              </span>
+            </Link>
           </li>
         );
 

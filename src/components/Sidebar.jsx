@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Classnames from 'classnames';
 
-import toggleSidebar from '../actions/sidebar';
+import { toggleSidebar, setActiveLink } from '../actions/sidebar';
 import PureComponent from './PureComponent';
 import { NAV_ITEMS, MINI_NAV_ITEMS } from '../constants/NavItems';
 
@@ -23,6 +23,7 @@ export default class Sidebar extends PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     size: PropTypes.string.isRequired,
+    activeNavLink: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -52,6 +53,10 @@ export default class Sidebar extends PureComponent {
         overflowActive: false,
       });
     }
+
+    this.setState({
+      activeNavLink: this.props.activeNavLink,
+    });
   }
 
   componentWillUnmount() {
@@ -118,10 +123,11 @@ export default class Sidebar extends PureComponent {
 
   handleNavSelected(selected) {
     this.setState({
-      activeNavLink: selected,
       moreButtonActive: false,
       showBurgerNav: false,
     });
+
+    this.props.dispatch(setActiveLink(selected));
   }
 
   handleNavMoreSelected() {
@@ -132,11 +138,12 @@ export default class Sidebar extends PureComponent {
 
   handleMiniNavSelected(selected) {
     this.setState({
-      activeNavLink: selected,
       overflowActive: false,
       moreButtonActive: true,
       showBurgerNav: false,
     });
+
+    this.props.dispatch(setActiveLink(selected));
   }
 
   renderMiniNavBar() {

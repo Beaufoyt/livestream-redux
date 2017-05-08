@@ -30,7 +30,10 @@ class CamApp extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchCams(this.props.cams.get(CAM_OPTIONS_PROPERTIES.CURRENT_CATEGORY), true));
+    if (!this.props.cams.get('cams').size) {
+      this.props.dispatch(fetchCams(this.props.cams.get(CAM_OPTIONS_PROPERTIES.CURRENT_CATEGORY), true));
+    }
+
     window.onresize = () => {
       this.setState({
         viewWidth: window.innerWidth,

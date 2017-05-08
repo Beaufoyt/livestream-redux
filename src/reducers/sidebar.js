@@ -1,25 +1,36 @@
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux';
+import { LOCATION_CHANGE } from 'react-router-redux';
 
+import { NAV_ITEMS } from '../constants/NavItems';
 import * as types from '../constants/ActionTypes';
 
 const input = {
-  sidebar: {
-    size: 'expanded',
-  },
+  size: 'expanded',
+  activeNavLink: NAV_ITEMS.HOME,
 };
 
 const list = fromJS(input);
 
 function getNewSize(state) {
-  return state.getIn(['sidebar', 'size']) === 'expanded' ? 'contracted' : 'expanded';
+  return state.get('size') === 'expanded' ? 'contracted' : 'expanded';
 }
 
 function sidebar(state = list, action) {
   switch (action.type) {
     case types.TOGGLE_SIDEBAR: {
-      return list.setIn(['sidebar', 'size'], getNewSize(state));
+      return state.setIn(['size'], getNewSize(state));
     }
+
+    case types.SET_ACTIVE_LINK: {
+      return state.setIn(['activeNavLink'], action.id);
+    }
+
+    case LOCATION_CHANGE: {
+      console.log(action);
+      return state;
+    }
+
     default:
       return state;
   }
