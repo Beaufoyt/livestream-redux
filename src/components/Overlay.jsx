@@ -24,13 +24,13 @@ export default class Overlay extends PureComponent {
   }
 
   static defaultProps = {
-    title: '',
+    title: 'New Overlay',
     onContinue: () => {},
-    continueText: '',
-    cancelText: '',
+    continueText: 'Continue',
+    cancelText: 'Cancel',
     onCancel: () => {},
     isLoading: false,
-    error: {},
+    error: null,
     children: null,
   }
 

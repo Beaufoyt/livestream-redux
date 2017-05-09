@@ -35,9 +35,19 @@
   }
 
   .register {
+    width: 80px;
     pointer-events: all;
     position: inherit;
     right: 10px;
+    top: 10px;
+    height: 40px;
+  }
+
+  .login {
+    width: 60px;
+    pointer-events: all;
+    position: inherit;
+    right: 100px;
     top: 10px;
     height: 40px;
   }

@@ -31,6 +31,22 @@ function auth(state = list, action) {
     case types.CLEAR_AUTH_ERROR:
       return state.set('error', null);
 
+    case types.LOGIN_REQUEST:
+      return state.merge({
+        isRequesting: true,
+        error: null,
+      });
+
+    case types.LOGIN_RESPONSE:
+      if (action.error) {
+        return state.merge({
+          isRequesting: false,
+          error: action.error,
+        });
+      }
+
+      return state.set('isRequesting', false);
+
     default:
       return state;
   }

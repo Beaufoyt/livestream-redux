@@ -2,6 +2,8 @@ import * as types from '../constants/ActionTypes';
 
 const registerResponse = (isLoggedIn, error) => ({ type: types.REGISTER_RESPONSE, isLoggedIn, error });
 const registerRequest = () => ({ type: types.REGISTER_REQUEST });
+const loginResponse = (isLoggedIn, error) => ({ type: types.LOGIN_RESPONSE, isLoggedIn, error });
+const loginRequest = () => ({ type: types.LOGIN_REQUEST });
 export const clearError = () => ({ type: types.CLEAR_AUTH_ERROR });
 
 export function register(details) {
@@ -32,6 +34,19 @@ export function register(details) {
       }
     });
     xhr.send(formData);
+  };
+
+  return fetch;
+}
+
+export function login(details) {
+  const fetch = (dispatch) => {
+    dispatch(loginRequest());
+
+    setTimeout(() => {
+      console.log(details.hello);
+      dispatch(loginResponse());
+    }, 5000);
   };
 
   return fetch;

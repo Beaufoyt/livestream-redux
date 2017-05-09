@@ -154,3 +154,11 @@
     color: $primary-brand-color;
   }
 }
+
+.btn-link {
+  color: $primary-brand-color;
+
+  &:hover {
+    color: lighten($primary-brand-color, 10);
+  }
+}

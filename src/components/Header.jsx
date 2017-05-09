@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import PureComponent from './PureComponent';
 import { showOverlay } from '../actions/overlays';
-import toggleSidebar from '../actions/sidebar';
+import { toggleSidebar } from '../actions/sidebar';
 import OVERLAYS from '../constants/Overlays';
 
 export default class Header extends PureComponent {
@@ -26,6 +26,9 @@ export default class Header extends PureComponent {
             className="btn sidebar-toggle-caret"
             onClick={() => dispatch(toggleSidebar())} >
           { this.getToggleIcon() }
+        </button>
+        <button className="btn primary-btn login" onClick={() => dispatch(showOverlay(OVERLAYS.LOGIN))}>
+          Login
         </button>
         <button className="btn primary-btn register" onClick={() => dispatch(showOverlay(OVERLAYS.REGISTER))}>
           Register

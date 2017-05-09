@@ -142,16 +142,6 @@
     }
   }
 
-  .overlay-requesting {
-    float: right;
-    width: 50%;
-    height: 100%;
-    background-image: url('../images/spinner.svg');
-    background-size: 30px;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
   .validation-icon {
     height: 20px;
     width: 20px;
@@ -172,6 +162,16 @@
   }
 }
 
+.login-overlay {
+  .register-prompt {
+    button {
+      padding-left: 4px;
+      padding-right: 4px;
+      vertical-align: baseline;
+    }
+  }
+}
+
 .footer {
   height: 60px;
 
@@ -179,6 +179,16 @@
     position: absolute;
     width: 100%;
     bottom: 0;
+  }
+
+  .overlay-requesting {
+    float: right;
+    width: 50%;
+    height: 100%;
+    background-image: url('../images/spinner.svg');
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
 
