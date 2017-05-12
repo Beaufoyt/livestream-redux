@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 
-const registerResponse = (isLoggedIn, error) => ({ type: types.REGISTER_RESPONSE, isLoggedIn, error });
+const registerResponse = error => ({ type: types.REGISTER_RESPONSE, error });
 const registerRequest = () => ({ type: types.REGISTER_REQUEST });
 const loginResponse = (isLoggedIn, error) => ({ type: types.LOGIN_RESPONSE, isLoggedIn, error });
 const loginRequest = () => ({ type: types.LOGIN_REQUEST });
@@ -23,14 +23,14 @@ export function register(details) {
     xhr.addEventListener('load', () => {
       let error = null;
       if (xhr.status === 200) {
-        dispatch(registerResponse(true, error));
+        dispatch(registerResponse(error));
       } else {
         error = {
           status: xhr.status,
           detail: 'Register Failed',
         };
 
-        dispatch(registerResponse(false, error));
+        dispatch(registerResponse(error));
       }
     });
     xhr.send(formData);
@@ -42,10 +42,23 @@ export function register(details) {
 export function login(details) {
   const fetch = (dispatch) => {
     dispatch(loginRequest());
+    const response = {};
+    response.status = 200;
+    let error = null;
 
     setTimeout(() => {
-      console.log(details.hello);
-      dispatch(loginResponse());
+      if (response.status === 200) {
+        console.log(details);
+
+        dispatch(loginResponse(true, error));
+      } else {
+        error = {
+          status: response.status,
+          detail: 'Incorrect Details',
+        };
+
+        dispatch(loginResponse(false, error));
+      }
     }, 5000);
   };
 

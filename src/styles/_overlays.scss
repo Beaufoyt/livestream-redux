@@ -124,10 +124,6 @@
     float: left;
   }
 
-  .register-description {
-    margin-bottom: 10px;
-  }
-
   .register-overlay-title {
     margin-top: 0px;
   }
@@ -168,6 +164,22 @@
       padding-left: 4px;
       padding-right: 4px;
       vertical-align: baseline;
+    }
+  }
+
+  .login-label {
+    font-weight: 300;
+    float: left;
+  }
+
+  .login-field {
+    border: none !important;
+    color: black !important;
+    border-radius: 0 !important;
+    margin-bottom: 15px;
+
+    &:disabled {
+      background-color: darken($sidebar-color, 5) !important;
     }
   }
 }
