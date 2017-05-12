@@ -8,6 +8,7 @@ import OVERLAYS from '../constants/Overlays';
 
 import PureComponent from './PureComponent';
 import Overlay from './Overlay';
+import RegisterPrompt from './RegisterPrompt';
 
 export default class LoginOverlay extends PureComponent {
   static propTypes = {
@@ -48,23 +49,6 @@ export default class LoginOverlay extends PureComponent {
     });
   }
 
-  renderRegisterPrompt() {
-    return (
-      <div className="register-prompt">
-        <span>
-          No account?
-        <button
-            disabled={this.props.auth.get('isRequesting')}
-            className="btn btn-link"
-            onClick={() => this.handleRegisterChange()}>
-            Click Here
-        </button>
-          to register
-        </span>
-      </div>
-    );
-  }
-
   render() {
     const { dispatch } = this.props;
     const error = this.props.auth.get('error');
@@ -102,7 +86,7 @@ export default class LoginOverlay extends PureComponent {
                 className="login-field"
                 type="password" />
           </FormGroup>
-          { this.renderRegisterPrompt() }
+          <RegisterPrompt linkDisabled={this.props.auth.get('isRequesting')} />
         </Overlay>
       </div>
     );
