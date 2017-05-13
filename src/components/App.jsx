@@ -47,6 +47,6 @@ class App extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({ ...state.auth, ...state.sidebar, ...state.cams });
+const mapStateToProps = state => ({ ...state.auth, ...state.sidebar });
 
 export default withRouter(connect(mapStateToProps)(App));

@@ -42,7 +42,7 @@ export default class CamGrid extends PureComponent {
 
       if (currentFilter === null || region === currentFilter) {
         const backgroundImage = `url(${cam.get(CAM_PROPERTIES.IMAGE)})`;
-        const userLink = `/${cam.get(CAM_PROPERTIES.NAME)}`;
+        const userLink = `/u/${cam.get(CAM_PROPERTIES.NAME)}`;
 
         const card = (
           <li key={cam.get(CAM_PROPERTIES.VIEWERS)} className="user-item user">

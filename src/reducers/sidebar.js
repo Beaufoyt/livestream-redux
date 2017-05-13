@@ -1,6 +1,5 @@
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux';
-import { LOCATION_CHANGE } from 'react-router-redux';
 
 import { NAV_ITEMS } from '../constants/NavItems';
 import * as types from '../constants/ActionTypes';
@@ -24,11 +23,6 @@ function sidebar(state = list, action) {
 
     case types.SET_ACTIVE_LINK: {
       return state.setIn(['activeNavLink'], action.id);
-    }
-
-    case LOCATION_CHANGE: {
-      console.log(action);
-      return state;
     }
 
     default:
