@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
-import { login } from '../actions/auth';
-import { showOverlay, hideOverlay } from '../actions/overlays';
+import { login, clearError } from '../actions/auth';
+import { hideOverlay, switchOverlays } from '../actions/overlays';
 import OVERLAYS from '../constants/Overlays';
 
 import PureComponent from './PureComponent';
@@ -36,9 +36,9 @@ export default class LoginOverlay extends PureComponent {
     this.props.dispatch(login(this.getFormDetails()));
   }
 
-  handleRegisterChange() {
-    this.props.dispatch(hideOverlay(OVERLAYS.LOGIN));
-    this.props.dispatch(showOverlay(OVERLAYS.REGISTER));
+  handleRegisterChange = () => {
+    this.props.dispatch(clearError());
+    this.props.dispatch(switchOverlays(OVERLAYS.LOGIN, OVERLAYS.REGISTER));
   }
 
   handleDetailChange(e) {
@@ -47,6 +47,11 @@ export default class LoginOverlay extends PureComponent {
     this.setState({
       [id]: value,
     });
+  }
+
+  handleLoginClose = () => {
+    this.props.dispatch(hideOverlay(OVERLAYS.LOGIN));
+    this.props.dispatch(clearError());
   }
 
   render() {
@@ -58,7 +63,7 @@ export default class LoginOverlay extends PureComponent {
       continueText: 'Login',
       isLoading: this.props.auth.get('isRequesting'),
       onContinue: this.handleLogin,
-      onCancel: () => dispatch(hideOverlay(OVERLAYS.LOGIN)),
+      onCancel: this.handleLoginClose,
       error,
     };
 
@@ -86,7 +91,7 @@ export default class LoginOverlay extends PureComponent {
                 className="login-field"
                 type="password" />
           </FormGroup>
-          <RegisterPrompt linkDisabled={this.props.auth.get('isRequesting')} />
+          <RegisterPrompt onClick={this.handleRegisterChange} linkDisabled={this.props.auth.get('isRequesting')} />
         </Overlay>
       </div>
     );

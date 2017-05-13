@@ -49,7 +49,7 @@ export default class CamGrid extends PureComponent {
             <Link to={userLink}>
               <div id="card-image" style={{ backgroundImage }} className="card-image" />
               <span className="pull-left user">{ cam.get(CAM_PROPERTIES.NAME) }</span>
-              &nbsp;<span>{ cam.get(CAM_PROPERTIES.REGION) }</span>
+              <span className="region">{ cam.get(CAM_PROPERTIES.REGION) }</span>
               <span className="pull-right viewers">
                 <i className="fa fa-user" aria-hidden="true" />&nbsp;
                 { cam.get(CAM_PROPERTIES.VIEWERS) }

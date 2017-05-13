@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function RegisterPrompt({ linkDisabled }) {
+export default function RegisterPrompt({ linkDisabled, onClick }) {
   return (
     <div className="register-prompt">
       <span>
@@ -9,7 +9,7 @@ export default function RegisterPrompt({ linkDisabled }) {
       <button
           disabled={linkDisabled}
           className="btn btn-link"
-          onClick={() => this.handleRegisterChange()}>
+          onClick={onClick}>
           Click Here
       </button>
         to register
@@ -20,8 +20,10 @@ export default function RegisterPrompt({ linkDisabled }) {
 
 RegisterPrompt.propTypes = {
   linkDisabled: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 RegisterPrompt.defaultProps = {
   linkDisabled: false,
+  onClick: () => {},
 };

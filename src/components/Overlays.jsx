@@ -17,7 +17,7 @@ class Overlays extends PureComponent {
   }
 
   isOverlayVisible(key) {
-    return this.props.overlays.getIn(['overlays', key, 'isVisible']);
+    return this.props.overlays.getIn([key, 'isVisible']);
   }
 
   render() {

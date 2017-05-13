@@ -43,7 +43,7 @@ export function login(details) {
   const fetch = (dispatch) => {
     dispatch(loginRequest());
     const response = {};
-    response.status = 200;
+    response.status = 500;
     let error = null;
 
     setTimeout(() => {

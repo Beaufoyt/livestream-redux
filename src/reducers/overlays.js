@@ -6,10 +6,10 @@ import * as types from '../constants/ActionTypes';
 import OVERLAYS from '../constants/Overlays';
 
 function getOverlaysFromConfig() {
-  const base = { overlays: {} };
+  const base = {};
 
   for (let i = 0; i < OVERLAYS.length; i += 1) {
-    base.overlays[OVERLAYS[i]] = { isVisible: false };
+    base[OVERLAYS[i]] = { isVisible: false };
   }
 
   return base;
@@ -22,10 +22,16 @@ const list = fromJS(input);
 function overlays(state = list, action) {
   switch (action.type) {
     case types.SHOW_OVERLAY:
-      return state.setIn(['overlays', action.id, 'isVisible'], true);
+      return state.setIn([action.id, 'isVisible'], true);
 
     case types.HIDE_OVERLAY:
-      return state.setIn(['overlays', action.id, 'isVisible'], false);
+      return state.setIn([action.id, 'isVisible'], false);
+
+    case types.SWITCH_OVERLAYS:
+      return state.merge(
+        { [action.from]: { isVisible: false } },
+        { [action.to]: { isVisible: true } },
+      );
 
     default:
       return state;

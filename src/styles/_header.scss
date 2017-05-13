@@ -18,7 +18,7 @@
     position: absolute;
     left: 8px;
     z-index: 1;
-    top: 19px;
+    top: 12px;
     color: white;
     line-height: 26px;
     pointer-events: all;
@@ -34,21 +34,20 @@
     background-color: lighten($header-color, 2);
   }
 
-  .register {
-    width: 80px;
+  .register, .login {
+    height: 40px;
+    top: 5px;
     pointer-events: all;
     position: inherit;
+  }
+
+  .register {
+    width: 80px;
     right: 10px;
-    top: 10px;
-    height: 40px;
   }
 
   .login {
     width: 60px;
-    pointer-events: all;
-    position: inherit;
     right: 100px;
-    top: 10px;
-    height: 40px;
   }
 }
