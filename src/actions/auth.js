@@ -20,9 +20,10 @@ export function register(details) {
     xhr.open('post', 'http://localhost:3001/api/registered');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.responseType = 'json';
-    xhr.addEventListener('load', () => {
+    xhr.addEventListener('load', (response) => {
       let error = null;
       if (xhr.status === 200) {
+        console.log(response.srcElement.response.message);
         dispatch(registerResponse(error));
       } else {
         error = {
@@ -42,24 +43,25 @@ export function register(details) {
 export function login(details) {
   const fetch = (dispatch) => {
     dispatch(loginRequest());
-    const response = {};
-    response.status = 500;
-    let error = null;
 
-    setTimeout(() => {
-      if (response.status === 200) {
-        console.log(details);
+    const username = encodeURIComponent(details.username);
+    const password = encodeURIComponent(details.password);
+    const formData = `username=${username}&password=${password}`;
 
-        dispatch(loginResponse(true, error));
-      } else {
-        error = {
-          status: response.status,
-          detail: 'Incorrect Details',
-        };
-
-        dispatch(loginResponse(false, error));
-      }
-    }, 5000);
+    // create an AJAX request
+    const xhr = new XMLHttpRequest();
+    xhr.open('post', 'http://localhost:3001/api/login');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', (response) => {
+      // if (xhr.status === 200) {
+      console.log('200', response.srcElement);
+      // } else {
+      //   console.log('user doesn\'t exist');
+      // }
+    });
+    dispatch(loginResponse());
+    xhr.send(formData);
   };
 
   return fetch;
