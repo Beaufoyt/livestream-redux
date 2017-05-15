@@ -1,4 +1,61 @@
 .stream {
   color: white;
   padding-top: 50px;
+  position: relative;
+
+  .cam-content {
+    display: inline-block;
+    left: 0;
+    position: absolute;
+    right: $chat-width;
+    padding: 10px 10px 0 10px;
+
+    .user-details {
+      float: left;
+      position: absolute;
+      z-index: 5;
+
+      div {
+        display: inline-block;
+      }
+
+      .avatar {
+        width: $header-height;
+        height: $header-height;
+      }
+    }
+  }
+
+  .chat {
+    display: inline-block;
+    width: $chat-width;
+    height: 100%;
+    background-color: $header-color;
+    right: 0;
+    float: right;
+    position: fixed;
+  }
+
+  .video-details {
+    display: flex;
+    height: auto;
+    line-height: 25px;
+
+    .viewers {
+      width: auto;
+      float: right;
+      color: red;
+
+      i {
+        display: inline;
+      }
+    }
+
+    .title {
+      width: 100%;
+      float: left;
+      font-size: 18px;
+      text-align: left;
+    }
+  }
 }
