@@ -2,6 +2,7 @@ export const CAM_TYPES = {
   ALL: 'all',
   GIRLS: 'girls',
   GAMING: 'gaming',
+  MUSIC: 'music',
 };
 
 export const CAM_OPTIONS_PROPERTIES = {

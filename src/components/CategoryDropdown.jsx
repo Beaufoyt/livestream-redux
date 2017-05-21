@@ -6,10 +6,6 @@ import { fetchCams, changeCategory } from '../actions/cams';
 import { CAM_TYPES } from '../constants/CamConstants';
 import PureComponent from './PureComponent';
 
-const categoryAll = CAM_TYPES.ALL;
-const categoryGirls = CAM_TYPES.GIRLS;
-const categoryGaming = CAM_TYPES.GAMING;
-
 export default class CategoryDropdown extends PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -29,28 +25,28 @@ export default class CategoryDropdown extends PureComponent {
     }
   }
 
+  mapCategories() {
+    return Object.keys(CAM_TYPES).map((keyName) => {
+      const id = CAM_TYPES[keyName];
+
+      return (
+        <MenuItem
+            className="category-dropdown-item"
+            key={id}
+            active={this.getActiveState(id)}
+            onClick={() => this.handleSelected(id)}
+            id={id}>
+          { id }
+        </MenuItem>
+      );
+    });
+  }
+
   render() {
     return (
       <div className="controls-btm category-dropdown">
         <DropdownButton id="Category" title={this.props.currentCategory}>
-          <MenuItem
-              id={categoryAll}
-              active={this.getActiveState(categoryAll)}
-              onClick={() => this.handleSelected(categoryAll)}>
-              All
-          </MenuItem>
-          <MenuItem
-              id={categoryGirls}
-              active={this.getActiveState(categoryGirls)}
-              onClick={() => this.handleSelected(categoryGirls)}>
-              Girls
-          </MenuItem>
-          <MenuItem
-              id={categoryGaming}
-              active={this.getActiveState(categoryGaming)}
-              onClick={() => this.handleSelected(categoryGaming)}>
-              Gaming
-          </MenuItem>
+          { this.mapCategories() }
         </DropdownButton>
       </div>
     );

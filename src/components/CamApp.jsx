@@ -51,7 +51,7 @@ class CamApp extends PureComponent {
     const isRequesting = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING);
     const isRequestingMore = cams.get(CAM_OPTIONS_PROPERTIES.REQUESTING_MORE);
 
-    if (this.state.viewWidth <= 568) {
+    if (this.state.viewWidth <= 768) {
       return (
         <CategoryDropdown
             isLoading={isRequesting}

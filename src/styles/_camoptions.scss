@@ -19,10 +19,14 @@
   &:hover {
     background-color: $sidebar-color !important;
   }
+
+  &.gaming {
+    &:hover {
+      background-color: $primary-brand-color !important;
+    }
+  }
 }
 
-.gaming-cat {
-  &:hover {
-    background-color: $primary-brand-color !important;
-  }
+.category-dropdown-item {
+  text-transform: capitalize;
 }
