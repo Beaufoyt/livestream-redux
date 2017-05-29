@@ -121,7 +121,7 @@ export default class CamGrid extends PureComponent {
           <div className="cam-error">
             <span>
               <i className="fa fa-exclamation-circle fa-2x" aria-hidden="true" />
-              { dictionary.noCamsFoundText }
+              <span>{ dictionary.noCamsFoundText }</span>
             </span>
           </div>
         </div>

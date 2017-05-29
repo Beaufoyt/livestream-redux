@@ -6,9 +6,16 @@
   pointer-events: none;
   background-color: $header-color;
 
-
   @media only screen and (max-width : $mobile) {
     background: none;
+  }
+
+  .login-greeting {
+    display: inline-block;
+    right: 15px;
+    position: fixed;
+    top: 15px;
+    color: white;
   }
 
   .sidebar-toggle-caret {
@@ -32,6 +39,10 @@
 
   .sidebar-toggle-caret:hover {
     background-color: lighten($header-color, 2);
+  }
+
+  .login-group {
+    position: inherit;
   }
 
   .register, .login {

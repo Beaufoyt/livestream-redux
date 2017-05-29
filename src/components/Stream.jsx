@@ -30,7 +30,6 @@ class Stream extends PureComponent {
 
   componentWillReceiveProps(newProps) {
     if (newProps !== this.props) {
-      console.log(newProps.stream.getIn(['broadcaster', 'viewers']));
       this.setState({ isRequesting: false });
     }
   }

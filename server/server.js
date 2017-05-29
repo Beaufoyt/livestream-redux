@@ -57,18 +57,17 @@ router.route('/login')
       if (result) {
         if (username === result.username) {
           // test for a matching password
-          console.log(password);
           return result.comparePassword(password, (passErr, isMatch) => { // eslint-disable-line consistent-return
-            if (passErr) return res.send(passErr);
+            if (passErr) return res.json({ error: passErr, isLoggedIn: false });
             // check if the password was a match
-            if (isMatch) return res.json({ message: 'Logged In!' });
-            res.json({ message: 'User or Password Incorrect!' });
+            if (isMatch) return res.json({ message: 'Logged In!', isLoggedIn: true });
+            res.json({ message: 'User or Password Incorrect!', isLoggedIn: false });
           });
         }
       }
-      if (err) res.json(err);
+      if (err) return res.json({ error: err, isLoggedIn: false });
 
-      res.json({ message: 'User or Password Incorrect!', result });
+      res.json({ message: 'User or Password Incorrect!', result, isLoggedIn: false });
     });
   });
 

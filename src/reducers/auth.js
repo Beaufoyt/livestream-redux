@@ -1,11 +1,14 @@
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux';
 
+import LocalStorage from '../services/localStorageService';
 import * as types from '../constants/ActionTypes';
 
 const authList = {
   isRequesting: false,
   error: null,
+  user: JSON.parse(LocalStorage.getUser()),
+  isLoggedIn: LocalStorage.isLoggedIn(),
 };
 
 const list = fromJS(authList);
@@ -37,15 +40,28 @@ function auth(state = list, action) {
         error: null,
       });
 
-    case types.LOGIN_RESPONSE:
-      if (action.error) {
+    case types.LOGIN_RESPONSE: {
+      if (!action.isLoggedIn) {
         return state.merge({
           isRequesting: false,
           error: action.error,
+          isLoggedIn: false,
+          user: null,
         });
       }
 
-      return state.set('isRequesting', false);
+      LocalStorage.set('isLoggedIn', true);
+      LocalStorage.set('user', JSON.stringify({ name: action.username }));
+
+      return state.merge({
+        isRequesting: false,
+        error: action.error,
+        isLoggedIn: action.isLoggedIn,
+        user: {
+          name: action.username,
+        },
+      });
+    }
 
     default:
       return state;

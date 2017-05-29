@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import { hideOverlay } from '../actions/overlays';
+import OverlayTypes from '../constants/Overlays';
+
 import PureComponent from './PureComponent';
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -15,6 +18,13 @@ class App extends PureComponent {
     dispatch: PropTypes.func.isRequired,
     sidebar: PropTypes.instanceOf(Object).isRequired,
     auth: PropTypes.instanceOf(Object).isRequired,
+  }
+
+  componentWillReceiveProps(newProps) {
+    const user = newProps.auth.get('user');
+    if (!this.props.auth.get('user') && user) {
+      this.props.dispatch(hideOverlay(OverlayTypes.LOGIN));
+    }
   }
 
   getSidebarSize() {
@@ -31,6 +41,7 @@ class App extends PureComponent {
 
   render() {
     const { dispatch, auth } = this.props;
+    const user = auth.get('user');
     const sidebarSize = this.getSidebarSize();
     const activeNavLink = this.getSidebarActiveNavLink();
 
@@ -38,7 +49,7 @@ class App extends PureComponent {
       <div className="app">
         <Sidebar dispatch={dispatch} size={sidebarSize} activeNavLink={activeNavLink} />
         <div id="header-content-container" className={this.getMainPadClass()}>
-          <Header dispatch={dispatch} sidebarSize={sidebarSize} />
+          <Header dispatch={dispatch} user={user} sidebarSize={sidebarSize} />
           <Routes />
           <Overlays auth={auth} />
         </div>

@@ -15,16 +15,22 @@
 }
 
 .cam-error {
-  height: 50px;
+  height: auto;
   background-color: darken($primary-brand-color, 2);
   font-weight: 600;
   color: $secondary-text-color;
   text-align: center;
-  line-height: 50px;
+  padding: 10px 20px;
+  position: relative;
 
   i {
-    vertical-align: sub;
-    margin-right: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  span {
+    padding-left: 30px;
   }
 }
 

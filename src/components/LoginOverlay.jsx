@@ -25,6 +25,14 @@ export default class LoginOverlay extends PureComponent {
     };
   }
 
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeys, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeys, false);
+  }
+
   getFormDetails() {
     return {
       username: this.state.username,
@@ -32,31 +40,56 @@ export default class LoginOverlay extends PureComponent {
     };
   }
 
+  handleKeys = (event) => {
+    if (event.which === 13 || event.keyCode === 13) {
+      this.handleLogin();
+    }
+  }
+
   handleLogin = () => {
+    if (!this.state.username || !this.state.password) {
+      this.setState({
+        loginError: {
+          id: 'noUserPass',
+          detail: 'You must enter a username and password',
+        },
+      });
+      return;
+    }
+    this.setState({ error: null });
     this.props.dispatch(login(this.getFormDetails()));
   }
 
   handleRegisterChange = () => {
-    this.props.dispatch(clearError());
+    this.clearAuthError();
     this.props.dispatch(switchOverlays(OVERLAYS.LOGIN, OVERLAYS.REGISTER));
   }
 
   handleDetailChange(e) {
     const { id, value } = e.target;
 
+    this.clearAuthError();
+
     this.setState({
+      loginError: null,
       [id]: value,
     });
   }
 
   handleLoginClose = () => {
     this.props.dispatch(hideOverlay(OVERLAYS.LOGIN));
-    this.props.dispatch(clearError());
+    this.clearAuthError();
+  }
+
+  clearAuthError() {
+    if (this.props.auth.get('error')) {
+      this.props.dispatch(clearError());
+    }
   }
 
   render() {
     const { dispatch } = this.props;
-    const error = this.props.auth.get('error');
+    const error = this.state.loginError || this.props.auth.get('error');
 
     const overlayProps = {
       title: 'Login',

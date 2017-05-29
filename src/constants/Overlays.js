@@ -1,6 +1,6 @@
-const OVERLAYS = {
+const Overlays = {
   REGISTER: 'register',
   LOGIN: 'login',
 };
 
-export default OVERLAYS;
+export default Overlays;

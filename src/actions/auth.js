@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes';
 
 const registerResponse = error => ({ type: types.REGISTER_RESPONSE, error });
 const registerRequest = () => ({ type: types.REGISTER_REQUEST });
-const loginResponse = (isLoggedIn, error) => ({ type: types.LOGIN_RESPONSE, isLoggedIn, error });
+const loginResponse = (isLoggedIn, error, username) => ({ type: types.LOGIN_RESPONSE, isLoggedIn, error, username });
 const loginRequest = () => ({ type: types.LOGIN_REQUEST });
 export const clearError = () => ({ type: types.CLEAR_AUTH_ERROR });
 
@@ -54,13 +54,14 @@ export function login(details) {
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.responseType = 'json';
     xhr.addEventListener('load', (response) => {
-      // if (xhr.status === 200) {
-      console.log('200', response.srcElement);
-      // } else {
-      //   console.log('user doesn\'t exist');
-      // }
+      const isLoggedIn = response.srcElement.response.isLoggedIn;
+
+      if (isLoggedIn) {
+        dispatch(loginResponse(isLoggedIn, null, username));
+      } else {
+        dispatch(loginResponse(isLoggedIn, { id: 'invalidCreds', detail: 'Incorrect Username or Password' }, username));
+      }
     });
-    dispatch(loginResponse());
     xhr.send(formData);
   };
 
