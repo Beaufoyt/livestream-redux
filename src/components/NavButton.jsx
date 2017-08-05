@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 const NavButton = props => (
-    <NavLink activeClassName="active" className="btn btn-default" to={props.path}>
+    <NavLink activeClassName="active" className="btn btn-icon btn-nav" to={props.path}>
         { props.icon && <i className={`fa fa-${props.icon}`} /> }
         {props.label}
     </NavLink>

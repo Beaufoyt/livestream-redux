@@ -1,7 +1,19 @@
 const NAV_ITEMS = [
-    'about',
-    'numbers',
-    'contact',
+    {
+        label: 'About',
+        path: 'about',
+        icon: 'info',
+    },
+    {
+        label: 'Numbers',
+        path: 'numbers',
+        icon: 'hashtag ',
+    },
+    {
+        label: 'Contact',
+        path: 'contact',
+        icon: 'address-book-o',
+    },
 ];
 
 export default NAV_ITEMS;

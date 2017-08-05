@@ -4,8 +4,8 @@ import { Route, Redirect } from 'react-router-dom';
 import App from './App';
 import Numbers from './Numbers';
 
-const About = () => <h1 className="placeholder">This is the about page</h1>;
-const Contact = () => <h1 className="placeholder">This is the contact page</h1>;
+const About = () => <section><h3 className="placeholder">About</h3></section>;
+const Contact = () => <section><h3 className="placeholder">Contact</h3></section>;
 
 const Routes = () => (
     <App>

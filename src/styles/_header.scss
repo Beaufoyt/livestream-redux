@@ -1,6 +1,39 @@
 .header {
     height: $header-height;
-    padding: 8px;
-    text-align: center;
+    text-align: right;
     background-color: #1E1E1E;
+    border-bottom: 1px solid gray;
+
+    .brand-logo {
+        float: left;
+        height: $header-height;
+        padding: 15px;
+        font-size: 20px;
+        font-weight: 100;
+
+        Link {
+            text-decoration: none !important;
+        }
+
+        span {
+            color: white;
+            margin-left: 10px;
+            font-family: 'Sedgwick Ave', Helvetica;
+        }
+
+        img {
+            height: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width : $tablet) {
+    .header {
+        height: 60px;
+
+        .brand-logo {
+            height: 60px;
+            font-size: 18px;
+        }
+    }
 }

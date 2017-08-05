@@ -43,13 +43,6 @@ const webpackConfig = {
     ],
     resolve: {
         extensions: ['.js', '.jsx'],
-        alias: {
-            actions: path.resolve(__dirname, '../../src/actions/'),
-            components: path.resolve(__dirname, '../../src/components/'),
-            constants: path.resolve(__dirname, '../../src/constants/'),
-            reducers: path.resolve(__dirname, '../../src/reducers/'),
-            styles: path.resolve(__dirname, '../../src/styles/'),
-        },
     },
     module: {
         rules: [

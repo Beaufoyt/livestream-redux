@@ -9,7 +9,9 @@ class Numbers extends PureComponent {
 
     render() {
         return (
-            <div><h4>Numbers</h4></div>
+            <section>
+                <div><h3>Numbers</h3></div>
+            </section>
         );
     }
 }
