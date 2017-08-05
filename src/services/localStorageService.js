@@ -1,23 +1,13 @@
 const localStorageService = {
-  set: (id, value) => {
-    window.localStorage.setItem(id, value);
-  },
+    set: (id, value) => {
+        window.localStorage.setItem(id, value);
+    },
 
-  remove: (id) => {
-    window.localStorage.removeItem(id);
-  },
+    remove: (id) => {
+        window.localStorage.removeItem(id);
+    },
 
-  get: (id) => {
-    return window.localStorage.getItem(id);
-  },
-
-  getUser: () => {
-    return window.localStorage.getItem('user');
-  },
-
-  isLoggedIn: () => {
-    return window.localStorage.getItem('isLoggedIn');
-  },
+    get: id => window.localStorage.getItem(id),
 };
 
 export default localStorageService;

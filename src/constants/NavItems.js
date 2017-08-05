@@ -1,13 +1,7 @@
-export const NAV_ITEMS = {
-  HOME: 'home',
-  ABOUT: 'about',
-};
+const NAV_ITEMS = [
+    'about',
+    'numbers',
+    'contact',
+];
 
-export const MINI_NAV_ITEMS = {
-  JOBS: 'jobs',
-  CONTACT: 'contact',
-  COOKIE_POLICY: 'cookiepolicy',
-  MODELS: 'models',
-  HELP: 'help',
-  TERMS: 'terms',
-};
+export default NAV_ITEMS;

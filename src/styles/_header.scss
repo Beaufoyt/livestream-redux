@@ -1,64 +1,6 @@
 .header {
-  width: 100%;
-  height: $header-height;
-  position: fixed;
-  z-index: 1;
-  pointer-events: none;
-  background-color: $header-color;
-
-  @media only screen and (max-width : $mobile) {
-    background: none;
-  }
-
-  .login-greeting {
-    display: inline-block;
-    right: 15px;
-    position: fixed;
-    top: 15px;
-    color: white;
-  }
-
-  .sidebar-toggle-caret {
-    padding: 0;
-    width: 26px;
-    height: 26px;
-    position: absolute;
-    left: 8px;
-    z-index: 1;
-    top: 12px;
-    color: white;
-    line-height: 26px;
-    pointer-events: all;
-    cursor: pointer;
-    background-color: lighten($header-color, 5);
-
-    @media only screen and (max-width : $mobile) {
-      display: none !important;
-    }
-  }
-
-  .sidebar-toggle-caret:hover {
-    background-color: lighten($header-color, 2);
-  }
-
-  .login-group {
-    position: inherit;
-  }
-
-  .register, .login {
-    height: 50px;
-    top: 0;
-    pointer-events: all;
-    position: inherit;
-  }
-
-  .register {
-    width: 80px;
-    right: 10px;
-  }
-
-  .login {
-    width: 60px;
-    right: 100px;
-  }
+    height: $header-height;
+    padding: 8px;
+    text-align: center;
+    background-color: #1E1E1E;
 }

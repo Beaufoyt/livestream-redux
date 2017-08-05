@@ -15,9 +15,9 @@ config.webpack_host = 'localhost';
 config.webpack_port = process.env.PORT || 3000;
 
 config.vendor_dependencies = [
-  'react',
-  'react-redux',
-  'redux',
+    'react',
+    'react-redux',
+    'redux',
 ];
 
 /*  *********************************************
@@ -33,11 +33,11 @@ Edit at Your Own Risk
 // ------------------------------------
 config.env = process.env.NODE_ENV;
 config.globals = {
-  'process.env': {
-    NODE_ENV: JSON.stringify(config.env),
-  },
-  NODE_ENV: config.env,
-  __DEV__: config.env === 'development',
+    'process.env': {
+        NODE_ENV: JSON.stringify(config.env),
+    },
+    NODE_ENV: config.env,
+    __DEV__: config.env === 'development',
 };
 
 // ------------------------------------
@@ -54,16 +54,16 @@ config.path_project = path.resolve(__dirname, '../');
 // Utilities
 // ------------------------------------
 const paths = (() => {
-  const base = [config.path_project];
-  const resolve = path.resolve;
+    const base = [config.path_project];
+    const resolve = path.resolve;
 
-  const project = (...args) => resolve.apply(resolve, [...base, ...args]);
+    const project = (...args) => resolve.apply(resolve, [...base, ...args]);
 
-  return {
-    project,
-    src: project.bind(null, config.dir_src),
-    dist: project.bind(null, config.dir_dist),
-  };
+    return {
+        project,
+        src: project.bind(null, config.dir_src),
+        dist: project.bind(null, config.dir_dist),
+    };
 })();
 
 config.utils_paths = paths;

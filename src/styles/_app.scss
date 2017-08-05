@@ -1,21 +1,2 @@
 .header-content {
-  text-align: center;
-
-  @media only screen and (max-width : $mobile) {
-    padding-left: 0 !important;
-  }
-}
-
-.sidebar-pad-expanded {
-  padding-left: $sidebar-expanded;
-}
-
-.sidebar-pad-contracted {
-  padding-left: $sidebar-contracted;
-}
-
-.about, .contact, .jobs, .cookie-policy, .terms, .help, .models {
-  padding-top: 80px;
-  margin: 0;
-  color: white;
 }
