@@ -10,6 +10,11 @@ Runs the webpack build system with HMR. Webpack dev server can be found at `loca
 Structure
 ---------
 
+Atom Packages
+
+`apm install` 
+---------
+
 ```
 .
 ├── bin                          # Build/Start scripts

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import numberFact from './numberFact';
+import numbers from './numbers';
 
 export default combineReducers({
-    numberFact,
+    numbers,
 });

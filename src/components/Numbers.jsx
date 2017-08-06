@@ -1,10 +1,39 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { addToCount, fetchFact } from '../actions/numbers';
 
 import PureComponent from './PureComponent';
+import CounterButton from './CounterButton';
+import CodeBlock from './CodeBlock';
+import Error from './Error';
 
-class Numbers extends PureComponent {
+export class Numbers extends PureComponent {
+    static propTypes = {
+        count: PropTypes.number.isRequired,
+        dispatch: PropTypes.func.isRequired,
+        factIsRequesting: PropTypes.bool.isRequired,
+        fact: PropTypes.string.isRequired,
+        factError: PropTypes.bool.isRequired,
+    }
+
     componentWillMount() {
+        this.fetchNewFact();
+    }
 
+    fetchNewFact = () => {
+        this.props.dispatch(fetchFact());
+    }
+
+    handleCounterPress = (e) => {
+        this.props.dispatch(addToCount(parseInt(e.target.value, 10)));
+    }
+
+    renderRefreshIcon = () => {
+        const icon = this.props.factIsRequesting ? 'spinner fa-spin' : 'refresh';
+
+        return <i className={`fa fa-${icon}`} />;
     }
 
     render() {
@@ -14,21 +43,35 @@ class Numbers extends PureComponent {
                 <hr />
                 <div className="row">
                     <h5 className="row-header">Number Fact</h5>
-                    <blockquote className="code-block">
-                        hello i am a number fact and i am very boring
-                    </blockquote>
+                    <h6>Random number fact from the numbers api</h6>
+                    <button
+                        onClick={this.fetchNewFact}
+                        className={`btn btn-refresh btn-${this.props.factIsRequesting ? 'warning' : 'success'}`}>
+                        { this.renderRefreshIcon() }
+                    </button>
+                    <CodeBlock classes="number-fact-code" content={this.props.fact} />
+                    { this.props.factError &&
+                        <Error classes="numbers-error" content="fetching your juicy number fact" /> }
                 </div>
                 <div className="row">
                     <h5 className="row-header">Counter</h5>
-                    <button className="btn btn-default btn-counter margin-right">-</button>
-                    <blockquote className="code-block wrap">
-                        5
-                    </blockquote>
-                    <button className="btn btn-default btn-counter margin-left">+</button>
+                    <CounterButton value={-1} onAdd={this.handleCounterPress} label="-" />
+                    <CodeBlock classes="wrap" content={this.props.count.toString()} />
+                    <CounterButton value={1} onAdd={this.handleCounterPress} label="+" />
                 </div>
+                <hr />
             </section>
         );
     }
 }
 
-export default Numbers;
+const mapStateToProps = (state) => {
+    return {
+        count: state.numbers.get('count'),
+        factIsRequesting: state.numbers.get('factIsRequesting'),
+        fact: state.numbers.get('fact'),
+        factError: state.numbers.get('factError'),
+    };
+};
+
+export default connect(mapStateToProps)(Numbers);

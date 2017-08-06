@@ -8,12 +8,14 @@
     }],
     "react/jsx-indent-props": [1, 4],
     "react/jsx-indent": [1, 4],
+    "react/jsx-closing-bracket-location": 0,
     "indent": [1, 4],
     "no-console": 0,
     "import/no-dynamic-require": 0,
     "no-unexpected-multiline": 1,
     "no-unused-vars": 1,
     "arrow-body-style": 0,
+    "import/no-named-as-default": 0,
   },
   "env": {
     "browser": true
