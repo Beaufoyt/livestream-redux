@@ -41,10 +41,11 @@ export class Numbers extends PureComponent {
             <section>
                 <h3>Numbers</h3>
                 <hr />
-                <div className="row">
-                    <h5 className="row-header">Number Fact</h5>
+                <div className="section-content">
+                    <h5 className="section-content-header">Number Fact</h5>
                     <h6>Random number fact from the numbers api</h6>
                     <button
+                        disabled={this.props.factIsRequesting}
                         onClick={this.fetchNewFact}
                         className={`btn btn-refresh btn-${this.props.factIsRequesting ? 'warning' : 'success'}`}>
                         { this.renderRefreshIcon() }
@@ -53,11 +54,11 @@ export class Numbers extends PureComponent {
                     { this.props.factError &&
                         <Error classes="numbers-error" content="fetching your juicy number fact" /> }
                 </div>
-                <div className="row">
-                    <h5 className="row-header">Counter</h5>
-                    <CounterButton value={-1} onAdd={this.handleCounterPress} label="-" />
+                <div className="section-content">
+                    <h5 className="section-content-header">Counter</h5>
+                    <CounterButton value={-1} onClick={this.handleCounterPress} label="-" />
                     <CodeBlock classes="wrap" content={this.props.count.toString()} />
-                    <CounterButton value={1} onAdd={this.handleCounterPress} label="+" />
+                    <CounterButton value={1} onClick={this.handleCounterPress} label="+" />
                 </div>
                 <hr />
             </section>
