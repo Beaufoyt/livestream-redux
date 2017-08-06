@@ -1,13 +1,12 @@
 {
   "name": "Livestream",
   "version": "1.0.0",
-  "description": "Livestream App using React, Redux and ImmutableJS",
+  "description": "Boilerplate App using React, Redux and ImmutableJS",
   "private": false,
-  "author": "Tom Beaufoy / Hugo Farroba",
+  "author": "Tom Beaufoy",
   "scripts": {
     "clean": "rm -rf dist",
     "start": "npm run dev",
-    "start-dev": "nf start -p 3000",
     "dev": "node --harmony bin/webpack-dev-server",
     "dev:no-debug": "npm run dev -- --no_debug"
   },
@@ -26,6 +25,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-runtime": "^6.5.0",
     "css-loader": "^0.28.1",
+    "enzyme": "^2.9.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-loader": "^1.3.0",
@@ -33,6 +33,7 @@
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.10.3",
     "file-loader": "^0.11.1",
+    "jest": "^20.0.4",
     "json-loader": "^0.5.3",
     "node-sass": "^4.5.2",
     "react-transform-catch-errors": "^1.0.2",

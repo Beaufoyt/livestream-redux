@@ -36,6 +36,11 @@
     }
 }
 
+.btn-counter {
+    font-weight: bold;
+    font-size: 14px;
+}
+
 @media only screen and (max-width : $tablet) {
     .btn-nav {
         height: 60px;

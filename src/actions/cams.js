@@ -15,7 +15,7 @@ let requestStart = 0;
 let requestEnd = 20;
 
 export function fetchCams(category, isFirstRequest) {
-    const fetch = (dispatch) => {
+    return (dispatch) => {
         if (isFirstRequest) {
             requestStart = 0;
             requestEnd = 20;
@@ -25,6 +25,4 @@ export function fetchCams(category, isFirstRequest) {
 
         const requestTime = getRandomArbitrary(0.5, 3) * 1000;
     };
-
-    return fetch;
 }

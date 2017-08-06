@@ -7,6 +7,7 @@ const App = props => (
     <div className="app">
         <Header />
         { props.children }
+        <span className="tagline">{ 'Made with ❤️ by Tom Beaufoy' }</span>
     </div>
 );
 

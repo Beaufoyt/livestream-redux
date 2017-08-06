@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const config = require('../../config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
 
 const cache = config.cache;
 const paths = config.utils_paths;
