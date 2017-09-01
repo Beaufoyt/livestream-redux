@@ -1,27 +1,31 @@
 .header {
     height: $header-height;
     text-align: right;
-    background-color: #1E1E1E;
-    border-bottom: 1px solid gray;
+    background-color: transparent;
+    border-bottom: 1px solid $light-gray;
 
     .brand-logo {
         float: left;
         height: $header-height;
-        padding: 15px;
+        padding: 10px;
         font-size: 20px;
         font-weight: 100;
+        line-height: 50px;
 
         Link {
             text-decoration: none !important;
         }
 
         span {
+            font-weight: 600;
+            font-size: 30px;
             color: white;
             margin-left: 10px;
-            font-family: 'Sedgwick Ave', Helvetica;
+            font-family: Helvetica Neue;
         }
 
         img {
+            vertical-align: top;
             height: 100%;
         }
     }

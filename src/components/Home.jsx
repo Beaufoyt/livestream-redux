@@ -14,10 +14,7 @@ export class Numbers extends PureComponent {
 
     render() {
         return (
-            <section>
-                <h3>Numbers</h3>
-                <hr />
-            </section>
+            <div />
         );
     }
 }
