@@ -17,5 +17,5 @@ render(
             <Routes />
         </Router>
     </Provider>,
-  document.getElementById('numbers'),
+  document.getElementById('toolbox'),
 );

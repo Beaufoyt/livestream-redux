@@ -1,10 +1,15 @@
 // Colors
-$primary-brand-color: #d9534f;
+$primary-brand-color: #0892d0;
 
-$light-gray: #e6e6e6;
+$light-gray: rgb(245, 245, 245);
+$dark-gray: rgb(21, 21, 21);
+
+$text-dark: rgb(60, 60, 60);
+$text-light: rgb(220, 220, 220);
 
 // Sizes
-$header-height: 70px;
+$header-height: 50px;
+$sidebar-width: 240px;
 
 // Breakpoints
 $x-small: 320px;

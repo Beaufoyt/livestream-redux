@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import PureComponent from './PureComponent';
 
 export class Numbers extends PureComponent {
+
     static propTypes = {
         dispatch: PropTypes.func.isRequired,
     }
@@ -15,7 +16,7 @@ export class Numbers extends PureComponent {
     render() {
         return (
             <section>
-                <h3>Numbers</h3>
+                <h3>Dashboard</h3>
                 <hr />
             </section>
         );

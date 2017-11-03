@@ -2,12 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const BrandLogo = () => (
-    <div className="brand-logo">
-        <Link className="no-dec" to="/">
-            <img alt="logo" src="../icons/startup.svg" />
-            <span>ezcoin</span>
-        </Link>
-    </div>
+    <Link className="brand-logo no-dec" to="/">
+        <img alt="logo" src="../icons/startup.svg" />
+        <span>WebTools</span>
+    </Link>
 );
 
 export default BrandLogo;

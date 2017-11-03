@@ -1,0 +1,17 @@
+.breadcrumbs {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    text-align: left;
+    font-size: 12px;
+
+    .crumb {
+        outline: none;
+        border: none;
+        background-color: transparent;
+        text-transform: uppercase;
+        font-weight: bold;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+}

@@ -12,7 +12,7 @@ config.dir_src = 'src';
 config.dir_dist = 'dist';
 
 config.webpack_host = 'localhost';
-config.webpack_port = 3002;
+config.webpack_port = 3000;
 
 config.vendor_dependencies = [
     'react',

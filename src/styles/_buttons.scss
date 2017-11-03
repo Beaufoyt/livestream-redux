@@ -1,32 +1,37 @@
 .btn-nav {
-    height: $header-height - 1;
-    line-height: 55px;
-    width: 120px;
+    height: $header-height;
+    line-height: 37px;
     border: 0;
     border-bottom: 0;
     background-color: transparent;
-    color: $light-gray;
+    color: $text-dark;
     font-weight: bold;
     font-size: 15px;
-    transition: color 0.15s linear;
-    transition: background-color 0.15s linear;
+    border-radius: 0;
+    box-shadow: none !important;
+    text-transform: uppercase;
 
     &:hover {
         background-color: rgba(1, 1, 1, 0.3);
-        color: white;
+        color: black;
+    }
+
+    &:focus {
+        outline: none !important;
+    }
+
+    &:active {
+        outline: none;
     }
 
     &.active {
-        background-color: rgba(1, 1, 1, 0.5);
-        color: white;
+        outline: none;
+        background-color: transparent;
+        color: black;
 
         i {
             color: $primary-brand-color;
         }
-    }
-
-    &:focus {
-        background-color: rgba(1, 1, 1, 0.5);
     }
 }
 
@@ -34,6 +39,10 @@
     i {
         margin-right: 8px;
     }
+}
+
+.btn-sidebar-toggle {
+    width: 50px;
 }
 
 .btn-refresh {
@@ -48,12 +57,12 @@
 
 @media only screen and (max-width : $tablet) {
     .btn-nav {
-        height: 60px;
+        width: 50px;
         font-size: 0;
-        line-height: 60px;
-        width: 60px;
 
         i {
+            width: 100%;
+            line-height: 38px;
             margin-right: 0;
             font-size: 18px;
         }

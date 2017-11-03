@@ -1,51 +1,45 @@
 .header {
     height: $header-height;
-    text-align: right;
-    background-color: transparent;
-    border-bottom: 1px solid $light-gray;
+    background-color: white;
+    padding-right: 12px;
 
     .brand-logo {
-        float: left;
         height: $header-height;
+        float: left;
         padding: 10px;
-        font-size: 20px;
-        font-weight: 100;
-        line-height: 50px;
+        color: white;
+        font-family: Arial Black;
+        font-size: 22px;
+        position: absolute;
+        letter-spacing: 1px;
+        left: 10px;
 
-        Link {
-            text-decoration: none !important;
-        }
-
-        span {
-            font-weight: 600;
-            font-size: 30px;
-            color: white;
-            margin-left: 10px;
-            font-family: Helvetica Neue;
+        a {
+            display: block;
+            height: 100%;
         }
 
         img {
-            vertical-align: top;
+            vertical-align: sub;
             height: 100%;
+            margin-right: 10px;
+            fill: $primary-brand-color;
+        }
+
+        span {
+            vertical-align: bottom;
         }
     }
+}
+
+.header-content {
+    padding-left: $sidebar-width;
 }
 
 @media only screen and (max-width : $tablet) {
     .header {
-        height: 60px;
-
         .brand-logo {
-            height: 60px;
             font-size: 18px;
-        }
-    }
-}
-
-@media only screen and (max-width : $x-small) {
-    .header {
-        .brand-logo {
-            font-size: 0;
         }
     }
 }

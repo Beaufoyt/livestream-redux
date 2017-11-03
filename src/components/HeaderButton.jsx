@@ -1,22 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 
 const NavButton = props => (
-    <NavLink activeClassName="active" className="btn btn-icon btn-nav" to={props.path}>
+    <button className={`btn btn-icon btn-nav ${props.className}`} onClick={props.onClick}>
         { props.icon && <i className={`fa fa-${props.icon}`} /> }
-        {props.label}
-    </NavLink>
+        { props.label && props.label }
+    </button>
 );
 
 NavButton.propTypes = {
-    label: PropTypes.string.isRequired,
-    path: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    onClick: PropTypes.func,
     icon: PropTypes.string,
+    className: PropTypes.string,
 };
 
 NavButton.defaultProps = {
     icon: null,
+    onClick: null,
+    className: '',
+    label: '',
 };
 
 export default NavButton;

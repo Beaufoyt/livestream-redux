@@ -1,15 +1,14 @@
 import React from 'react';
 
-import NAV_ITEMS from '../constants/NavItems';
-
-import NavButton from './NavButton';
+import HeaderButton from './HeaderButton';
 import BrandLogo from './BrandLogo';
 
 const Header = () => (
     <div className="header">
         <BrandLogo />
-        { NAV_ITEMS.map(item =>
-            <NavButton label={item.label} key={item.label} icon={item.icon} path={`/${item.path}`} />) }
+        <HeaderButton icon="chevron-left" className="pull-left btn-sidebar-toggle" />
+        <HeaderButton label="Register" icon="pencil" className="pull-right" />
+        <HeaderButton label="Log in" icon="sign-in" className="pull-right" />
     </div>
 );
 
