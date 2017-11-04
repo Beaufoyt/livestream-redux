@@ -1,7 +1,8 @@
 .header {
     height: $header-height;
-    background-color: white;
-    padding-right: 12px;
+    background-color: $dark-gray;
+    padding: 0 6px;
+    border-bottom: 1px solid lighten($dark-gray, 3%);
 
     .brand-logo {
         height: $header-height;
@@ -12,7 +13,11 @@
         font-size: 22px;
         position: absolute;
         letter-spacing: 1px;
-        left: 10px;
+        left: 60px;
+
+        .wide & {
+            left: 60px;
+        }
 
         a {
             display: block;
@@ -20,20 +25,25 @@
         }
 
         img {
-            vertical-align: sub;
+            max-width: 25px;
             height: 100%;
             margin-right: 10px;
             fill: $primary-brand-color;
         }
 
         span {
-            vertical-align: bottom;
+            vertical-align: middle;
         }
     }
 }
 
-.header-content {
+.app-content {
+    transition: padding .2s linear;
     padding-left: $sidebar-width;
+
+    &.wide {
+        padding-left: 0;
+    }
 }
 
 @media only screen and (max-width : $tablet) {

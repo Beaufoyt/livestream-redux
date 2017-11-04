@@ -11,7 +11,7 @@ const numbersTypes = {
 
 const defaultNumbersState = fromJS(numbersTypes);
 
-function numbers(state = defaultNumbersState, action) {
+const numbers = (state = defaultNumbersState, action) => {
     switch (action.type) {
     case types.NUMBER_COUNTER_ADD:
         return state.set('count', state.get('count') + action.amount);
@@ -35,9 +35,8 @@ function numbers(state = defaultNumbersState, action) {
         });
 
 
-    default:
-        return state;
+    default: return state;
     }
-}
+};
 
 export default numbers;

@@ -3,6 +3,12 @@
     width: $sidebar-width;
     height: 100%;
     position: fixed;
+    top: $header-height;
+    transition: margin .2s linear;
+
+    &.closed {
+        margin-left: -240px;
+    }
 
     .logo-holder {
         height: $header-height;
@@ -15,9 +21,13 @@
         list-style-type: none;
         margin-bottom: 0;
 
+        .sidebar-section {
+            padding: 12px 0;
+            border-bottom: 1px solid lighten($dark-gray, 3%);
+        }
+
         &.sub-menu-links {
             .active &{
-                background-color: lighten($dark-gray, 3%);
 
             }
 
@@ -72,7 +82,6 @@
                 text-align: left;
 
                 &.active {
-                    background-color: lighten($dark-gray, 3%);
 
                     .link-icon-holder {
                         i {

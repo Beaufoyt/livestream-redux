@@ -1,6 +1,6 @@
 body, html {
     font-family: 'Lato', Helvetica;
-    background-color: $light-gray;
+    background-color: lighten($dark-gray, 2%);
 }
 
 .no-dec {
@@ -11,27 +11,21 @@ body, html {
     text-align: center;
 
     section {
-        background-color: white;
+        background-color: $dark-gray;
         min-height: 400px;
         margin: 0 20px 20px 20px;
         padding: 10px 20px;
         text-align: left;
+        color: $text-light;
 
         hr {
             width: auto;
         }
-
-        .section-content {
-            margin-left: 0;
-            margin-right: 0;
-            padding: 10px;
-
-            .section-content-header {
-                font-size: 16px;
-                font-weight: bold;
-            }
-        }
     }
+}
+
+hr {
+    border-color: lighten($dark-gray, 3%);
 }
 
 .code-block {

@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import PureComponent from '../PureComponent';
 import SidebarLink from './SidebarLink';
@@ -44,24 +46,33 @@ class Sidebar extends PureComponent {
 
     render = () => {
         return (
-            <div className="sidebar">
-                <div className="logo-holder" />
+            <div className={`sidebar ${this.props.isSidebarOpen ? '' : 'closed'}`}>
                 <ul className="sidebar-links">
-                    <SidebarLink label="Dashboard" onClick={this.resetSubMenus} icon="dashboard" to="/dashboard" />
-                    <SidebarSubMenu
-                        label="Tools"
-                        id="tools"
-                        expandSubMenu={this.expandSubMenu}
-                        isSubMenuLinkActive={this.isSubMenuLinkActive}
-                        isOpen={this.isOpen}
-                        icon="wrench">
-                        <SidebarLink label="Workbench" icon="pencil" to="/tools/workbench" />
-                        <SidebarLink label="Palette" icon="paint-brush" to="/tools/palette" />
-                    </SidebarSubMenu>
+                    <div className="sidebar-section">
+                        <SidebarLink label="Dashboard" onClick={this.resetSubMenus} icon="dashboard" to="/dashboard" />
+                        <SidebarSubMenu
+                            label="Tools"
+                            id="tools"
+                            expandSubMenu={this.expandSubMenu}
+                            isSubMenuLinkActive={this.isSubMenuLinkActive}
+                            isOpen={this.isOpen}
+                            icon="wrench">
+                            <SidebarLink label="Workbench" icon="pencil" to="/tools/workbench" />
+                            <SidebarLink label="Palette" icon="paint-brush" to="/tools/palette" />
+                        </SidebarSubMenu>
+                    </div>
                 </ul>
             </div>
         );
     }
 }
 
-export default withRouter(Sidebar);
+const mapStateToProps = state => ({
+    isSidebarOpen: state.sidebar.get('isOpen'),
+});
+
+Sidebar.propTypes = {
+    isSidebarOpen: PropTypes.bool.isRequired,
+};
+
+export default withRouter(connect(mapStateToProps)(Sidebar));

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const NavButton = props => (
     <button className={`btn btn-icon btn-nav ${props.className}`} onClick={props.onClick}>
-        { props.icon && <i className={`fa fa-${props.icon}`} /> }
+        { props.icon && <i className={`fa fa-fw fa-${props.icon}`} /> }
         { props.label && props.label }
     </button>
 );
