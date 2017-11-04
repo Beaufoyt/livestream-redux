@@ -1,7 +1,7 @@
 {
   "name": "BOILA",
   "version": "1.0.0",
-  "description": "Boilerplate App using React, Redux and ImmutableJS",
+  "description": "Boilerplate App using React and Redux",
   "private": false,
   "author": "Tom Beaufoy",
   "scripts": {
@@ -51,7 +51,6 @@
     "bootstrap": "^3.3.5",
     "classnames": "^2.2.0",
     "html-webpack-plugin": "^2.28.0",
-    "immutable": "^3.7.5",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",

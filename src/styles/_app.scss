@@ -10,13 +10,35 @@ body, html {
 .app {
     text-align: center;
 
+    .content-overlay {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        position: absolute;
+        background-color: $dark-gray;
+        transition: all .2s;
+        opacity: 0;
+        pointer-events: none;
+
+        &.visible {
+            pointer-events: all;
+            opacity: .8;
+        }
+    }
+
     section {
         background-color: $dark-gray;
         min-height: 400px;
-        margin: 0 20px 20px 20px;
+        margin: 0 10px 10px 10px;
         padding: 10px 20px;
         text-align: left;
         color: $text-light;
+
+        h3 {
+            margin-top: 10px;
+            font-size: 18px;
+        }
 
         hr {
             width: auto;
@@ -46,6 +68,13 @@ hr {
 
 .tagline {
     font-size: 12px;
+    color: $text-light;
+
+    .heart  {
+        &:after {
+            content: "💙";
+        }
+    }
 }
 
 .wrap {
@@ -58,14 +87,38 @@ hr {
 .margin-bottom { margin-bottom: 10px; }
 .margin-top { margin-top: 10px; }
 
-@media only screen and (max-width : $mobile) {
+@media only screen and (max-width : $tablet) {
     .app {
         section {
-            margin: 10px;
+            margin: 0 0px 15px 0px;
         }
     }
 
     .code-block {
         min-width: auto;
+    }
+
+    .tagline {
+        font-size: 11px;
+    }
+}
+
+@media only screen and (max-width : $mobile) {
+    .app {
+        section {
+            padding: 10px 15px;
+
+            hr {
+                width: auto;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .tagline {
+        font-size: 10px;
     }
 }

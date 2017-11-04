@@ -1,35 +1,34 @@
-import { fromJS } from 'immutable';
-
+import { newState } from '../helpers';
 import * as types from '../constants/ActionTypes';
 
-const numbersTypes = {
+const defaultNumbersState = {
     fact: '',
     factIsRequesting: false,
     factError: false,
     count: 0,
 };
 
-const defaultNumbersState = fromJS(numbersTypes);
-
 const numbers = (state = defaultNumbersState, action) => {
     switch (action.type) {
     case types.NUMBER_COUNTER_ADD:
-        return state.set('count', state.get('count') + action.amount);
+        return newState(state, {
+            count: state.count + action.amount,
+        });
 
     case types.NUMBER_FACT_RECEIVE:
-        return state.merge({
+        return newState(state, {
             fact: action.fact,
             factIsRequesting: false,
         });
 
     case types.NUMBER_FACT_REQUEST:
-        return state.merge({
+        return newState(state, {
             factIsRequesting: true,
             factError: false,
         });
 
     case types.NUMBER_FACT_ERROR:
-        return state.merge({
+        return newState(state, {
             factError: true,
             factIsRequesting: false,
         });

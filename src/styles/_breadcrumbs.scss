@@ -1,12 +1,12 @@
 .breadcrumbs {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0;
     padding-left: 20px;
     text-align: left;
-    font-size: 12px;
+    font-size: 10px;
     color: $text-light;
 
     .crumb {
+        padding: 0;
         outline: none;
         border: none;
         background-color: transparent;
@@ -14,5 +14,13 @@
         font-weight: bold;
         cursor: pointer;
         margin-right: 10px;
+    }
+}
+
+@media only screen and (max-width : $mobile) {
+    .breadcrumbs {
+        font-size: 9px;
+        margin: 8px 0;
+        padding-left: 15px;
     }
 }

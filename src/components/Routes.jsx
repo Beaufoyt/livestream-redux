@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import App from './App';
-import Dashboard from './Dashboard';
+import Home from './Home';
 
 const Palette = () => (
     <section>
@@ -23,8 +23,8 @@ const Routes = () => (
         <Route
             exact
             path="/"
-            render={() => (<Redirect to="/dashboard" />)} />
-        <Route path="/dashboard" component={Dashboard} />
+            render={() => (<Redirect to="/welcome" />)} />
+        <Route path="/welcome" component={Home} />
         <Route
             exact
             path="/tools"

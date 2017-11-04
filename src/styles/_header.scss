@@ -3,36 +3,32 @@
     background-color: $dark-gray;
     padding: 0 6px;
     border-bottom: 1px solid lighten($dark-gray, 3%);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    text-align: left;
 
     .brand-logo {
         height: $header-height;
-        float: left;
-        padding: 10px;
+        display: inline-block;
+        padding: 6px 8px;
         color: white;
         font-family: Arial Black;
-        font-size: 22px;
-        position: absolute;
-        letter-spacing: 1px;
-        left: 60px;
+        font-size: 20px;
 
         .wide & {
             left: 60px;
         }
 
-        a {
-            display: block;
-            height: 100%;
+        span {
+            line-height: 44px;
+            vertical-align: middle;
         }
 
         img {
-            max-width: 25px;
-            height: 100%;
-            margin-right: 10px;
+            max-width: 28px;
+            margin-right: 5px;
             fill: $primary-brand-color;
-        }
-
-        span {
-            vertical-align: middle;
         }
     }
 }
@@ -46,10 +42,12 @@
     }
 }
 
-@media only screen and (max-width : $tablet) {
+@media only screen and (max-width : $mobile) {
     .header {
+        padding: 0;
+
         .brand-logo {
-            font-size: 18px;
+            padding: 6px;
         }
     }
 }

@@ -26,7 +26,7 @@ Header.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    isSidebarOpen: state.sidebar.get('isOpen'),
+    isSidebarOpen: state.sidebar.isOpen,
 });
 
 const mapDispatchToProps = dispatch => (

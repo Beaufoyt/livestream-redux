@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 
+import { toggleSidebar } from '../../actions/sidebar';
 import PureComponent from '../PureComponent';
 import SidebarLink from './SidebarLink';
 import SidebarSubMenu from './SidebarSubMenu';
@@ -14,6 +16,32 @@ class Sidebar extends PureComponent {
             tools: false,
             canvas: false,
         },
+    }
+
+    componentWillMount() {
+        if (this.props.isMobile && this.props.isSidebarOpen) {
+            this.props.toggleSidebar(false);
+        }
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (this.props.location.pathname !== newProps.location.pathname) {
+            if (this.props.isMobile && this.props.isSidebarOpen) {
+                this.props.toggleSidebar(false);
+            }
+
+            Object.keys(this.state.subMenus).forEach((key) => {
+                if (this.state.subMenus[key] && !this.isSubMenuLinkActive(key, newProps.location.pathname)) {
+                    this.setState({ subMenus: Object.assign({}, this.state.subMenus, { [key]: false }) });
+                }
+            });
+        }
+
+        if (!this.props.isMobile && newProps.isMobile) {
+            this.props.toggleSidebar(false);
+        } else if (this.props.isMobile && !newProps.isMobile) {
+            this.props.toggleSidebar(true);
+        }
     }
 
     expandSubMenu = (e) => {
@@ -30,18 +58,8 @@ class Sidebar extends PureComponent {
         return this.isSubMenuLinkActive(id) || this.state.subMenus[id];
     }
 
-    isSubMenuLinkActive = (id) => {
-        return window.location.pathname.split('/').find(pathBit => pathBit === id);
-    }
-
-    resetSubMenus = () => {
-        const newSubMenus = Object.assign({}, this.state.subMenus);
-
-        Object.keys(newSubMenus).forEach((key) => {
-            newSubMenus[key] = false;
-        });
-
-        this.setState({ subMenus: newSubMenus });
+    isSubMenuLinkActive = (id, location = this.props.location.pathname) => {
+        return location.split('/').find(pathBit => pathBit === id);
     }
 
     render = () => {
@@ -49,7 +67,7 @@ class Sidebar extends PureComponent {
             <div className={`sidebar ${this.props.isSidebarOpen ? '' : 'closed'}`}>
                 <ul className="sidebar-links">
                     <div className="sidebar-section">
-                        <SidebarLink label="Dashboard" onClick={this.resetSubMenus} icon="dashboard" to="/dashboard" />
+                        <SidebarLink label="Home" icon="home" to="/welcome" />
                         <SidebarSubMenu
                             label="Tools"
                             id="tools"
@@ -68,11 +86,22 @@ class Sidebar extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-    isSidebarOpen: state.sidebar.get('isOpen'),
+    isSidebarOpen: state.sidebar.isOpen,
+    isMobile: state.ui.isMobile,
+    screenWidth: state.ui.screenWidth,
 });
 
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({ toggleSidebar }, dispatch)
+);
+
 Sidebar.propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string.isRequired,
+    }).isRequired,
     isSidebarOpen: PropTypes.bool.isRequired,
+    toggleSidebar: PropTypes.func.isRequired,
+    isMobile: PropTypes.bool.isRequired,
 };
 
-export default withRouter(connect(mapStateToProps)(Sidebar));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar));

@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 
+import { toggleSidebar } from '../actions/sidebar';
 import Header from './Header';
 import Sidebar from './sidebar/Sidebar';
 import Breadcrumbs from './breadcrumbs/Breadcrumbs';
@@ -10,20 +12,32 @@ const App = props => (
     <div className="app">
         <Sidebar />
         <Header />
-        <div className={`app-content ${props.isSidebarOpen ? '' : 'wide'}`} >
+        <div className={`app-content ${!props.isMobile && props.isSidebarOpen ? '' : 'wide'}`} >
             <Breadcrumbs />
             { props.children }
+            <span className="tagline">Made with&nbsp;<span className="heart" />&nbsp;by Tom Beaufoy</span>
+            { props.isMobile &&
+                <textbox
+                    onClick={() => props.toggleSidebar(false)}
+                    className={`content-overlay ${props.isSidebarOpen ? 'visible' : ''}`} /> }
         </div>
     </div>
 );
 
 const mapStateToProps = state => ({
-    isSidebarOpen: state.sidebar.get('isOpen'),
+    isSidebarOpen: state.sidebar.isOpen,
+    isMobile: state.ui.isMobile,
 });
+
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({ toggleSidebar }, dispatch)
+);
 
 App.propTypes = {
     children: PropTypes.arrayOf(PropTypes.element).isRequired,
     isSidebarOpen: PropTypes.bool.isRequired,
+    isMobile: PropTypes.bool.isRequired,
+    toggleSidebar: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

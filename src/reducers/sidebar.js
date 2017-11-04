@@ -1,17 +1,16 @@
-import { fromJS } from 'immutable';
-
+import { newState } from '../helpers';
 import * as types from '../constants/ActionTypes';
 
-const sidebarState = {
+const defaultSidebarState = {
     isOpen: true,
 };
-
-const defaultSidebarState = fromJS(sidebarState);
 
 const sidebar = (state = defaultSidebarState, action) => {
     switch (action.type) {
     case types.TOGGLE_SIDEBAR:
-        return state.set('isOpen', action.bool);
+        return newState(state, {
+            isOpen: action.bool,
+        });
 
     default: return state;
     }
