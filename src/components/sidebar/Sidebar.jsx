@@ -77,6 +77,7 @@ class Sidebar extends PureComponent {
                             icon="wrench">
                             <SidebarLink label="Workbench" icon="pencil" to="/tools/workbench" />
                             <SidebarLink label="Palette" icon="paint-brush" to="/tools/palette" />
+                            <SidebarLink label="Gifmaker" icon="file-video-o" to="/tools/gifmaker" />
                         </SidebarSubMenu>
                     </div>
                 </ul>

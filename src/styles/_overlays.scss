@@ -1,0 +1,70 @@
+.overlay {
+    @include full-page();
+    background-color: black;
+    z-index: 100;
+    animation: fade .6s ease-in-out;
+    animation-fill-mode: forwards;
+    overflow: hidden;
+}
+
+.overlay-container {
+    color: $text-light;
+    z-index: 101;
+    width: 500px;
+    position: absolute;
+    max-height: 100%;
+    top: 150px;
+    @include horizontal-center();
+
+    .overlay-header {
+        height: 60px;
+        background-color: $dark-gray;
+        border-bottom: 1px solid lighten($dark-gray, 3%);
+
+        h3 {
+            line-height: 60px;
+            margin: 0;
+        }
+    }
+
+    .overlay-contents {
+        padding: 20px;
+        min-height: 100px;
+        background-color: $dark-gray;
+        overflow: auto;
+        max-height: calc(100vh - 230px);
+    }
+
+    .overlay-footer {
+        border-top: 1px solid lighten($dark-gray, 3%);
+        height: 70px;
+        background-color: $dark-gray;
+    }
+}
+
+@keyframes fade {
+  0%   { opacity: 0; }
+  100% { opacity: .8; }
+}
+
+@media only screen and (max-width : $tablet) {
+
+}
+
+@media only screen and (max-width : $mobile) {
+    .overlay-container {
+        bottom: 0;
+        position: absolute;
+        left:0;
+        right:0;
+        top: 0;
+        transform: none;
+        width: auto;
+        height: 100%;
+
+        .overlay-contents {
+            height: calc(100vh - 130px);
+            max-height: calc(100vh - 130px);
+        }
+    }
+}

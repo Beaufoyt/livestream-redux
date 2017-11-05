@@ -4,6 +4,13 @@ import { Route, Redirect } from 'react-router-dom';
 import App from './App';
 import Home from './Home';
 
+const Gifmaker = () => (
+    <section>
+        <h3>Gifmaker</h3>
+        <hr />
+    </section>
+);
+
 const Palette = () => (
     <section>
         <h3>Palette</h3>
@@ -31,6 +38,7 @@ const Routes = () => (
             render={() => (<Redirect to="/tools/workbench" />)} />
         <Route path="/tools/workbench" component={Workbench} />
         <Route path="/tools/palette" component={Palette} />
+        <Route path="/tools/gifmaker" component={Gifmaker} />
     </App>
 );
 

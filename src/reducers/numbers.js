@@ -1,4 +1,4 @@
-import { newState } from '../helpers';
+import { newState } from '../services/reducerService';
 import * as types from '../constants/ActionTypes';
 
 const defaultNumbersState = {

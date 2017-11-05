@@ -22,6 +22,9 @@ const webpackConfig = {
         path: paths.project(config.dir_dist),
         publicPath: '/',
     },
+    node: {
+        fs: 'empty',
+    },
     plugins: [
         new webpack.DefinePlugin(config.globals),
         new webpack.optimize.OccurrenceOrderPlugin(),

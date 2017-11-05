@@ -1,10 +1,18 @@
 body, html {
-    font-family: 'Lato', Helvetica;
+    font-family: Helvetica Neue,'Lato', Helvetica;
     background-color: lighten($dark-gray, 2%);
 }
 
 .no-dec {
     text-decoration: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Segoe UI,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 .app {
@@ -86,6 +94,7 @@ hr {
 .margin-left { margin-left: 10px; }
 .margin-bottom { margin-bottom: 10px; }
 .margin-top { margin-top: 10px; }
+.full-width { width: 100% !important; }
 
 @media only screen and (max-width : $tablet) {
     .app {

@@ -6,18 +6,21 @@ import { bindActionCreators } from 'redux';
 import { toggleSidebar } from '../actions/sidebar';
 import Header from './Header';
 import Sidebar from './sidebar/Sidebar';
+import ClickableDiv from './utils/ClickableDiv';
 import Breadcrumbs from './breadcrumbs/Breadcrumbs';
+import LoginOverlay from './LoginOverlay';
 
 const App = props => (
     <div className="app">
         <Sidebar />
         <Header />
+        <LoginOverlay />
         <div className={`app-content ${!props.isMobile && props.isSidebarOpen ? '' : 'wide'}`} >
             <Breadcrumbs />
             { props.children }
             <span className="tagline">Made with&nbsp;<span className="heart" />&nbsp;by Tom Beaufoy</span>
             { props.isMobile &&
-                <textbox
+                <ClickableDiv
                     onClick={() => props.toggleSidebar(false)}
                     className={`content-overlay ${props.isSidebarOpen ? 'visible' : ''}`} /> }
         </div>
