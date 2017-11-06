@@ -74,8 +74,9 @@
             }
 
             a, button {
+                box-sizing: content-box;
                 outline: none !important;
-                width: 100%;
+                width: 200px;
                 background-color: transparent;
                 border-radius: 0;
                 box-shadow: none !important;
@@ -83,8 +84,8 @@
                 font-size: 16px;
                 line-height: 40px;
                 height: 100%;
-                display: block;
                 padding: 0 20px;
+                display: block;
                 text-align: left;
 
                 &.active {

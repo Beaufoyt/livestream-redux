@@ -5,7 +5,7 @@ const BrandLogo = props => (
     <li className="sidebar-link sub-menu">
         <button
             id={props.id}
-            className={`btn ${props.isSubMenuLinkActive(props.id) ? 'active' : ''}`}
+            className={`btn btn-sidebar ${props.isSubMenuLinkActive(props.id) ? 'active' : ''}`}
             onClick={props.expandSubMenu}>
             <span className="pull-right overflow-icon">
                 <i className={`fa fa-chevron-${props.isOpen(props.id) ? 'down' : 'left'}`} />

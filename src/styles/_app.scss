@@ -1,6 +1,7 @@
 body, html {
     font-family: Helvetica Neue,'Lato', Helvetica;
     background-color: lighten($dark-gray, 2%);
+    margin: 0;
 }
 
 .no-dec {
@@ -9,6 +10,22 @@ body, html {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: Segoe UI,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+ul {
+    margin-top: 0;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+input, textarea, button {
+    font-family: Helvetica Neue, 'Lato', Helvetica;
+    text-decoration: none;
 }
 
 .no-scroll {

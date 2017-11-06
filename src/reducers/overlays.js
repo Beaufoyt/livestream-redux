@@ -11,6 +11,12 @@ Object.keys(overlays).forEach((key) => {
 const overlayReducer = (state = defaultOverlayState, action) => {
     switch (action.type) {
     case types.TOGGLE_OVERLAY:
+        if (action.visible) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+
         return newState(state, {
             [action.id]: action.visible,
         });

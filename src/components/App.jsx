@@ -9,12 +9,14 @@ import Sidebar from './sidebar/Sidebar';
 import ClickableDiv from './utils/ClickableDiv';
 import Breadcrumbs from './breadcrumbs/Breadcrumbs';
 import LoginOverlay from './LoginOverlay';
+import RegisterOverlay from './RegisterOverlay';
 
 const App = props => (
     <div className="app">
         <Sidebar />
         <Header />
         <LoginOverlay />
+        <RegisterOverlay />
         <div className={`app-content ${!props.isMobile && props.isSidebarOpen ? '' : 'wide'}`} >
             <Breadcrumbs />
             { props.children }

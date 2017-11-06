@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const NavButton = props => (
-    <button className={`btn btn-icon btn-nav ${props.className}`} onClick={props.onClick}>
+    <button className={`btn btn-icon btn-nav btn-wave ${props.className}`} onClick={props.onClick}>
         { props.icon && <i className={`fa fa-${props.icon}`} /> }
         { props.label && props.label }
     </button>

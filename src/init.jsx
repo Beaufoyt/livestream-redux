@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, browserHistory } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.css';
 import { screenResize } from './actions/ui';
 
 import configureStore from './store/configureStore';

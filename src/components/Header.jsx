@@ -17,7 +17,11 @@ const Header = props => (
             onClick={() => props.toggleSidebar(!props.isSidebarOpen)}
             icon="bars"
             className="pull-left btn-sidebar-toggle" />
-        <HeaderButton label="Register" icon="pencil" className="pull-right" />
+        <HeaderButton
+            onClick={() => props.toggleOverlay(overlays.register, true)}
+            label="Register"
+            icon="pencil"
+            className="pull-right" />
         <HeaderButton
             label="Log in"
             onClick={() => props.toggleOverlay(overlays.login, true)}
