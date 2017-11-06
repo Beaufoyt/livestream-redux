@@ -4,30 +4,43 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 
 import { toggleSidebar } from '../actions/sidebar';
+
 import Header from './Header';
 import Sidebar from './sidebar/Sidebar';
 import ClickableDiv from './utils/ClickableDiv';
 import Breadcrumbs from './breadcrumbs/Breadcrumbs';
+import StripLoader from './loaders/StripLoader';
 import LoginOverlay from './LoginOverlay';
 import RegisterOverlay from './RegisterOverlay';
+import PureComponent from './PureComponent';
 
-const App = props => (
-    <div className="app">
-        <Sidebar />
-        <Header />
-        <LoginOverlay />
-        <RegisterOverlay />
-        <div className={`app-content ${!props.isMobile && props.isSidebarOpen ? '' : 'wide'}`} >
-            <Breadcrumbs />
-            { props.children }
-            <span className="tagline">Made with&nbsp;<span className="heart" />&nbsp;by Tom Beaufoy</span>
-            { props.isMobile &&
-                <ClickableDiv
-                    onClick={() => props.toggleSidebar(false)}
-                    className={`content-overlay ${props.isSidebarOpen ? 'visible' : ''}`} /> }
-        </div>
-    </div>
-);
+class App extends PureComponent {
+
+    closeSidebar = () => {
+        this.props.toggleSidebar(false);
+    }
+
+    render() {
+        return (
+            <div className="app">
+                <StripLoader />
+                <Sidebar />
+                <Header />
+                <LoginOverlay />
+                <RegisterOverlay />
+                <div className={`app-content ${!this.props.isMobile && this.props.isSidebarOpen ? '' : 'wide'}`} >
+                    <Breadcrumbs />
+                    { this.props.children }
+                    <span className="tagline">Made with&nbsp;<span className="heart" />&nbsp;by Tom Beaufoy</span>
+                    { this.props.isMobile &&
+                        <ClickableDiv
+                            onClick={this.closeSidebar}
+                            className={`content-overlay ${this.props.isSidebarOpen ? 'visible' : ''}`} /> }
+                </div>
+            </div>
+        );
+    }
+}
 
 const mapStateToProps = state => ({
     isSidebarOpen: state.sidebar.isOpen,

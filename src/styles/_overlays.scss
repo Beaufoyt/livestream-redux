@@ -47,10 +47,6 @@
   100% { opacity: .8; }
 }
 
-@media only screen and (max-width : $tablet) {
-
-}
-
 @media only screen and (max-width : $mobile) {
     .overlay-container {
         bottom: 0;
@@ -63,8 +59,8 @@
         height: 100%;
 
         .overlay-contents {
-            height: calc(100vh - 130px);
-            max-height: calc(100vh - 130px);
+            height: calc(100vh - 173px);
+            max-height: calc(100vh - 173px);
         }
     }
 }

@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 
 import { toggleSidebar } from '../../actions/sidebar';
+import { fakeLoad } from '../../actions/loader';
+
 import PureComponent from '../PureComponent';
 import SidebarLink from './SidebarLink';
 import SidebarSubMenu from './SidebarSubMenu';
@@ -26,6 +28,8 @@ class Sidebar extends PureComponent {
 
     componentWillReceiveProps(newProps) {
         if (this.props.location.pathname !== newProps.location.pathname) {
+            this.props.fakeLoad(3000);
+
             if (this.props.isMobile && this.props.isSidebarOpen) {
                 this.props.toggleSidebar(false);
             }
@@ -93,7 +97,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => (
-    bindActionCreators({ toggleSidebar }, dispatch)
+    bindActionCreators({ toggleSidebar, fakeLoad }, dispatch)
 );
 
 Sidebar.propTypes = {
@@ -103,6 +107,7 @@ Sidebar.propTypes = {
     isSidebarOpen: PropTypes.bool.isRequired,
     toggleSidebar: PropTypes.func.isRequired,
     isMobile: PropTypes.bool.isRequired,
+    fakeLoad: PropTypes.func.isRequired,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar));

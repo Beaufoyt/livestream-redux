@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const BrandLogo = props => (
+const SidebarLink = props => (
     <li className="sidebar-link">
         <NavLink activeClassName="active" onClick={props.onClick} className="btn btn-sidebar" to={props.to}>
             <span className="link-icon-holder">
@@ -13,15 +13,15 @@ const BrandLogo = props => (
     </li>
 );
 
-BrandLogo.propTypes = {
+SidebarLink.propTypes = {
     onClick: PropTypes.func,
     icon: PropTypes.string.isRequired,
     to: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
 };
 
-BrandLogo.defaultProps = {
+SidebarLink.defaultProps = {
     onClick: () => {},
 };
 
-export default BrandLogo;
+export default SidebarLink;
