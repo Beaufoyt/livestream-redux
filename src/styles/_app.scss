@@ -26,6 +26,10 @@ hr {
 input, textarea, button {
     font-family: Helvetica Neue, 'Lato', Helvetica;
     text-decoration: none;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 .no-scroll {
