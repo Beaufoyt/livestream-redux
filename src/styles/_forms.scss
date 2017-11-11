@@ -1,30 +1,86 @@
-.form-group {
+.form-input {
     height: 50px;
     position: relative;
+    border-bottom: 1px solid $border-light;
+    transition: all .15s linear;
+    margin-bottom: 20px;
 
     label, input {
         position: absolute;
     }
 
     label {
-        bottom: 4px;
-        left: 2px;
+        pointer-events: none;
+        font-size: 18px;
+        top: 17px;
+        left: 0;
         z-index: 1;
-        transition: all .3s linear;
+        transition: all .15s linear;
     }
 
     input {
+        color: $text-light;
+        background-color: transparent;
+        border: 0;
         position: absolute;
         bottom: 0;
         width: 100%;
         height: 40px;
+
+        &.has-value + label {
+            top: 0 !important;
+            font-size: 12px !important;
+        }
+    }
+
+    &.required:after {
+        content: "*";
+        position: absolute;
+        color: white;
+        right: 0;
+        top: 2px;
+        color: $text-error;
+    }
+
+    &:before {
+        width: attr(data-width px);
+        content: attr(data-error);
+        position: absolute;
+        bottom: -24px;
+        left: 1px;
+        font-size: 12px;
+        color: $text-error;
+    }
+
+    &.error {
+        border-bottom: 1px solid $text-error !important;
+        -webkit-box-shadow: 0 1px 0 0 $text-error !important;
+        box-shadow: 0 1px 0 0 $text-error !important;
+
+        label {
+            color: $text-error !important;
+        }
+    }
+
+    &.valid {
+        border-bottom: 1px solid $text-success !important;
+        -webkit-box-shadow: 0 1px 0 0 $text-success !important;
+        box-shadow: 0 1px 0 0 $text-success !important;
+
+        label {
+            color: $text-success !important;
+        }
     }
 }
 
-.form-group:focus-within {
+.form-input:focus-within {
+    border-bottom: 1px solid $primary-brand-color;
+    -webkit-box-shadow: 0 1px 0 0 $primary-brand-color;
+    box-shadow: 0 1px 0 0 $primary-brand-color;
+
     label {
+        top: 0;
         font-size: 12px;
-        bottom: 24px;
-        color: green;
+        color: $primary-brand-color;
     }
 }

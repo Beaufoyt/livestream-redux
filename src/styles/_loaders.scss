@@ -12,15 +12,13 @@
         height: 3px;
         z-index: 100;
         background-color: $dark-gray;
-        width: 100%;
+        width: 25%;
         float: right;
-        animation: loadStart 1s ease-in-out;
-        animation-fill-mode: forwards;
+        animation: loadStart 1s linear;
 
         &.closing {
-            animation: loadEnd .3s ease-in-out;
-            animation-fill-mode: forwards;
-            width: 25%;
+            animation: loadEnd .3s linear;
+            width: 0%;
         }
     }
 

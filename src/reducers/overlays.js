@@ -1,4 +1,4 @@
-import { newState } from '../services/reducerService';
+import { newState } from '../helpers/reducer';
 import * as types from '../constants/ActionTypes';
 import { overlays } from '../constants/Overlays';
 

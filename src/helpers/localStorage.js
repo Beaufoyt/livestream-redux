@@ -1,4 +1,4 @@
-const localStorageService = {
+const localStorage = {
     set: (id, value) => {
         window.localStorage.setItem(id, value);
     },
@@ -10,4 +10,4 @@ const localStorageService = {
     get: id => window.localStorage.getItem(id),
 };
 
-export default localStorageService;
+export default localStorage;

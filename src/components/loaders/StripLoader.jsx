@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import classnames from 'classnames';
 
+import classnames from '../../helpers/classnames';
 import { toggleSidebar } from '../../actions/sidebar';
 import { fakeLoad } from '../../actions/loader';
 
@@ -37,9 +37,9 @@ class StripLoader extends PureComponent {
             this.state.showLoader &&
                 <div className="strip-loader">
                     <div
-                        className={`loading-bar ${classnames({
+                        className={classnames('loading-bar', {
                             closing: !this.props.loading && this.state.showLoader,
-                        })}`} />
+                        })} />
                 </div>
         );
     }

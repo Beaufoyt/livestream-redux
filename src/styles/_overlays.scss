@@ -2,8 +2,8 @@
     @include full-page();
     background-color: black;
     z-index: 100;
-    animation: fade .6s ease-in-out;
-    animation-fill-mode: forwards;
+    opacity: .8;
+    animation: fade .6s linear;
     overflow: hidden;
 }
 
