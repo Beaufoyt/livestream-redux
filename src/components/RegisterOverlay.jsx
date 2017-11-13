@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { overlays } from '../constants/Overlays';
+import { overlays } from '../constants/overlays';
 
 import Overlay from './Overlay';
 

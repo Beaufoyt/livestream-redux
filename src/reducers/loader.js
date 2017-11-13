@@ -1,5 +1,5 @@
 import { newState } from '../helpers/reducer';
-import * as types from '../constants/ActionTypes';
+import * as types from '../constants/actionTypes';
 
 const defaultSidebarState = {
     loading: false,

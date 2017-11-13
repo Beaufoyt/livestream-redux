@@ -7,3 +7,4 @@ export const TOGGLE_OVERLAY = 'TOGGLE_OVERLAY';
 export const SCREEN_RESIZE = 'SCREEN_RESIZE';
 export const LOADER_START = 'LOADER_START';
 export const LOADER_COMPLETE = 'LOADER_COMPLETE';
+export const SET_FORM_VALUE = 'SET_FORM_VALUE';

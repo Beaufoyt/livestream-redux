@@ -1,6 +1,6 @@
 import { newState } from '../helpers/reducer';
-import * as types from '../constants/ActionTypes';
-import { overlays } from '../constants/Overlays';
+import * as types from '../constants/actionTypes';
+import { overlays } from '../constants/overlays';
 
 const defaultOverlayState = {};
 

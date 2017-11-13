@@ -37,6 +37,16 @@ input, textarea, button {
     }
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 .row {
     width: 100%;
     margin-bottom: 20px;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import * as types from '../constants/ActionTypes';
+import * as types from '../constants/actionTypes';
 
 export const addToCount = amount => ({ type: types.NUMBER_COUNTER_ADD, amount });
 

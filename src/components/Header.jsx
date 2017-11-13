@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { toggleSidebar } from '../actions/sidebar';
 import { toggleOverlay } from '../actions/overlays';
-import { overlays } from '../constants/Overlays';
+import { overlays } from '../constants/overlays';
 
 import HeaderButton from './HeaderButton';
 import BrandLogo from './BrandLogo';

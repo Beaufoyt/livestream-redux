@@ -33,7 +33,7 @@ class Overlay extends PureComponent {
                             { this.props.cancelText }
                         </button>
                         { this.props.submit &&
-                        <button className={`btn btn-overlay ${this.props.submitIcon ? 'btn-icon' : ''}`}>
+                        <button className={`btn btn-overlay btn-success ${this.props.submitIcon ? 'btn-icon' : ''}`}>
                             <i className={`fa fa-fw fa-${this.props.submitIcon ? this.props.submitIcon : ''}`} />
                             { this.props.submitText }
                         </button> }
